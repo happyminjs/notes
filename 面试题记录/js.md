@@ -1,3 +1,37 @@
+### 数组方法汇总
+https://juejin.im/post/5902d56e1b69e60058c634d6
+#### 数组去重
+```js
+// 方法一: for...of + Object
+function distinct(arr) {
+  let obj = {}
+  for (let i of arr) {
+    obj[i] = (obj[i] || 0) + 1
+  }
+  return Object.keys(obj)
+}
+// 方法二: 排序后遍历
+function distinct(arr) {
+    arr = arr.sort()
+    let result = [arr[0]]
+    for (let i = 1, len = arr.length; i < len; i++) {
+      let resLen = result.length
+      arr[i] !== result[resLen - 1] && result.push(arr[i])
+    }
+    return result
+}
+// 方法三: filter + indexOf
+function distinct(arr) {
+  return arr.filter((item, index, arr)=> {
+    return arr.indexOf(item) === index
+  })
+}
+// 方法四: new Set()
+function distinct(arr) {
+  let set = new Set(arr);
+  return [...set]
+}
+```
 ### 基础类型
 null、undefined、Boolean、String、Number
 判断类型
@@ -260,14 +294,6 @@ encodeURI方法不会对下列字符编码  ASCII字母、数字、~!@#$&*()=:/,
 <img src="/imgs/encode.png" width=400></img>
 
 ------------------
-### vue实现思想（数据双向绑定、虚拟dom，diff算法，vue.use, vue.component）
-https://www.cnblogs.com/wind-lanyan/p/9061684.html
-### vue router
-单页面进入判断登录
-### css的局部作用域 已 vue 的 scoped 属性为例
-
------
-
 ### DOMContentLoaded 与 load 
 * **Load** 事件触发代表页面中的 DOM，CSS，JS，图片已经全部加载完毕。
 * **DOMContentLoaded** 事件触发代表初始的 HTML 被完全加载和解析，不需要等待 CSS，JS，图片加载。
