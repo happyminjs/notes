@@ -1,0 +1,32 @@
+@basicColor: rgb(247, 76, 9);
+@basicFontsize: 12px;
+.border1px {
+  position: relative;
+  border:none;
+  &::after {
+    content:'';
+    position:absolute;
+    border: 1px solid #000;
+    top:-50%;
+    right:-50%;
+    bottom:-50%;
+    left:-50%;
+    transform: scale(0.5);
+  }
+}
+@width: 30px;
+@height: @width * 2;
+
+html{
+  margin: 0;
+  padding: 0;
+  background-color: aqua;
+  body{
+    margin: 0;
+    padding: 0;
+    background-color: burlywood;
+    font-size: 28px;
+  }
+}
+
+

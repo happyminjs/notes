@@ -1,0 +1,3162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="email=no" />
+  <meta name="format-detection" content="address=no;" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="location" content="province=北京;city=北京" />
+
+  <title>北京品牌公寓</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+
+  <link rel="apple-touch-icon-precomposed" href="//img.58cdn.com.cn/m58/img/icon58b.png" />
+  <link rel="apple-touch-startup-image" href="//img.58cdn.com.cn/m58/img/icon58b.png" />
+  <!--处理高清屏幕，计算rem布局-->
+  <script>
+    ! function (e, t) {
+      function n() {
+        var t = o.getBoundingClientRect().width;
+        if (t < 360) {
+          t = 360
+        };
+        if (t > 414) {
+          t = 414
+        };
+        var n = t / 10;
+        o.style.fontSize = n + "px", d.rem = e.rem = n
+      }
+      var i, r = e.document,
+        o = r.documentElement,
+        a = 0,
+        d = t.flexible || (t.flexible = {}),
+        s = e.navigator.appVersion.match(/iphone/gi),
+        m = e.navigator.appVersion.match(/UCBrowser/gi),
+        p = e.devicePixelRatio;
+      a = s ? p >= 3 && (!a || a >= 3) ? 3 : p >= 2 && (!a || a >= 2) ? 2 : 1 : 1, o.setAttribute("data-dpr", a),
+        "complete" === r.readyState ? r.body.style.fontSize = "12px" : r.addEventListener("DOMContentLoaded",
+        function () {
+          r.body.style.fontSize = "12px"
+        }, !1);
+      var c = "onorientationchange" in window ? "orientationchange" : "resize";
+      if (e.addEventListener(c, function () {
+          clearTimeout(i), i = setTimeout(n, 300)
+        }, !1), e.addEventListener("pageshow", function (e) {
+          e.persisted && (clearTimeout(i), i = setTimeout(n, 300))
+        }, !1), n(), d.dpr = e.dpr = a, d.refreshRem = n, d.rem2px = function (e) {
+          var t = parseFloat(e) * this.rem;
+          return "string" == typeof e && e.match(/rem$/) && (t += "px"), t
+        }, d.px2rem = function (e) {
+          var t = parseFloat(e) / this.rem;
+          return "string" == typeof e && e.match(/px$/) && (t += "rem"), t
+        }, s && !m) {
+        var l = "notHairlines",
+          u = navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/),
+          f = parseInt(u[1], 10);
+        f >= 8 && (l = "hairlines"), document.documentElement.classList.add(l)
+      }
+    }(window, window.lib || (window.lib = {}));
+  </script>
+  <!--end-->
+  <script>
+    ! function (w, d) {
+      if (!w.ActiveXObject || d.documentMode > 8) {
+        d.write(
+          "<style>@font-face{font-family:'fangchan-secret';src:url('data:application/font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwR1NVQiCLJXoAAAE4AAAAVE9TLzL4XQjtAAABjAAAAFZjbWFwq7p/bQAAAhAAAAIuZ2x5ZuWIN0cAAARYAAADdGhlYWQW63l/AAAA4AAAADZoaGVhCtADIwAAALwAAAAkaG10eC7qAAAAAAHkAAAALGxvY2ED7gSyAAAEQAAAABhtYXhwARgANgAAARgAAAAgbmFtZTd6VP8AAAfMAAACanBvc3QFRAYqAAAKOAAAAEUAAQAABmb+ZgAABLEAAAAABGgAAQAAAAAAAAAAAAAAAAAAAAsAAQAAAAEAAOUapnxfDzz1AAsIAAAAAADZshc3AAAAANmyFzcAAP/mBGgGLgAAAAgAAgAAAAAAAAABAAAACwAqAAMAAAAAAAIAAAAKAAoAAAD/AAAAAAAAAAEAAAAKADAAPgACREZMVAAObGF0bgAaAAQAAAAAAAAAAQAAAAQAAAAAAAAAAQAAAAFsaWdhAAgAAAABAAAAAQAEAAQAAAABAAgAAQAGAAAAAQAAAAEERAGQAAUAAAUTBZkAAAEeBRMFmQAAA9cAZAIQAAACAAUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFBmRWQAQJR2n6UGZv5mALgGZgGaAAAAAQAAAAAAAAAAAAAEsQAABLEAAASxAAAEsQAABLEAAASxAAAEsQAABLEAAASxAAAEsQAAAAAABQAAAAMAAAAsAAAABAAAAaYAAQAAAAAAoAADAAEAAAAsAAMACgAAAaYABAB0AAAAFAAQAAMABJR2lY+ZPJpLnjqeo59kn5Kfpf//AACUdpWPmTyaS546nqOfZJ+Sn6T//wAAAAAAAAAAAAAAAAAAAAAAAAABABQAFAAUABQAFAAUABQAFAAUAAAAAwAJAAEABQAKAAQABgAIAAIABwAAAQYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAAAiAAAAAAAAAAKAACUdgAAlHYAAAADAACVjwAAlY8AAAAJAACZPAAAmTwAAAABAACaSwAAmksAAAAFAACeOgAAnjoAAAAKAACeowAAnqMAAAAEAACfZAAAn2QAAAAGAACfkgAAn5IAAAAIAACfpAAAn6QAAAACAACfpQAAn6UAAAAHAAAAAAAAACgAPgBmAJoAvgDoASQBOAF+AboAAgAA/+YEWQYnAAoAEgAAExAAISAREAAjIgATECEgERAhIFsBEAECAez+6/rs/v3IATkBNP7S/sEC6AGaAaX85v54/mEBigGB/ZcCcwKJAAABAAAAAAQ1Bi4ACQAAKQE1IREFNSURIQQ1/IgBW/6cAicBWqkEmGe0oPp7AAEAAAAABCYGJwAXAAApATUBPgE1NCYjIgc1NjMyFhUUAgcBFSEEGPxSAcK6fpSMz7y389Hym9j+nwLGqgHButl0hI2wx43iv5D+69b+pwQAAQAA/+YEGQYnACEAABMWMzI2NRAhIzUzIBE0ISIHNTYzMhYVEAUVHgEVFAAjIiePn8igu/5bgXsBdf7jo5CYy8bw/sqow/7T+tyHAQN7nYQBJqIBFP9uuVjPpf7QVwQSyZbR/wBSAAACAAAAAARoBg0ACgASAAABIxEjESE1ATMRMyERNDcjBgcBBGjGvv0uAq3jxv58BAQOLf4zAZL+bgGSfwP8/CACiUVaJlH9TwABAAD/5gQhBg0AGAAANxYzMjYQJiMiBxEhFSERNjMyBBUUACEiJ7GcqaDEx71bmgL6/bxXLPUBEv7a/v3Zbu5mswEppA4DE63+SgX42uH+6kAAAAACAAD/5gRbBicAFgAiAAABJiMiAgMzNjMyEhUUACMiABEQACEyFwEUFjMyNjU0JiMiBgP6eYTJ9AIFbvHJ8P7r1+z+8wFhASClXv1Qo4eAoJeLhKQFRj7+ov7R1f762eP+3AFxAVMBmgHjLfwBmdq8lKCytAAAAAABAAAAAARNBg0ABgAACQEjASE1IQRN/aLLAkD8+gPvBcn6NwVgrQAAAwAA/+YESgYnABUAHwApAAABJDU0JDMyFhUQBRUEERQEIyIkNRAlATQmIyIGFRQXNgEEFRQWMzI2NTQBtv7rAQTKufD+3wFT/un6zf7+AUwBnIJvaJLz+P78/uGoh4OkAy+B9avXyqD+/osEev7aweXitAEohwF7aHh9YcJlZ/7qdNhwkI9r4QAAAAACAAD/5gRGBicAFwAjAAA3FjMyEhEGJwYjIgA1NAAzMgAREAAhIicTFBYzMjY1NCYjIga5gJTQ5QICZvHD/wABGN/nAQT+sP7Xo3FxoI16pqWHfaTSSgFIAS4CAsIBDNbkASX+lf6l/lP+MjUEHJy3p3en274AAAAAABAAxgABAAAAAAABAA8AAAABAAAAAAACAAcADwABAAAAAAADAA8AFgABAAAAAAAEAA8AJQABAAAAAAAFAAsANAABAAAAAAAGAA8APwABAAAAAAAKACsATgABAAAAAAALABMAeQADAAEECQABAB4AjAADAAEECQACAA4AqgADAAEECQADAB4AuAADAAEECQAEAB4A1gADAAEECQAFABYA9AADAAEECQAGAB4BCgADAAEECQAKAFYBKAADAAEECQALACYBfmZhbmdjaGFuLXNlY3JldFJlZ3VsYXJmYW5nY2hhbi1zZWNyZXRmYW5nY2hhbi1zZWNyZXRWZXJzaW9uIDEuMGZhbmdjaGFuLXNlY3JldEdlbmVyYXRlZCBieSBzdmcydHRmIGZyb20gRm9udGVsbG8gcHJvamVjdC5odHRwOi8vZm9udGVsbG8uY29tAGYAYQBuAGcAYwBoAGEAbgAtAHMAZQBjAHIAZQB0AFIAZQBnAHUAbABhAHIAZgBhAG4AZwBjAGgAYQBuAC0AcwBlAGMAcgBlAHQAZgBhAG4AZwBjAGgAYQBuAC0AcwBlAGMAcgBlAHQAVgBlAHIAcwBpAG8AbgAgADEALgAwAGYAYQBuAGcAYwBoAGEAbgAtAHMAZQBjAHIAZQB0AEcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAAcwB2AGcAMgB0AHQAZgAgAGYAcgBvAG0AIABGAG8AbgB0AGUAbABsAG8AIABwAHIAbwBqAGUAYwB0AC4AaAB0AHQAcAA6AC8ALwBmAG8AbgB0AGUAbABsAG8ALgBjAG8AbQAAAAIAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwECAQMBBAEFAQYBBwEIAQkBCgELAQwAAAAAAAAAAAAAAAAAAAAA') format('truetype')}.strongbox{font-family:'fangchan-secret','Hiragino Sans GB','Microsoft yahei',Arial,sans-serif,'宋体'!important}</style>"
+          )
+      } else {
+        d.write(
+          "<style>@font-face{font-family:'fangchan-secret';src:url('https://wos2.58cdn.com.cn/DeFazYxWvDkJ/sfont/b1818e92db77c712de95138dacbca42c.eot')}.strongbox{font-family:'fangchan-secret','Hiragino Sans GB','Microsoft yahei',Arial,sans-serif,'宋体'!important}.strongbox{visibility:hidden}</style>"
+          );
+        var i = d.createElement('img');
+        i.onerror = function () {
+          setTimeout(function () {
+            var s = document.createElement('style'),
+              n = document.getElementsByTagName('script')[0];
+            s.type = 'text/css';
+            s.styleSheet.cssText = '.strongbox{visibility:visible!important}';
+            n.parentNode.insertBefore(s, n);
+          }, 1300)
+        };
+        i.src = 'https://wos2.58cdn.com.cn/DeFazYxWvDkJ/sfont/b1818e92db77c712de95138dacbca42c.eot';
+      }
+    }(window, document);
+  </script>
+  <script rel="preconnet" src="//hm.baidu.com"></script>
+<link href="/listtest/index.css" rel="stylesheet"></head>
+
+<body class="house-apartment-list ">
+  <div id="offset" data-value=''></div>
+  <div class="house-list-wrap body_container">
+    <header class="list-head">
+      <div class="header">
+        <a class="city" href="javascript:;" tongji_tag="fcm_gylist_cityin"><span class="city-text">北京</span></a>
+        <a id="searchUrl" class="iicon search-input" href="javascript:;" tongji_tag="fcm_gylist_search">品牌公寓</a>
+        <a href="//gongyu.m.58.com/mycenter/entry?cityCode=bj&bizVersion=1.0" tongji_tag="fcm_gylist_me" rel="nofollow"
+          class="my">我的</a>
+      </div>
+      <ul class="house-nav" id="nav-filter">
+        <li class="house-nav-location icon icon-arrow-down" tongji_tag="fcm_gylist_location">
+          <a class="house-nav-text" href="javascript:;">位置</a>
+        </li>
+        <li class="house-nav-rent icon icon-arrow-down" tongji_tag="fcm_gylist_rent">
+          <a class="house-nav-text" href="javascript:;">租金</a>
+        </li>
+        <li class="house-nav-rentType icon icon-arrow-down" tongji_tag="fcm_gylist_location_form">
+          <a class="house-nav-text" href="javascript:;">出租类型</a>
+        </li>
+        <li class="house-nav-more icon icon-arrow-down" tongji_tag="fcm_gylist_more">
+          <a class="house-nav-text" href="javascript:;">更多</a>
+        </li>
+      </ul>
+
+      <div class="house-filter hide">
+        <div class="f-box f-box-location hide">
+          <div class="house-record">
+          </div>
+          <div class="box-wrap box-panel-1">
+            <ul class="box-ul">
+              <li class="box-li icon icon-arrow-right hide" data-searchtype="1" tongji_tag="fcm_gylist_location_fujin"
+                id="nearbyId">
+                <a href="javascript:;">附近</a>
+              </li>
+              <li class="box-li icon icon-arrow-right active" data-searchtype="2" tongji_tag="fcm_gylist_location_quyu">
+                <a href="javascript:;">区域</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-searchtype="3" tongji_tag="fcm_gylist_location_ditie">
+                <a href="javascript:;">地铁</a>
+              </li>
+            </ul>
+          </div>
+          <div class="box-wrap box-panel-2">
+            <ul class="box-ul box-nav-nearby hide">
+              <li class="box-li no-nearby active" data-neabycode="0" tongji_tag="fcm_gylist_fujin_buxian"><a
+                  href="javascript:;">不限</a></li>
+              <li class="box-li" data-neabycode="1000" tongji_tag="fcm_gylist_fujin_1km"><a href="javascript:;">1km</a>
+              </li>
+              <li class="box-li" data-neabycode="3000" tongji_tag="fcm_gylist_fujin_3km"><a href="javascript:;">3km</a>
+              </li>
+              <li class="box-li" data-neabycode="5000" tongji_tag="fcm_gylist_fujin_5km"><a href="javascript:;">5km</a>
+              </li>
+            </ul>
+            <ul class="box-ul box-nav-area">
+              <li class="box-li all-area" data-countycode="0" tongji_tag="fcm_gylist_quyu">
+                <a href="/bj/pinpaigongyu/">全北京</a>
+              </li>
+
+              <li class="box-li icon icon-arrow-right " data-countycode="1142" data-abbreviatecode="chaoyang"
+                tongji_tag="fcm_gylist_quyu_chaoyang">
+                <a href="/chaoyang/pinpaigongyu/">朝阳</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1143" data-abbreviatecode="haidian"
+                tongji_tag="fcm_gylist_quyu_haidian">
+                <a href="/haidian/pinpaigongyu/">海淀</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1138" data-abbreviatecode="dongcheng"
+                tongji_tag="fcm_gylist_quyu_dongcheng">
+                <a href="/dongcheng/pinpaigongyu/">东城</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1139" data-abbreviatecode="xicheng"
+                tongji_tag="fcm_gylist_quyu_xicheng">
+                <a href="/xicheng/pinpaigongyu/">西城</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1144" data-abbreviatecode="fengtai"
+                tongji_tag="fcm_gylist_quyu_fengtai">
+                <a href="/fengtai/pinpaigongyu/">丰台</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1147" data-abbreviatecode="tongzhouqu"
+                tongji_tag="fcm_gylist_quyu_tongzhouqu">
+                <a href="/tongzhouqu/pinpaigongyu/">通州</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1145" data-abbreviatecode="shijingshan"
+                tongji_tag="fcm_gylist_quyu_shijingshan">
+                <a href="/shijingshan/pinpaigongyu/">石景山</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6808" data-abbreviatecode="fangshan"
+                tongji_tag="fcm_gylist_quyu_fangshan">
+                <a href="/fangshan/pinpaigongyu/">房山</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1150" data-abbreviatecode="changping"
+                tongji_tag="fcm_gylist_quyu_changping">
+                <a href="/changping/pinpaigongyu/">昌平</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6809" data-abbreviatecode="daxing"
+                tongji_tag="fcm_gylist_quyu_daxing">
+                <a href="/daxing/pinpaigongyu/">大兴</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6810" data-abbreviatecode="shunyi"
+                tongji_tag="fcm_gylist_quyu_shunyi">
+                <a href="/shunyi/pinpaigongyu/">顺义</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6811" data-abbreviatecode="miyun"
+                tongji_tag="fcm_gylist_quyu_miyun">
+                <a href="/miyun/pinpaigongyu/">密云</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6812" data-abbreviatecode="huairou"
+                tongji_tag="fcm_gylist_quyu_huairou">
+                <a href="/huairou/pinpaigongyu/">怀柔</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6813" data-abbreviatecode="yanqing"
+                tongji_tag="fcm_gylist_quyu_yanqing">
+                <a href="/yanqing/pinpaigongyu/">延庆</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6814" data-abbreviatecode="pinggu"
+                tongji_tag="fcm_gylist_quyu_pinggu">
+                <a href="/pinggu/pinpaigongyu/">平谷</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="6815" data-abbreviatecode="mentougou"
+                tongji_tag="fcm_gylist_quyu_mentougou">
+                <a href="/mentougou/pinpaigongyu/">门头沟</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-countycode="1146" data-abbreviatecode="beijingzhoubian"
+                tongji_tag="fcm_gylist_quyu_beijingzhoubian">
+                <a href="/beijingzhoubian/pinpaigongyu/">北京周边</a>
+              </li>
+            </ul>
+            <ul class="box-ul box-nav-subway hide">
+              <li class="box-li all-subway" data-subwaycode="0" tongji_tag="fcm_gylist_ditie_0">
+                <a href="/bj/pinpaigongyu/">不限</a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="6" tongji_tag="fcm_gylist_ditie_6">
+                <a href="/bj/pinpaigongyu/?dx=6&pagetype=sub">1号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="7" tongji_tag="fcm_gylist_ditie_7">
+                <a href="/bj/pinpaigongyu/?dx=7&pagetype=sub">2号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="8" tongji_tag="fcm_gylist_ditie_8">
+                <a href="/bj/pinpaigongyu/?dx=8&pagetype=sub">4号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="9" tongji_tag="fcm_gylist_ditie_9">
+                <a href="/bj/pinpaigongyu/?dx=9&pagetype=sub">5号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="10" tongji_tag="fcm_gylist_ditie_10">
+                <a href="/bj/pinpaigongyu/?dx=10&pagetype=sub">6号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="11" tongji_tag="fcm_gylist_ditie_11">
+                <a href="/bj/pinpaigongyu/?dx=11&pagetype=sub">7号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="12" tongji_tag="fcm_gylist_ditie_12">
+                <a href="/bj/pinpaigongyu/?dx=12&pagetype=sub">8号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="13" tongji_tag="fcm_gylist_ditie_13">
+                <a href="/bj/pinpaigongyu/?dx=13&pagetype=sub">9号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="1" tongji_tag="fcm_gylist_ditie_1">
+                <a href="/bj/pinpaigongyu/?dx=1&pagetype=sub">10号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="2" tongji_tag="fcm_gylist_ditie_2">
+                <a href="/bj/pinpaigongyu/?dx=2&pagetype=sub">13号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="3" tongji_tag="fcm_gylist_ditie_3">
+                <a href="/bj/pinpaigongyu/?dx=3&pagetype=sub">14号线(东) </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="4" tongji_tag="fcm_gylist_ditie_4">
+                <a href="/bj/pinpaigongyu/?dx=4&pagetype=sub">14号线(西) </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="5" tongji_tag="fcm_gylist_ditie_5">
+                <a href="/bj/pinpaigongyu/?dx=5&pagetype=sub">15号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="110" tongji_tag="fcm_gylist_ditie_110">
+                <a href="/bj/pinpaigongyu/?dx=110&pagetype=sub">16号线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="141" tongji_tag="fcm_gylist_ditie_141">
+                <a href="/bj/pinpaigongyu/?dx=141&pagetype=sub">S1线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="15" tongji_tag="fcm_gylist_ditie_15">
+                <a href="/bj/pinpaigongyu/?dx=15&pagetype=sub">八通线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="16" tongji_tag="fcm_gylist_ditie_16">
+                <a href="/bj/pinpaigongyu/?dx=16&pagetype=sub">昌平线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="17" tongji_tag="fcm_gylist_ditie_17">
+                <a href="/bj/pinpaigongyu/?dx=17&pagetype=sub">房山线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="18" tongji_tag="fcm_gylist_ditie_18">
+                <a href="/bj/pinpaigongyu/?dx=18&pagetype=sub">机场线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="140" tongji_tag="fcm_gylist_ditie_140">
+                <a href="/bj/pinpaigongyu/?dx=140&pagetype=sub">西郊线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="19" tongji_tag="fcm_gylist_ditie_19">
+                <a href="/bj/pinpaigongyu/?dx=19&pagetype=sub">亦庄线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="133" tongji_tag="fcm_gylist_ditie_133">
+                <a href="/bj/pinpaigongyu/?dx=133&pagetype=sub">燕房线 </a>
+              </li>
+              <li class="box-li icon icon-arrow-right " data-subwaycode="1007" tongji_tag="fcm_gylist_ditie_1007">
+                <a href="/bj/pinpaigongyu/?dx=1007&pagetype=sub">8号线南段 </a>
+              </li>
+            </ul>
+          </div>
+          <div class="box-wrap box-panel-3 hide"></div>
+        </div>
+        <div class="f-box f-box-rent hide">
+          <div class="f-box-inner">
+            <ul class="box-ul">
+              <li class="box-li active" gongyu_minprice="" tongji_tag="fcm_gylist_price_p0">
+                <a href="/bj/pinpaigongyu/">不限</a>
+              </li>
+              <li class="box-li " gongyu_minprice="600_1000" tongji_tag="fcm_gylist_price_p1">
+                <a href="/bj/pinpaigongyu/?gongyu_minprice=600_1000">600-1000元</a>
+              </li>
+              <li class="box-li " gongyu_minprice="1000_1500" tongji_tag="fcm_gylist_price_p2">
+                <a href="/bj/pinpaigongyu/?gongyu_minprice=1000_1500">1000-1500元</a>
+              </li>
+              <li class="box-li " gongyu_minprice="1500_2000" tongji_tag="fcm_gylist_price_p3">
+                <a href="/bj/pinpaigongyu/?gongyu_minprice=1500_2000">1500-2000元</a>
+              </li>
+              <li class="box-li " gongyu_minprice="2000_3000" tongji_tag="fcm_gylist_price_p4">
+                <a href="/bj/pinpaigongyu/?gongyu_minprice=2000_3000">2000-3000元</a>
+              </li>
+              <li class="box-li " gongyu_minprice="3000_5000" tongji_tag="fcm_gylist_price_p5">
+                <a href="/bj/pinpaigongyu/?gongyu_minprice=3000_5000">3000-5000元</a>
+              </li>
+              <li class="box-li " gongyu_minprice="5000_8000" tongji_tag="fcm_gylist_price_p6">
+                <a href="/bj/pinpaigongyu/?gongyu_minprice=5000_8000">5000-8000元</a>
+              </li>
+              <li class="box-li " gongyu_minprice="8000_30000" tongji_tag="fcm_gylist_price_p7">
+                <a href="/bj/pinpaigongyu/?gongyu_minprice=8000_30000">8000以上</a>
+              </li>
+              <li class="custom-price-wrapper">
+                <dl class="custom-price">
+                  <dt class="custom-price-text">自定义价格</dt>
+                  <dd class="custom-price-num">
+                    <div id="progressbar" class="ui-progressbar-h">
+                      <input class="range-slider" type="hidden" value="0, 不限" />
+                    </div>
+                  </dd>
+                  <!--                            <dd class="submit-btn"><button class="btn-style btn-confirm" tongji_tag="fcm_gylist_price_sure" app-params="$_GET['os']">确定</button></dd>-->
+                </dl>
+              </li>
+            </ul>
+          </div>
+          <div class="submit-buttom">
+            <button class="btn-style btn-confirm" tongji_tag="fcm_gylist_price_sure" app-params="$_GET['os']">
+              确定
+            </button>
+          </div>
+        </div>
+        <div class="f-box f-box-type hide">
+          <div class="f-box-inner">
+            <ul class="box-ul">
+              <li class="rent-room-type">
+                <div class="tit">
+                  出租类型
+                </div>
+                <div class="box-li-div  unlimited selected" data-rent-room-type="0" tongji_tag="fcm_gylist_zfxs_0">
+                  不限
+                  <i></i>
+                </div>
+                <div class="box-li-div rent-own " data-rent-room-type="1" tongji_tag="fcm_gylist_zfxs_1">
+                  整租
+                  <i></i>
+                </div>
+                <div class="box-li-div rent-together " data-rent-room-type="2" tongji_tag="fcm_gylist_zfxs_2">
+                  合租
+                  <i></i>
+                </div>
+              </li>
+              <li class="rent-room-num hide">
+                <div class="tit">
+                  户型
+                </div>
+                <div class="box-li-div
+                                    selected                                    unlimited" rent-room-num=""
+                  tongji_tag="fcm_gylist_room_r0">
+                  不限 <i></i>
+                </div>
+                <div class="box-li-div
+                                                                        " rent-room-num="1"
+                  tongji_tag="fcm_gylist_room_r1">
+                  一室 <i></i>
+                </div>
+                <div class="box-li-div
+                                                                        " rent-room-num="2"
+                  tongji_tag="fcm_gylist_room_r2">
+                  二室 <i></i>
+                </div>
+                <div class="box-li-div
+                                                                        " rent-room-num="3"
+                  tongji_tag="fcm_gylist_room_r3">
+                  三室 <i></i>
+                </div>
+                <div class="box-li-div
+                                                                        " rent-room-num="4_999"
+                  tongji_tag="fcm_gylist_room_r4">
+                  三室以上 <i></i>
+                </div>
+              </li>
+              <li class="rent-room-prefer hide">
+                <div class="tit">
+                  卧室偏好
+                </div>
+                <div class="box-li-div  unlimited selected" data-room-prefer="0" tongji_tag="fcm_gylist_Bedroom_0">
+                  不限
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-prefer="1" tongji_tag="fcm_gylist_Bedroom_1">
+                  主卧
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-prefer="2" tongji_tag="fcm_gylist_Bedroom_2">
+                  次卧
+                  <i></i>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="submit-buttom">
+            <button class="btn-style btn-more rent-type" tongji_tag="fcm_gylist_type_sure" app-params="$_GET['os']">
+              确定
+            </button>
+          </div>
+        </div>
+        <div class="f-box f-box-more hide">
+          <div class="f-box-inner">
+            <ul class="box-ul">
+              <li class="coupon-status">
+                <div class="tit">
+                  优惠
+                </div>
+                <div class="box-li-div  unlimited selected" data-coupon-status="0"
+                  tongji_tag="fcm_gylist_Orientation_0">
+                  不限
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-coupon-status="1" tongji_tag="fcm_gylist_Orientation_1">
+                  立减券
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-coupon-status="2" tongji_tag="fcm_gylist_Orientation_2">
+                  折扣券
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-coupon-status="3" tongji_tag="fcm_gylist_Orientation_3">
+                  免费住
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-coupon-status="4" tongji_tag="fcm_gylist_Orientation_4">
+                  免押金
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-coupon-status="5" tongji_tag="fcm_gylist_Orientation_5">
+                  特价房
+                  <i></i>
+                </div>
+              </li>
+              <li class="check-status">
+                <div class="tit">
+                  验证情况
+                </div>
+                <div class="box-li-div  unlimited selected" data-check-status="0" tongji_tag="fcm_gylist_Orientation_0">
+                  不限
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-check-status="1" tongji_tag="fcm_gylist_Orientation_1">
+                  安选
+                  <i></i>
+                </div>
+              </li>
+              <li class="room-towards">
+                <div class="tit">
+                  朝向
+                </div>
+                <div class="box-li-div  unlimited selected" data-room-towards="0" tongji_tag="fcm_gylist_Orientation_0">
+                  不限
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-towards="1" tongji_tag="fcm_gylist_Orientation_1">
+                  东
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-towards="2" tongji_tag="fcm_gylist_Orientation_2">
+                  南
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-towards="3" tongji_tag="fcm_gylist_Orientation_3">
+                  西
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-towards="4" tongji_tag="fcm_gylist_Orientation_4">
+                  北
+                  <i></i>
+                </div>
+              </li>
+              <li class="acreage">
+                <div class="tit">
+                  面积
+                </div>
+                <div class="box-li-div selected unlimited" data-acreage="" tongji_tag="fcm_gylist_area_a0">
+                  不限 <i></i>
+                </div>
+                <div class="box-li-div  " data-acreage="0_10" tongji_tag="fcm_gylist_area_a1" name="b_link" para="paras"
+                  ck="b1">
+                  10m²以下 <i></i>
+                </div>
+                <div class="box-li-div  " data-acreage="10_30" tongji_tag="fcm_gylist_area_a2" name="b_link"
+                  para="paras" ck="b2">
+                  10-30m² <i></i>
+                </div>
+                <div class="box-li-div  " data-acreage="30_50" tongji_tag="fcm_gylist_area_a3" name="b_link"
+                  para="paras" ck="b3">
+                  30-50m² <i></i>
+                </div>
+                <div class="box-li-div  " data-acreage="50_70" tongji_tag="fcm_gylist_area_a4" name="b_link"
+                  para="paras" ck="b4">
+                  50-70m² <i></i>
+                </div>
+                <div class="box-li-div  " data-acreage="70_90" tongji_tag="fcm_gylist_area_a5" name="b_link"
+                  para="paras" ck="b5">
+                  70-90m² <i></i>
+                </div>
+                <div class="box-li-div  " data-acreage="90_300" tongji_tag="fcm_gylist_area_a6" name="b_link"
+                  para="paras" ck="b6">
+                  90m²以上 <i></i>
+                </div>
+              </li>
+              <li class="room-tag">
+                <div class="tit">
+                  特色
+                </div>
+                <div class="box-li-div  unlimited selected" data-room-tag="0" tongji_tag="fcm_gylist_label_l0">
+                  不限
+                  <i></i>
+                </div>
+                <!--
+                            <div class="box-li-div "
+                                 data-room-tag="1" tongji_tag="fcm_gylist_label_l1">
+                                可月付
+                                <i></i>
+                            </div>
+                            -->
+                <div class="box-li-div " data-room-tag="2" tongji_tag="fcm_gylist_label_l2">
+                  可短租
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-tag="3" tongji_tag="fcm_gylist_label_l3">
+                  独立阳台
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-tag="4" tongji_tag="fcm_gylist_label_l4">
+                  独立卫生间
+                  <i></i>
+                </div>
+              </li>
+              <li class="room-tag">
+                <div class="tit">
+                  用户保障
+                </div>
+                <div class="box-li-div  unlimited selected" data-room-tag="0" tongji_tag="fcm_gylist_label_l0">
+                  不限
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-tag="5" tongji_tag="fcm_gylist_label_l5">
+                  商家担保 <i></i>
+                </div>
+                <div class="box-li-div " data-room-tag="6" tongji_tag="fcm_gylist_label_l6">
+                  如实描述 <i></i>
+                </div>
+              </li>
+              <li class="room-type">
+                <div class="tit">
+                  公寓类型<a class="room-type-instruction" tongji_tag="fcm_gylist_WH"
+                    href="//gongyu.m.58.com/house/introduction"></a>
+                </div>
+                <div class="box-li-div  unlimited selected" data-room-type="0" tongji_tag="fcm_gylist_gylx_0">
+                  不限
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-type="1" tongji_tag="fcm_gylist_gylx_1">
+                  分散式公寓
+                  <i></i>
+                </div>
+                <div class="box-li-div " data-room-type="2" tongji_tag="fcm_gylist_gylx_2">
+                  独栋公寓
+                  <i></i>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="submit-buttom submit-buttom-clear">
+            <button class="btn-style btn-more-clear" tongji_tag="fcm_gylist_gdqc" app-params="$_GET['os']">清空
+            </button>
+            <button class="btn-style btn-more" tongji_tag="fcm_gylist_sure" app-params="$_GET['os']">确定</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--毕业季广告-->
+    <!--毕业季广告-->
+    <ul class="house-content data-list ">
+
+      <li class="item" logr="@npos:1" infoid="35243218632888" uid="42410000464919" pagenum="1" pos="1" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsvFJsLKGUMK6pyIfUhIOIit1PHcYn1cQrjm1nW93rZ980v6YUykKuadhPjckPjcvmzYYnH0LsHwhuhDVrAPBnBd6nymLnHbOn1PhmHEKPjcYnHTknjTYPWEOnHbKTHndnWE1nWD3PWnzrj93THmknjTknTDvnjTknjTKP1TQn1EKnEDQPHmOPj9zPWckPHnOTHDKwbnVHidBIgGdTHDKnEDKnTDKnWN1njbLPWT1rHb3P1EYTHTKTHDKmW0kPynLnynVnAD1uaYYm1w6sH6-PAEVuW0krj6BPv7WPyu-THcdn1n1rHc3PHD3nWEOP9DzPHn1n1bzrjNQP1DznHmKTHEzrjcKnEDQsWTKTiYKTE7CIZwk01CfsvY8PH98mvqVsvFJsLKGUMK6pyIfUhIOIitKEvIVwDq_nHRdXMwWNAV6Nb7LHNdKu1YqTH9dsWcknz3znB3znHEKPHTkPjDkP1mkPjbQP1EKnTDQsWTKnikYnW9zTgVqTHDknjTvTHDknjcQn1nKPjnOP1KBrHDVPjDYuBYYuhNksHbvnAcVnyc1uW7-ujDOuAEzTEDkTEDKnTDKnyEYmvR-ujbOuWIhPvDQmE&tid=43970b91-414f-4fe0-960b-1b3f1ed19dd2&slotid=1002133"
+          tongji_tag="fcm_gylist_listing">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片" src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v2b69dd835be044e18bb986bb1350d802a_49ff83b5ea3a0a65.jpg?w=480&h=320&crop=1"
+            alt="【合租】科技园区 怡海花园富润园 &#x9a4b;室主卧">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  合租 | 怡海花园富润园 </span>
+                -&#x9a4b;室主卧 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9ea3;&#x9476;㎡ | 朝南 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9476;&#x9fa5;&#x958f;&#x993c; </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>科技园区</em>
+                ·距&#x9e3a;号线科怡路站&#x9f92;&#x9fa4;&#x9e3a;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">设备齐全</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独立阳台</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:2" infoid="35433152973889" uid="57831778342674" pagenum="1" pos="2" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1ndPjn1nHNzrH01rj9OXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDdP191nH0LrjnYnWmLPTDKn1NYn1nQPHcOP1n3rjbKPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKn97AEzdPsyFdXMNKnEDQTEDkTEDzPHEQn1NLrHD1nWTkP1cKnTDKnED3uHb3PjE3nBYQPHnQsHwWuhDVrynOniYYPWnYuHcLPj6BnjmKnWNYrjN3P1NOrjbvnjbvTHcdPj9drj0drH93nH01P9DKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nkDznH-Wn1FBPiYLnWEdsHEdmW9VmHTkmzdWrjn3uHR-uj01ujnKTHTKTEDkTEDdPHndrjmQPjKBP1cvPhcL&tid=219c32b5-7245-45b8-a00c-c838e5ed73d3&slotid=1002133"
+          tongji_tag="fcm_gylist_jizhongshi">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v2eee0a0694ce8459ba3903d1b7e70a19d_7568ad8b71df558e.jpg?w=480&h=320&crop=1"
+            alt="【整租】弘舍 亚运村小营 弘舍公寓">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | 简约风零居D </span>
+                -&#x9fa4;室&#x9fa4;卫 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9ea3;&#x9e3a;㎡ | 朝东 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9fa5;&#x9ea3;&#x993c;&#x993c;起 </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>亚运村小营</em>
+                ·距&#x9f64;号线惠新西街北口站&#x9fa5;&#x9fa5;&#x958f;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">品质联盟</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #FFDC66;background:#FFDC66">独栋</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">押一付一</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:3" infoid="38782838798111" uid="64489809371406" pagenum="1" pos="3" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1n3P19zrjn3P1b3nHDQXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDvPjE3rH9krHnLnHEkP9DKn19Lrjc3n19LrH9QnHDKPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKnk7AEzdPsyFdXMNKnEDQTEDkTEDQnHE1nj9drH9QP1nknjbdnHTYTHTKTHDKnH7-n1mdPhcVuyw-niYYujm1sycLPyEVmHKWuWb3PhNkmH9LTHDQPjb3rHnYnHcdnWnkrHEknHmKnHDYrH9On1EQnWNknWDzPWNOn9DKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nk7-PyDzuhEQnaYzPWTLsHwhrjNVmHEdmBYduHcdmhEQuhRBPWnKTHTKTEDkTEDYPvmQnyu6mWmLnHNkPvDO&tid=e5a2fd10-2607-4f85-a45b-5e25bd1feb63&slotid=1002133"
+          tongji_tag="fcm_gylist_jizhongshi">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v2b19e55d0023245dd99f9b7eb2b699d51_111ad6be13a87dd7.jpg?w=480&h=320&crop=1"
+            alt="【整租】乐乎有朋社区 双桥 乐乎有朋双桥店">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | 青年公寓&#x9fa4; </span>
+                -&#x9fa4;室&#x9fa4;厅 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9ea3;&#x9f64;㎡ | 朝南 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9ea3;&#x9476;&#x993c;&#x993c;起 </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>双桥</em>
+                ·距八通线双桥站&#x9f64;&#x9476;&#x958f;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #FFDC66;background:#FFDC66">独栋</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">开放式厨房</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:4" infoid="35280545386055" uid="44674504738582" pagenum="1" pos="4" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1ndnW9kPHEdn19vnjNdXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDYPjmLPjNkPj01rjN3n9DKn1NzrjTdPjN1rjmkPHNKPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKPT7AEzdPsyFdXMNKnEDQTEDkTEDzPjbQnHNQPjm1PjD1rjEKnTDKnED1PW-bP1cQnBd6nhndsHEYuWbVrycduaYvmHbOn1I-PAmOmvDKnWN1PWnLrjbOnWTkPHEYTHcdn1m1P19OrHD3njTYrTDKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nkDknvczPj0OnzYQuWu-sHwBuynVmy7Wnid6uW9QnyE1nymdPhNKTHTKTEDkTEDvrAELnWTknhmOnWwhnWEY&tid=03b24793-1f6e-4bec-aac1-af811d31f56e&slotid=1002133"
+          tongji_tag="fcm_gylist_jizhongshi">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v23e21170a12f947c9a67e477211b751a3_6964c3ae7297751b.jpg?w=480&h=320&crop=1"
+            alt="【整租】贝客公寓 立水桥 立水桥店">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | B户型 </span>
+                -&#x9476;室&#x9fa4;厅 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9a4b;&#x9fa5;㎡ | 朝南 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9f64;&#x958f;&#x993c;&#x993c;起 </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>立水桥</em>
+                ·距&#x9f64;号线立水桥站&#x9e3a;&#x9f64;&#x9fa4;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #FFDC66;background:#FFDC66">独栋</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">押一付一</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:5" infoid="39150143649553" uid="60791660304657" pagenum="1" pos="5" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1nOnHNknHE1PWEOPHN1XaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDvnj0OnHmvnjnkPjmdPkDKn1bQPHTQPjnvPjbdPHnKPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKPE7AEzdPsyFdXMNKnEDQTEDkTEDQnj9YP1DznW0zrH9kn1mQnWDvTHTKTHDKnj7huWm1m1EVPjnvnBYYPAPWsycvPvNVujPhPjDYPyDYPWbYTHDQPWDOnWbzPH9knjEvPHmQnW9KnHDvnHbzrHcdP1bLPHnknjTOPkDKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nk7hrHIhry76uidBuhDOsHwbuWNVmyR6nBdhrj9LuyD1mWbznAnKTHTKTEDkTE7bPvNznyubPHTYnWbzmvmv&tid=f97f9aae-bfa9-4df5-aea2-f887ea3b920c&slotid=1002133"
+          tongji_tag="fcm_gylist_listing">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v2e396a8571e7545dc9f69616df04ec1ae_ab1f6f60e497524d.jpg?w=480&h=320&crop=1"
+            alt="【整租】东坝 北京城建福润四季 &#x9476;室&#x9fa4;厅">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | 北京城建福润四季B区 </span>
+                -&#x9476;室&#x9fa4;厅 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9f92;&#x9f64;㎡ | 朝南北 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9f64;&#x993c;&#x993c;&#x993c; </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>东坝</em>
+              </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">南北通透</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">房屋清洁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">房屋维修</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:6" infoid="39590023364117" uid="44674091908630" pagenum="1" pos="6" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1nOPHbknjc1n1mYnHDLXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDYPjmLPjTOnHbkrjm1nTDKn1bdrHTknWn1PWEQnH0KPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKP97AEzdPsyFdXMNKnEDQTEDkTEDzPjbQnHNQPjbkPWmzPWEKnTDKnEDYmWnYnhmYnBYdryF-sHEYnH0VrjNLnzYzmWR-ujwbP1u-uH0KnHDLPWnYn1c1PWEQnHmvPWE1n9DQnH0vn1E1nWnvn1EYPHmQPWmYTEDYnW9zTHDKni3kTEDVTEDKpZwY0ZnlszqVsWN3shPfUiqBpBqkpyOkmy-MUvOMXgNfTNPMUNw5UjDdIgGYmdKomRFKIYdPEy0q5ED3Pi3znjn8nWc8nWDYTHNknjEQnj0vnjEOnH0YTHTKni3kTHD_Pjc3n97exEDQnjTkP9DQnjTznHn1THbdn1cdnWTQsH0kPvmVPjR6PBd6PjRWsHI-mvmOP1EknA7bm9DKnTDKTHTKTHbOuhNkPWubmWcOm1TQuhN&tid=95325201-707f-45a6-a45c-7ecf97400adb&slotid=1002133"
+          tongji_tag="fcm_gylist_jizhongshi">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v29a983351eb12470c9f211f3d748be7b6_493823f5bab5a8d9.jpg?w=480&h=320&crop=1"
+            alt="【整租】青遇home 高碑店 温馨超级蜂巢">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | 超级蜂巢&#x9ea3; </span>
+                -&#x9fa4;室&#x9fa4;厅 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9ea3;&#x958f;㎡ | 朝南 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9a4b;&#x9fa5;&#x993c;&#x993c;起 </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>高碑店</em>
+              </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #FFDC66;background:#FFDC66">独栋</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">押一付一</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">设备齐全</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:7" infoid="38925426360967" uid="64262299682579" pagenum="1" pos="7" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1n3rHcdPjcvn1mkrHmLXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDvPjcvnWcOrHm3nWNLrEDKn19OnWNYnWm1PWTOPW0KPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKPk7AEzdPsyFdXMNKnEDQTEDkTEDQnHnOn10Ln19drjcOrjn3rjE3THTKTHDKmhwhrHI-uWcVmHwhnzYYuHbLsyDkuWnVnAmLrjD1Pj9QP1EvTHDQPHEdPWNLnWDOnjTOrjm1PW9KnHDdPjNvPH0znH91rjTLPHbkPTDKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nkDLnjc3nj7-uiYdnhcksHwWPjmVmWn3nadBuhDQuhnkrHbdnHEKTHTKTEDkTEDdP1PhnAnYP1N1P1whuAwB&tid=702801ee-52b0-4c46-b380-bfa1fc099514&slotid=1002133"
+          tongji_tag="fcm_gylist_listing">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v2f1dd8bc6159b45aba3a1b4a0ae20a940_9d6aac5c0e453bc2.jpg?w=480&h=320&crop=1"
+            alt="【整租】大望路 金茂府东区( &#x9fa4;室&#x9fa4;厅">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | 金茂府东区(商住楼) </span>
+                -&#x9fa4;室&#x9fa4;厅 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9f92;&#x9f64;㎡ | 朝南 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9fa4;&#x9fa4;&#x9f64;&#x993c;&#x993c; </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>大望路</em>
+                ·距&#x9f92;号线大郊亭站&#x9ea3;&#x9f64;&#x9e3a;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">设备齐全</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">南北通透</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:8" infoid="39600698307329" uid="61084423074830" pagenum="1" pos="8" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1nOPWTkPWb3n1TLn1cOXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDvnHT3PjEzn1TLPj91nTDKn1bvnjTvrH91nj01nWbKPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKrT7AEzdPsyFdXMNKnEDQTEDkTEDQnH0znjDOPWE3PjTOrHDQnWbLTHTKTHDKuyPBnH-WPHDVm1uhniYYnAc1sycLPhEVnjuWnhnzuHnYP1RbTHDQP1mvrHnkn1cOrjT3PHcLn10KnHDLPWmOn1T1nWbQP1bYnWcLn9DKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nkDYm1EdmHIbmBdhnj-WsHwWnhmVrj7BraY1P1I6nv7-P1TzrHEKTHTKTEDkTEDYP1P6P1EkP1F6PWmYnyRh&tid=4c45a7db-f09c-4c2f-81b8-377a3ae70294&slotid=1002133"
+          tongji_tag="fcm_gylist_jizhongshi">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v2f8581aa1cefe4e84a6c5e362abccc5b0_3c09b1afcd015ae3.jpg?w=480&h=320&crop=1"
+            alt="【整租】 兴智云青年公寓  总部基地 兴智云青年公寓">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | 都市简约户型 </span>
+                -&#x9fa4;室&#x9fa4;卫 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9476;&#x9f64;㎡ | 朝南北 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9476;&#x9fa5;&#x9f64;&#x993c;起 </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>总部基地</em>
+                ·距&#x9e3a;号线丰台科技园站&#x9e3a;&#x9a4b;&#x9e3a;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #FFDC66;background:#FFDC66">独栋</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">押一付一</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">设备齐全</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:9" infoid="39280352212097" uid="59582820855567" pagenum="1" pos="9" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1nOnW9kn1NznWDznjbLXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDdrHN3nW9znj9dPHNvPkDKn1bzrjT1PHcznHckrH0KPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjTKrE7AEzdPsyFdXMNKnEDQTEDkTEDQnjmzrHmdnWnLPHDznHNdnHnvTHTKTHDKmHFWmWb1rADVryw-nzYYPWmQsy7BPjmVnjc3uhu6nWbLPW6bTHDQPWmQrHNOn1czrHN3P1cdnHcKnHDvPWDOPHb1nWczrj0vn1mYrTDKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nkDOmhFBryDLPaYQm17-sHEQuHTVmhc3nidBnWwhP1ELnH-6mHEKTHTKTEDkTEDLuju-mv7hP1wWrjbQPW0Y&tid=9bbb9a74-1c1e-41e0-bb81-b24f74719aa4&slotid=1002133"
+          tongji_tag="fcm_gylist_listing">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v29f88d8cbd99e453da0bea1aaab2f5e78_2382dc829c0cd439.jpg?w=480&h=320&crop=1"
+            alt="【整租】黄村 泰禾中央广场 &#x9476;室&#x9fa4;厅">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  整租 | 泰禾中央广场 </span>
+                -&#x9476;室&#x9fa4;厅 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9e3a;&#x9ea3;㎡ | 朝南 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9a4b;&#x9476;&#x993c;&#x993c; </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>黄村</em>
+                ·距&#x9a4b;号线义和庄站&#x9fa4;&#x9f92;&#x9e3a;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">南北通透</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">智能门锁</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+      <li class="item" logr="@npos:10" infoid="39371206467080" uid="44674091831830" pagenum="1" pos="10" enum_user='1'
+        sortid="">
+        <a href="https://legoclick.58.com/cpaclick?target=pZwY0ZnlszqGshY8PH98mvqVsztfmhCf0A-80A7Guvq8uL-ds1nOn10QnWTvPjmLnj9kXaO1pZwVUT7bsymYnWTYnWuWsHEQP10VPAuhmiY3mvczsyDQuW0QrHb1nvu6PTDYPjmLPjTOnH91nH91nTDKn1b1P1DznjmYPW0krjTKPWTknjTkTHmknjTknTDLnjD1PTDQTHDdPWbYrjcvnWTdPjDKnHTKwbnVHidBIgGdTHDKnEDKnTDKnWEOnHDdnWEvPHNvnH9YTHTKTHDKnHD3rjDYmWnVrymOmiYYnHFBsHbLuyNVmhmznWEvPhcLnjRbTHDQPWbQP1nkPjEYnjbvP1NLP1mKnHDvrHDLn1TYPjndnjbdrHmQP9DKPjc3n9DQTHD8nTDKsEDKTy6YIZK1rBtfUi3draOWUvYfmhCf0A-80A7Guvq8uL-dsk7juvdDHvkQPgRlIAPEpv7iEgIPHN7M5HYKrjN8nWT1sWczsWcQPTDdnjTYnHTLPWTYrHDLPTDkTHD8nTDQsjEzrjcKXLYKnHTknjmKnHTknWD1nkD3mW-6mynzmiYQPH-WsHE1P1nVrAF-miYvm1T3mhc1nj7hm1cKTHTKTEDkTEDdm1ELPj9dnH0Lmvu-P1P-&tid=8b9aac2a-159c-4373-8bea-6c08bb301fc2&slotid=1002133"
+          tongji_tag="fcm_gylist_listing">
+          <div class="secure_icon"></div>
+          <img class="item-thumb strongbox" alt="图片"
+            src="//pic1.58cdn.com.cn/gongyu/default.jpg"
+            data-src="//pic1.58cdn.com.cn/gongyu/n_v2099b4f1787a04a8084a18f67224b252b_5c1b1198ade0f8fa.jpg?w=480&h=320&crop=1"
+            alt="【合租】物资学院路 新建村 &#x9ea3;室主卧">
+          <dl class="item-info">
+            <dt class="info-title strongbox">
+              <p>
+                <span>
+                  合租 | 新建村 </span>
+                -&#x9ea3;室主卧 </p>
+            </dt>
+            <dd calss="info-line2 strongbox">
+              <span class="info-line2-message strongbox">
+                &#x9476;&#x993c;㎡ | 朝南 </span>
+
+              <span class="info-line2-price strongbox">
+                ￥&#x9476;&#x9476;&#x958f;&#x993c; </span>
+            </dd>
+            <dd class="info-desc strongbox">
+              <span class="info-desc-detail strongbox"><img
+                  src="//img.58cdn.com.cn/fangrs/img/97fb6338a3e0f8fb353da6e02387db91.png" alt="tag" /><em>物资学院路</em>
+                ·距&#x9fa5;号线物资学院路站&#x9a4b;&#x9e3a;&#x9e3a;米 </span>
+            </dd>
+            <dd class="room_icon">
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">邻地铁</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">设备齐全</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">独卫</span>
+              <!-- <span class="room_tag" style="">Array</span> -->
+              <span class="room_tag" style="color:#432500;border:1px solid #A1917F;background:#FFFFFF">智能门锁</span>
+            </dd>
+          </dl>
+        </a>
+      </li>
+    </ul>
+
+    <div class="loadbtn " tongji_tag="fcm_gylist_loadmore">加载更多
+    </div>
+
+    <div class="msgBox boxHide"></div>
+    <div id="mask" class="coverLayer"></div>
+  </div>
+  <div class="city-list hide">
+    <div class="city-select"><i id="back" class="iicon icon-back"></i>选择城市</div>
+    <h4 class="padding-l title">当前城市</h4>
+    <a class="padding-l city-current" href="/bj/pinpaigongyu/">北京</a>
+    <h4 class="padding-l title">所有城市</h4>
+    <div class="padding-l city-all">
+      <a class="city-item" href="/bj/pinpaigongyu/">北京</a>
+      <a class="city-item" href="/sh/pinpaigongyu/">上海</a>
+      <a class="city-item" href="/sz/pinpaigongyu/">深圳</a>
+      <a class="city-item" href="/gz/pinpaigongyu/">广州</a>
+      <a class="city-item" href="/cd/pinpaigongyu/">成都</a>
+      <a class="city-item" href="/hz/pinpaigongyu/">杭州</a>
+      <a class="city-item" href="/nj/pinpaigongyu/">南京</a>
+      <a class="city-item" href="/wh/pinpaigongyu/">武汉</a>
+      <a class="city-item" href="/xa/pinpaigongyu/">西安</a>
+      <a class="city-item" href="/qd/pinpaigongyu/">青岛</a>
+      <a class="city-item" href="/sjz/pinpaigongyu/">石家庄</a>
+      <a class="city-item" href="/tj/pinpaigongyu/">天津</a>
+      <a class="city-item" href="/zz/pinpaigongyu/">郑州</a>
+      <a class="city-item" href="/cs/pinpaigongyu/">长沙</a>
+      <a class="city-item" href="/xm/pinpaigongyu/">厦门</a>
+      <a class="city-item" href="/su/pinpaigongyu/">苏州</a>
+      <a class="city-item" href="/jn/pinpaigongyu/">济南</a>
+      <a class="city-item" href="/cq/pinpaigongyu/">重庆</a>
+      <a class="city-item" href="/hf/pinpaigongyu/">合肥</a>
+      <a class="city-item" href="/km/pinpaigongyu/">昆明</a>
+      <a class="city-item" href="/fs/pinpaigongyu/">佛山</a>
+      <a class="city-item" href="/dg/pinpaigongyu/">东莞</a>
+    </div>
+  </div>
+  <div class="search_container hide">
+    <form action="#" method="get" onsubmit="return win.submit();">
+      <div class="search_input">
+        <i class="border-l"></i>
+        <input type="text" name="key" class="input_keys" id="keyWords1" onblur="win.blur()" onfocus="win.focus()"
+          oninput="win.getData()" autocomplete="on" placeholder="找品牌公寓" value="" autocomplete="off">
+        <div class="delBtnInput hide" id="delBtnInput" onclick="win.delEvent(this)"></div>
+        <div class="delBtn hide"></div>
+        <i class="search_icon"></i>
+      </div>
+      <div class="search_cancel" onclick="clickLog('from=search_cancel');win.cancel()">取消</div>
+    </form>
+    <div class="search_ajax"></div>
+  </div>
+  <!--排序按钮-->
+  <!-- <img class="order_open_btn" tongji_tag="fcm_gylist_px" src="//img.58cdn.com.cn/fangrs/img/65db459e983240c29403a4b0fba06d66.png"/> -->
+  <!--排序弹窗-->
+  <div>
+    <div class="backdrop order-modal-backdrop hide"></div>
+    <ul class="select slide-in-up">
+      <li class="title order-modal-item selected" data-query="0" tongji_tag="fcm_gylist_px_0">默认排序</li>
+      <li data-query="price_asc" tongji_tag="fcm_gylist_px_price_asc" class="order-modal-item ">价格由低到高</li>
+      <li data-query="price_desc" tongji_tag="fcm_gylist_px_price_desc" class="order-modal-item ">价格由高到低</li>
+      <li data-query="area_asc" tongji_tag="fcm_gylist_px_area_asc" class="order-modal-item ">面积由低到高</li>
+      <li data-query="area_desc" tongji_tag="fcm_gylist_px_area_desc" class="order-modal-item ">面积由高到低</li>
+    </ul>
+  </div>
+  <!--微信分享js-->
+  <!-- <script src="//j1.58cdn.com.cn/frs/fangfe/m-apartment/1.0/weixin.share.js"></script> -->
+  <script type="text/javascript">
+    var _rootDomainNoProtocol = window.location.host;
+    var _rootDomain = window.location.protocol + "//" + window.location.host;
+    var _jsRootPath = "//static.58.com/m58/m3/js";
+    var _keyfrom = "list";
+    var __device = "";
+    try {
+      var ____json4fe = {
+        "catentry": [{
+          "dispid": 1,
+          "name": "\u623f\u4ea7\u4fe1\u606f",
+          "listname": "house"
+        }, {
+          "dispid": 70134,
+          "name": "\u54c1\u724c\u516c\u5bd3",
+          "listname": "pinpaigongyu"
+        }],
+        "locallist": [{
+          "dispid": 1,
+          "name": "\u5317\u4eac",
+          "listname": "bj"
+        }, {
+          "dispid": 1,
+          "name": "\u5317\u4eac",
+          "listname": "bj"
+        }],
+        "start": 1569482620,
+        "modules": "list",
+        "sessionid": "",
+        "sid": "192620185205715226018150302",
+        "smsc": null,
+        "encryptData": "d_5friq6cZIpHHzL1a2xN6xndIf_SPY3TPC7fOZXtZCA55X0yiSPbflnwIg4E1baKjZ1eW3lPqm-DjRPIomqZVoSVivr4WOxJ5n-uXraDkxlYGxGR_AV5O82rzUt0fEV",
+        "referer": null,
+        "apptarget": "wbmain:\/\/jump\/house\/list?params=%7B%22action%22%3A%22pagetrans%22%2C%22pagetype%22%3A%22list%22%2C%22tradeline%22%3A%22house%22%2C%22actiontype%22%3A%22zfpinzhigongyu%22%2C%22meta_url%22%3A%22https%3A%5C%2F%5C%2Fappgongyu.58.com%5C%2Fhouse%5C%2Flisting%5C%2F%22%2C%22title%22%3A%22%5Cu641c%5Cu7d22%22%2C%22list_name%22%3A%22gongyu%22%2C%22cateid%22%3A%2270134%22%2C%22full_path%22%3A%221%2C70134%22%2C%22filterParams%22%3A%5B%5D%2C%22cityid%22%3Anull%2C%22local_name%22%3Anull%2C%22params%22%3A%7B%22list_from%22%3A%22%22%7D%7D",
+        "apptargetObj": {
+          "action": "pagetrans",
+          "tradeline": "house",
+          "content": {
+            "title": "\u641c\u7d22",
+            "pagetype": "list",
+            "is_backtomain": true,
+            "isfinish": true,
+            "actiontype": "zfpinzhigongyu",
+            "list_name": "gongyu",
+            "cateid": "70134",
+            "params": {
+              "list_from": ""
+            },
+            "filterParams": [],
+            "meta_url": "https:\/\/appgongyu.58.com\/house\/listing\/",
+            "cityid": 1,
+            "local_name": "bj"
+          }
+        }
+      };
+      var selectValue = '';
+      var searchKey = '';
+    } catch (e) {};
+
+    var Login = false; //用户没有登录
+    Login = true; //用户已经登录
+
+    var xxfwConfig = {
+      namespace: 'ppgy_m_list'
+    };
+  </script>
+  <script src="//j2.58cdn.com.cn/olympia/js/lib/esl_zepto_load.min.js"></script>
+  <script src="//a.58cdn.com.cn/app58/static/rms/app/js/app_20264.js?t=20190926"></script>
+  <script type="text/javascript">
+    var _trackParams = [{
+      "I": 10496,
+      "V": "80"
+    }];
+    var shop_count = "0",
+      post_count = "",
+      page_type = "list",
+      site_name = "M58";
+    var _trackURL = "{" +
+      "'pagesize':'50'," +
+      "'actiontype':'m_zhuzhan'," +
+      "'area':'1'," +
+      "'cate':'1,70134'," +
+      "'pagenum':'1'," +
+      "'pagetype':'list'," +
+      "'level7':''," +
+      "'is_biz':'false'," +
+      "'page':''" +
+      "}"
+  </script>
+  <script src="//tracklog.58.com/referrer_m.js" async=""></script>
+  <script>
+    var ditiezhan = {
+      "6": [{
+        "id": 2037,
+        "isSelected": false,
+        "name": "苹果园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2037&dx=6&pagetype=sub"
+      }, {
+        "id": 2038,
+        "isSelected": false,
+        "name": "古城",
+        "url": "\/bj\/pinpaigongyu\/?dz=2038&dx=6&pagetype=sub"
+      }, {
+        "id": 2039,
+        "isSelected": false,
+        "name": "八角游乐园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2039&dx=6&pagetype=sub"
+      }, {
+        "id": 2040,
+        "isSelected": false,
+        "name": "八宝山",
+        "url": "\/bj\/pinpaigongyu\/?dz=2040&dx=6&pagetype=sub"
+      }, {
+        "id": 2041,
+        "isSelected": false,
+        "name": "玉泉路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2041&dx=6&pagetype=sub"
+      }, {
+        "id": 2042,
+        "isSelected": false,
+        "name": "五棵松",
+        "url": "\/bj\/pinpaigongyu\/?dz=2042&dx=6&pagetype=sub"
+      }, {
+        "id": 2043,
+        "isSelected": false,
+        "name": "万寿路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2043&dx=6&pagetype=sub"
+      }, {
+        "id": 2044,
+        "isSelected": false,
+        "name": "公主坟",
+        "url": "\/bj\/pinpaigongyu\/?dz=2044&dx=6&pagetype=sub"
+      }, {
+        "id": 2045,
+        "isSelected": false,
+        "name": "军事博物馆",
+        "url": "\/bj\/pinpaigongyu\/?dz=2045&dx=6&pagetype=sub"
+      }, {
+        "id": 2046,
+        "isSelected": false,
+        "name": "木樨地",
+        "url": "\/bj\/pinpaigongyu\/?dz=2046&dx=6&pagetype=sub"
+      }, {
+        "id": 2047,
+        "isSelected": false,
+        "name": "南礼士路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2047&dx=6&pagetype=sub"
+      }, {
+        "id": 2048,
+        "isSelected": false,
+        "name": "复兴门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2048&dx=6&pagetype=sub"
+      }, {
+        "id": 2049,
+        "isSelected": false,
+        "name": "西单",
+        "url": "\/bj\/pinpaigongyu\/?dz=2049&dx=6&pagetype=sub"
+      }, {
+        "id": 2050,
+        "isSelected": false,
+        "name": "天安门西",
+        "url": "\/bj\/pinpaigongyu\/?dz=2050&dx=6&pagetype=sub"
+      }, {
+        "id": 2051,
+        "isSelected": false,
+        "name": "天安门东",
+        "url": "\/bj\/pinpaigongyu\/?dz=2051&dx=6&pagetype=sub"
+      }, {
+        "id": 2052,
+        "isSelected": false,
+        "name": "王府井",
+        "url": "\/bj\/pinpaigongyu\/?dz=2052&dx=6&pagetype=sub"
+      }, {
+        "id": 2053,
+        "isSelected": false,
+        "name": "东单",
+        "url": "\/bj\/pinpaigongyu\/?dz=2053&dx=6&pagetype=sub"
+      }, {
+        "id": 2054,
+        "isSelected": false,
+        "name": "建国门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2054&dx=6&pagetype=sub"
+      }, {
+        "id": 2055,
+        "isSelected": false,
+        "name": "永安里",
+        "url": "\/bj\/pinpaigongyu\/?dz=2055&dx=6&pagetype=sub"
+      }, {
+        "id": 2056,
+        "isSelected": false,
+        "name": "国贸",
+        "url": "\/bj\/pinpaigongyu\/?dz=2056&dx=6&pagetype=sub"
+      }, {
+        "id": 2057,
+        "isSelected": false,
+        "name": "大望路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2057&dx=6&pagetype=sub"
+      }, {
+        "id": 2058,
+        "isSelected": false,
+        "name": "四惠",
+        "url": "\/bj\/pinpaigongyu\/?dz=2058&dx=6&pagetype=sub"
+      }, {
+        "id": 2059,
+        "isSelected": false,
+        "name": "四惠东",
+        "url": "\/bj\/pinpaigongyu\/?dz=2059&dx=6&pagetype=sub"
+      }],
+      "7": [{
+        "id": 2060,
+        "isSelected": false,
+        "name": "车公庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2060&dx=7&pagetype=sub"
+      }, {
+        "id": 2061,
+        "isSelected": false,
+        "name": "阜成门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2061&dx=7&pagetype=sub"
+      }, {
+        "id": 2062,
+        "isSelected": false,
+        "name": "复兴门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2062&dx=7&pagetype=sub"
+      }, {
+        "id": 2063,
+        "isSelected": false,
+        "name": "长椿街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2063&dx=7&pagetype=sub"
+      }, {
+        "id": 2064,
+        "isSelected": false,
+        "name": "宣武门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2064&dx=7&pagetype=sub"
+      }, {
+        "id": 2065,
+        "isSelected": false,
+        "name": "和平门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2065&dx=7&pagetype=sub"
+      }, {
+        "id": 2066,
+        "isSelected": false,
+        "name": "前门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2066&dx=7&pagetype=sub"
+      }, {
+        "id": 2067,
+        "isSelected": false,
+        "name": "崇文门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2067&dx=7&pagetype=sub"
+      }, {
+        "id": 2068,
+        "isSelected": false,
+        "name": "北京站",
+        "url": "\/bj\/pinpaigongyu\/?dz=2068&dx=7&pagetype=sub"
+      }, {
+        "id": 2069,
+        "isSelected": false,
+        "name": "建国门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2069&dx=7&pagetype=sub"
+      }, {
+        "id": 2070,
+        "isSelected": false,
+        "name": "朝阳门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2070&dx=7&pagetype=sub"
+      }, {
+        "id": 2071,
+        "isSelected": false,
+        "name": "东四十条",
+        "url": "\/bj\/pinpaigongyu\/?dz=2071&dx=7&pagetype=sub"
+      }, {
+        "id": 2072,
+        "isSelected": false,
+        "name": "东直门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2072&dx=7&pagetype=sub"
+      }, {
+        "id": 2073,
+        "isSelected": false,
+        "name": "雍和宫",
+        "url": "\/bj\/pinpaigongyu\/?dz=2073&dx=7&pagetype=sub"
+      }, {
+        "id": 2074,
+        "isSelected": false,
+        "name": "安定门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2074&dx=7&pagetype=sub"
+      }, {
+        "id": 2075,
+        "isSelected": false,
+        "name": "鼓楼大街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2075&dx=7&pagetype=sub"
+      }, {
+        "id": 2076,
+        "isSelected": false,
+        "name": "积水潭",
+        "url": "\/bj\/pinpaigongyu\/?dz=2076&dx=7&pagetype=sub"
+      }, {
+        "id": 2077,
+        "isSelected": false,
+        "name": "西直门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2077&dx=7&pagetype=sub"
+      }],
+      "8": [{
+        "id": 2078,
+        "isSelected": false,
+        "name": "安河桥北",
+        "url": "\/bj\/pinpaigongyu\/?dz=2078&dx=8&pagetype=sub"
+      }, {
+        "id": 2079,
+        "isSelected": false,
+        "name": "北宫门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2079&dx=8&pagetype=sub"
+      }, {
+        "id": 2080,
+        "isSelected": false,
+        "name": "西苑",
+        "url": "\/bj\/pinpaigongyu\/?dz=2080&dx=8&pagetype=sub"
+      }, {
+        "id": 2081,
+        "isSelected": false,
+        "name": "圆明园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2081&dx=8&pagetype=sub"
+      }, {
+        "id": 2082,
+        "isSelected": false,
+        "name": "北京大学东门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2082&dx=8&pagetype=sub"
+      }, {
+        "id": 2083,
+        "isSelected": false,
+        "name": "中关村",
+        "url": "\/bj\/pinpaigongyu\/?dz=2083&dx=8&pagetype=sub"
+      }, {
+        "id": 2084,
+        "isSelected": false,
+        "name": "海淀黄庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2084&dx=8&pagetype=sub"
+      }, {
+        "id": 2085,
+        "isSelected": false,
+        "name": "人民大学",
+        "url": "\/bj\/pinpaigongyu\/?dz=2085&dx=8&pagetype=sub"
+      }, {
+        "id": 2086,
+        "isSelected": false,
+        "name": "魏公村",
+        "url": "\/bj\/pinpaigongyu\/?dz=2086&dx=8&pagetype=sub"
+      }, {
+        "id": 2087,
+        "isSelected": false,
+        "name": "国家图书馆",
+        "url": "\/bj\/pinpaigongyu\/?dz=2087&dx=8&pagetype=sub"
+      }, {
+        "id": 2088,
+        "isSelected": false,
+        "name": "动物园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2088&dx=8&pagetype=sub"
+      }, {
+        "id": 2089,
+        "isSelected": false,
+        "name": "西直门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2089&dx=8&pagetype=sub"
+      }, {
+        "id": 2090,
+        "isSelected": false,
+        "name": "新街口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2090&dx=8&pagetype=sub"
+      }, {
+        "id": 2091,
+        "isSelected": false,
+        "name": "平安里",
+        "url": "\/bj\/pinpaigongyu\/?dz=2091&dx=8&pagetype=sub"
+      }, {
+        "id": 2092,
+        "isSelected": false,
+        "name": "西四",
+        "url": "\/bj\/pinpaigongyu\/?dz=2092&dx=8&pagetype=sub"
+      }, {
+        "id": 2093,
+        "isSelected": false,
+        "name": "灵境胡同",
+        "url": "\/bj\/pinpaigongyu\/?dz=2093&dx=8&pagetype=sub"
+      }, {
+        "id": 2094,
+        "isSelected": false,
+        "name": "西单",
+        "url": "\/bj\/pinpaigongyu\/?dz=2094&dx=8&pagetype=sub"
+      }, {
+        "id": 2095,
+        "isSelected": false,
+        "name": "宣武门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2095&dx=8&pagetype=sub"
+      }, {
+        "id": 2096,
+        "isSelected": false,
+        "name": "菜市口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2096&dx=8&pagetype=sub"
+      }, {
+        "id": 2097,
+        "isSelected": false,
+        "name": "陶然亭",
+        "url": "\/bj\/pinpaigongyu\/?dz=2097&dx=8&pagetype=sub"
+      }, {
+        "id": 2098,
+        "isSelected": false,
+        "name": "北京南站",
+        "url": "\/bj\/pinpaigongyu\/?dz=2098&dx=8&pagetype=sub"
+      }, {
+        "id": 2099,
+        "isSelected": false,
+        "name": "马家堡",
+        "url": "\/bj\/pinpaigongyu\/?dz=2099&dx=8&pagetype=sub"
+      }, {
+        "id": 2100,
+        "isSelected": false,
+        "name": "角门西",
+        "url": "\/bj\/pinpaigongyu\/?dz=2100&dx=8&pagetype=sub"
+      }, {
+        "id": 2101,
+        "isSelected": false,
+        "name": "公益西桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2101&dx=8&pagetype=sub"
+      }, {
+        "id": 2102,
+        "isSelected": false,
+        "name": "新宫",
+        "url": "\/bj\/pinpaigongyu\/?dz=2102&dx=8&pagetype=sub"
+      }, {
+        "id": 2103,
+        "isSelected": false,
+        "name": "西红门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2103&dx=8&pagetype=sub"
+      }, {
+        "id": 2104,
+        "isSelected": false,
+        "name": "高米店北",
+        "url": "\/bj\/pinpaigongyu\/?dz=2104&dx=8&pagetype=sub"
+      }, {
+        "id": 2105,
+        "isSelected": false,
+        "name": "高米店南",
+        "url": "\/bj\/pinpaigongyu\/?dz=2105&dx=8&pagetype=sub"
+      }, {
+        "id": 2106,
+        "isSelected": false,
+        "name": "枣园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2106&dx=8&pagetype=sub"
+      }, {
+        "id": 2107,
+        "isSelected": false,
+        "name": "清源路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2107&dx=8&pagetype=sub"
+      }, {
+        "id": 2108,
+        "isSelected": false,
+        "name": "黄村西大街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2108&dx=8&pagetype=sub"
+      }, {
+        "id": 2109,
+        "isSelected": false,
+        "name": "黄村火车站",
+        "url": "\/bj\/pinpaigongyu\/?dz=2109&dx=8&pagetype=sub"
+      }, {
+        "id": 2110,
+        "isSelected": false,
+        "name": "义和庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2110&dx=8&pagetype=sub"
+      }, {
+        "id": 2111,
+        "isSelected": false,
+        "name": "生物医药基地",
+        "url": "\/bj\/pinpaigongyu\/?dz=2111&dx=8&pagetype=sub"
+      }, {
+        "id": 2112,
+        "isSelected": false,
+        "name": "天宫院",
+        "url": "\/bj\/pinpaigongyu\/?dz=2112&dx=8&pagetype=sub"
+      }],
+      "9": [{
+        "id": 2113,
+        "isSelected": false,
+        "name": "宋家庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2113&dx=9&pagetype=sub"
+      }, {
+        "id": 2114,
+        "isSelected": false,
+        "name": "刘家窑",
+        "url": "\/bj\/pinpaigongyu\/?dz=2114&dx=9&pagetype=sub"
+      }, {
+        "id": 2115,
+        "isSelected": false,
+        "name": "蒲黄榆",
+        "url": "\/bj\/pinpaigongyu\/?dz=2115&dx=9&pagetype=sub"
+      }, {
+        "id": 2116,
+        "isSelected": false,
+        "name": "天坛东门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2116&dx=9&pagetype=sub"
+      }, {
+        "id": 2117,
+        "isSelected": false,
+        "name": "磁器口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2117&dx=9&pagetype=sub"
+      }, {
+        "id": 2118,
+        "isSelected": false,
+        "name": "崇文门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2118&dx=9&pagetype=sub"
+      }, {
+        "id": 2119,
+        "isSelected": false,
+        "name": "东单",
+        "url": "\/bj\/pinpaigongyu\/?dz=2119&dx=9&pagetype=sub"
+      }, {
+        "id": 2120,
+        "isSelected": false,
+        "name": "灯市口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2120&dx=9&pagetype=sub"
+      }, {
+        "id": 2121,
+        "isSelected": false,
+        "name": "东四",
+        "url": "\/bj\/pinpaigongyu\/?dz=2121&dx=9&pagetype=sub"
+      }, {
+        "id": 2122,
+        "isSelected": false,
+        "name": "张自忠路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2122&dx=9&pagetype=sub"
+      }, {
+        "id": 2123,
+        "isSelected": false,
+        "name": "北新桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2123&dx=9&pagetype=sub"
+      }, {
+        "id": 2124,
+        "isSelected": false,
+        "name": "雍和宫",
+        "url": "\/bj\/pinpaigongyu\/?dz=2124&dx=9&pagetype=sub"
+      }, {
+        "id": 2125,
+        "isSelected": false,
+        "name": "和平里北街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2125&dx=9&pagetype=sub"
+      }, {
+        "id": 2126,
+        "isSelected": false,
+        "name": "和平西桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2126&dx=9&pagetype=sub"
+      }, {
+        "id": 2127,
+        "isSelected": false,
+        "name": "惠新西街南口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2127&dx=9&pagetype=sub"
+      }, {
+        "id": 2128,
+        "isSelected": false,
+        "name": "惠新西街北口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2128&dx=9&pagetype=sub"
+      }, {
+        "id": 2129,
+        "isSelected": false,
+        "name": "大屯路东",
+        "url": "\/bj\/pinpaigongyu\/?dz=2129&dx=9&pagetype=sub"
+      }, {
+        "id": 2130,
+        "isSelected": false,
+        "name": "北苑路北",
+        "url": "\/bj\/pinpaigongyu\/?dz=2130&dx=9&pagetype=sub"
+      }, {
+        "id": 2131,
+        "isSelected": false,
+        "name": "立水桥南",
+        "url": "\/bj\/pinpaigongyu\/?dz=2131&dx=9&pagetype=sub"
+      }, {
+        "id": 2132,
+        "isSelected": false,
+        "name": "立水桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2132&dx=9&pagetype=sub"
+      }, {
+        "id": 2133,
+        "isSelected": false,
+        "name": "天通苑南",
+        "url": "\/bj\/pinpaigongyu\/?dz=2133&dx=9&pagetype=sub"
+      }, {
+        "id": 2134,
+        "isSelected": false,
+        "name": "天通苑",
+        "url": "\/bj\/pinpaigongyu\/?dz=2134&dx=9&pagetype=sub"
+      }, {
+        "id": 2135,
+        "isSelected": false,
+        "name": "天通苑北",
+        "url": "\/bj\/pinpaigongyu\/?dz=2135&dx=9&pagetype=sub"
+      }],
+      "10": [{
+        "id": 10151,
+        "isSelected": false,
+        "name": "金安桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=10151&dx=10&pagetype=sub"
+      }, {
+        "id": 10152,
+        "isSelected": false,
+        "name": "苹果园",
+        "url": "\/bj\/pinpaigongyu\/?dz=10152&dx=10&pagetype=sub"
+      }, {
+        "id": 10153,
+        "isSelected": false,
+        "name": "杨庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=10153&dx=10&pagetype=sub"
+      }, {
+        "id": 10150,
+        "isSelected": false,
+        "name": "西黄村",
+        "url": "\/bj\/pinpaigongyu\/?dz=10150&dx=10&pagetype=sub"
+      }, {
+        "id": 10148,
+        "isSelected": false,
+        "name": "廖公庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=10148&dx=10&pagetype=sub"
+      }, {
+        "id": 10147,
+        "isSelected": false,
+        "name": "田村",
+        "url": "\/bj\/pinpaigongyu\/?dz=10147&dx=10&pagetype=sub"
+      }, {
+        "id": 2136,
+        "isSelected": false,
+        "name": "海淀五路居",
+        "url": "\/bj\/pinpaigongyu\/?dz=2136&dx=10&pagetype=sub"
+      }, {
+        "id": 2137,
+        "isSelected": false,
+        "name": "慈寿寺",
+        "url": "\/bj\/pinpaigongyu\/?dz=2137&dx=10&pagetype=sub"
+      }, {
+        "id": 2138,
+        "isSelected": false,
+        "name": "花园桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2138&dx=10&pagetype=sub"
+      }, {
+        "id": 2139,
+        "isSelected": false,
+        "name": "白石桥南",
+        "url": "\/bj\/pinpaigongyu\/?dz=2139&dx=10&pagetype=sub"
+      }, {
+        "id": 2140,
+        "isSelected": false,
+        "name": "车公庄西",
+        "url": "\/bj\/pinpaigongyu\/?dz=2140&dx=10&pagetype=sub"
+      }, {
+        "id": 2141,
+        "isSelected": false,
+        "name": "车公庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2141&dx=10&pagetype=sub"
+      }, {
+        "id": 2142,
+        "isSelected": false,
+        "name": "平安里",
+        "url": "\/bj\/pinpaigongyu\/?dz=2142&dx=10&pagetype=sub"
+      }, {
+        "id": 2143,
+        "isSelected": false,
+        "name": "北海北",
+        "url": "\/bj\/pinpaigongyu\/?dz=2143&dx=10&pagetype=sub"
+      }, {
+        "id": 2144,
+        "isSelected": false,
+        "name": "南锣鼓巷",
+        "url": "\/bj\/pinpaigongyu\/?dz=2144&dx=10&pagetype=sub"
+      }, {
+        "id": 2145,
+        "isSelected": false,
+        "name": "东四",
+        "url": "\/bj\/pinpaigongyu\/?dz=2145&dx=10&pagetype=sub"
+      }, {
+        "id": 2146,
+        "isSelected": false,
+        "name": "朝阳门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2146&dx=10&pagetype=sub"
+      }, {
+        "id": 2147,
+        "isSelected": false,
+        "name": "东大桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2147&dx=10&pagetype=sub"
+      }, {
+        "id": 2148,
+        "isSelected": false,
+        "name": "呼家楼",
+        "url": "\/bj\/pinpaigongyu\/?dz=2148&dx=10&pagetype=sub"
+      }, {
+        "id": 2149,
+        "isSelected": false,
+        "name": "金台路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2149&dx=10&pagetype=sub"
+      }, {
+        "id": 2150,
+        "isSelected": false,
+        "name": "十里堡",
+        "url": "\/bj\/pinpaigongyu\/?dz=2150&dx=10&pagetype=sub"
+      }, {
+        "id": 2151,
+        "isSelected": false,
+        "name": "青年路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2151&dx=10&pagetype=sub"
+      }, {
+        "id": 2152,
+        "isSelected": false,
+        "name": "褡裢坡",
+        "url": "\/bj\/pinpaigongyu\/?dz=2152&dx=10&pagetype=sub"
+      }, {
+        "id": 2153,
+        "isSelected": false,
+        "name": "黄渠",
+        "url": "\/bj\/pinpaigongyu\/?dz=2153&dx=10&pagetype=sub"
+      }, {
+        "id": 2154,
+        "isSelected": false,
+        "name": "常营",
+        "url": "\/bj\/pinpaigongyu\/?dz=2154&dx=10&pagetype=sub"
+      }, {
+        "id": 2155,
+        "isSelected": false,
+        "name": "草房",
+        "url": "\/bj\/pinpaigongyu\/?dz=2155&dx=10&pagetype=sub"
+      }, {
+        "id": 2156,
+        "isSelected": false,
+        "name": "物资学院路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2156&dx=10&pagetype=sub"
+      }, {
+        "id": 2157,
+        "isSelected": false,
+        "name": "通州北关",
+        "url": "\/bj\/pinpaigongyu\/?dz=2157&dx=10&pagetype=sub"
+      }, {
+        "id": 2158,
+        "isSelected": false,
+        "name": "北运河西",
+        "url": "\/bj\/pinpaigongyu\/?dz=2158&dx=10&pagetype=sub"
+      }, {
+        "id": 10149,
+        "isSelected": false,
+        "name": "北运河东",
+        "url": "\/bj\/pinpaigongyu\/?dz=10149&dx=10&pagetype=sub"
+      }, {
+        "id": 2159,
+        "isSelected": false,
+        "name": "郝家府",
+        "url": "\/bj\/pinpaigongyu\/?dz=2159&dx=10&pagetype=sub"
+      }, {
+        "id": 2160,
+        "isSelected": false,
+        "name": "东夏园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2160&dx=10&pagetype=sub"
+      }, {
+        "id": 2161,
+        "isSelected": false,
+        "name": "潞城",
+        "url": "\/bj\/pinpaigongyu\/?dz=2161&dx=10&pagetype=sub"
+      }],
+      "11": [{
+        "id": 2162,
+        "isSelected": false,
+        "name": "北京西站",
+        "url": "\/bj\/pinpaigongyu\/?dz=2162&dx=11&pagetype=sub"
+      }, {
+        "id": 2163,
+        "isSelected": false,
+        "name": "湾子",
+        "url": "\/bj\/pinpaigongyu\/?dz=2163&dx=11&pagetype=sub"
+      }, {
+        "id": 2164,
+        "isSelected": false,
+        "name": "达官营",
+        "url": "\/bj\/pinpaigongyu\/?dz=2164&dx=11&pagetype=sub"
+      }, {
+        "id": 2165,
+        "isSelected": false,
+        "name": "广安门内",
+        "url": "\/bj\/pinpaigongyu\/?dz=2165&dx=11&pagetype=sub"
+      }, {
+        "id": 2166,
+        "isSelected": false,
+        "name": "菜市口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2166&dx=11&pagetype=sub"
+      }, {
+        "id": 2167,
+        "isSelected": false,
+        "name": "虎坊桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2167&dx=11&pagetype=sub"
+      }, {
+        "id": 2168,
+        "isSelected": false,
+        "name": "珠市口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2168&dx=11&pagetype=sub"
+      }, {
+        "id": 2169,
+        "isSelected": false,
+        "name": "桥湾",
+        "url": "\/bj\/pinpaigongyu\/?dz=2169&dx=11&pagetype=sub"
+      }, {
+        "id": 2170,
+        "isSelected": false,
+        "name": "磁器口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2170&dx=11&pagetype=sub"
+      }, {
+        "id": 2171,
+        "isSelected": false,
+        "name": "广渠门内",
+        "url": "\/bj\/pinpaigongyu\/?dz=2171&dx=11&pagetype=sub"
+      }, {
+        "id": 2172,
+        "isSelected": false,
+        "name": "广渠门外",
+        "url": "\/bj\/pinpaigongyu\/?dz=2172&dx=11&pagetype=sub"
+      }, {
+        "id": 2173,
+        "isSelected": false,
+        "name": "九龙山",
+        "url": "\/bj\/pinpaigongyu\/?dz=2173&dx=11&pagetype=sub"
+      }, {
+        "id": 2174,
+        "isSelected": false,
+        "name": "大郊亭",
+        "url": "\/bj\/pinpaigongyu\/?dz=2174&dx=11&pagetype=sub"
+      }, {
+        "id": 2175,
+        "isSelected": false,
+        "name": "百子湾",
+        "url": "\/bj\/pinpaigongyu\/?dz=2175&dx=11&pagetype=sub"
+      }, {
+        "id": 2176,
+        "isSelected": false,
+        "name": "化工",
+        "url": "\/bj\/pinpaigongyu\/?dz=2176&dx=11&pagetype=sub"
+      }, {
+        "id": 2177,
+        "isSelected": false,
+        "name": "南楼梓庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2177&dx=11&pagetype=sub"
+      }, {
+        "id": 2178,
+        "isSelected": false,
+        "name": "欢乐谷景区",
+        "url": "\/bj\/pinpaigongyu\/?dz=2178&dx=11&pagetype=sub"
+      }, {
+        "id": 2179,
+        "isSelected": false,
+        "name": "双合",
+        "url": "\/bj\/pinpaigongyu\/?dz=2179&dx=11&pagetype=sub"
+      }, {
+        "id": 2180,
+        "isSelected": false,
+        "name": "焦化厂",
+        "url": "\/bj\/pinpaigongyu\/?dz=2180&dx=11&pagetype=sub"
+      }],
+      "12": [{
+        "id": 2181,
+        "isSelected": false,
+        "name": "朱辛庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2181&dx=12&pagetype=sub"
+      }, {
+        "id": 2182,
+        "isSelected": false,
+        "name": "育知路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2182&dx=12&pagetype=sub"
+      }, {
+        "id": 2183,
+        "isSelected": false,
+        "name": "平西府",
+        "url": "\/bj\/pinpaigongyu\/?dz=2183&dx=12&pagetype=sub"
+      }, {
+        "id": 2184,
+        "isSelected": false,
+        "name": "回龙观东大街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2184&dx=12&pagetype=sub"
+      }, {
+        "id": 2185,
+        "isSelected": false,
+        "name": "霍营",
+        "url": "\/bj\/pinpaigongyu\/?dz=2185&dx=12&pagetype=sub"
+      }, {
+        "id": 2186,
+        "isSelected": false,
+        "name": "育新",
+        "url": "\/bj\/pinpaigongyu\/?dz=2186&dx=12&pagetype=sub"
+      }, {
+        "id": 2187,
+        "isSelected": false,
+        "name": "西小口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2187&dx=12&pagetype=sub"
+      }, {
+        "id": 2188,
+        "isSelected": false,
+        "name": "永泰庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2188&dx=12&pagetype=sub"
+      }, {
+        "id": 2189,
+        "isSelected": false,
+        "name": "林萃桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2189&dx=12&pagetype=sub"
+      }, {
+        "id": 2190,
+        "isSelected": false,
+        "name": "森林公园南门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2190&dx=12&pagetype=sub"
+      }, {
+        "id": 2191,
+        "isSelected": false,
+        "name": "奥林匹克公园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2191&dx=12&pagetype=sub"
+      }, {
+        "id": 2192,
+        "isSelected": false,
+        "name": "奥体中心",
+        "url": "\/bj\/pinpaigongyu\/?dz=2192&dx=12&pagetype=sub"
+      }, {
+        "id": 2193,
+        "isSelected": false,
+        "name": "北土城",
+        "url": "\/bj\/pinpaigongyu\/?dz=2193&dx=12&pagetype=sub"
+      }, {
+        "id": 2194,
+        "isSelected": false,
+        "name": "安华桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2194&dx=12&pagetype=sub"
+      }, {
+        "id": 2195,
+        "isSelected": false,
+        "name": "安德里北街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2195&dx=12&pagetype=sub"
+      }, {
+        "id": 2196,
+        "isSelected": false,
+        "name": "鼓楼大街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2196&dx=12&pagetype=sub"
+      }, {
+        "id": 2197,
+        "isSelected": false,
+        "name": "什刹海",
+        "url": "\/bj\/pinpaigongyu\/?dz=2197&dx=12&pagetype=sub"
+      }, {
+        "id": 2198,
+        "isSelected": false,
+        "name": "南锣鼓巷",
+        "url": "\/bj\/pinpaigongyu\/?dz=2198&dx=12&pagetype=sub"
+      }, {
+        "id": 10154,
+        "isSelected": false,
+        "name": "中国美术馆",
+        "url": "\/bj\/pinpaigongyu\/?dz=10154&dx=12&pagetype=sub"
+      }],
+      "13": [{
+        "id": 2199,
+        "isSelected": false,
+        "name": "郭公庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2199&dx=13&pagetype=sub"
+      }, {
+        "id": 2200,
+        "isSelected": false,
+        "name": "丰台科技园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2200&dx=13&pagetype=sub"
+      }, {
+        "id": 2201,
+        "isSelected": false,
+        "name": "科怡路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2201&dx=13&pagetype=sub"
+      }, {
+        "id": 2202,
+        "isSelected": false,
+        "name": "丰台南路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2202&dx=13&pagetype=sub"
+      }, {
+        "id": 2203,
+        "isSelected": false,
+        "name": "丰台东大街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2203&dx=13&pagetype=sub"
+      }, {
+        "id": 2204,
+        "isSelected": false,
+        "name": "七里庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2204&dx=13&pagetype=sub"
+      }, {
+        "id": 2205,
+        "isSelected": false,
+        "name": "六里桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2205&dx=13&pagetype=sub"
+      }, {
+        "id": 2206,
+        "isSelected": false,
+        "name": "六里桥东",
+        "url": "\/bj\/pinpaigongyu\/?dz=2206&dx=13&pagetype=sub"
+      }, {
+        "id": 2207,
+        "isSelected": false,
+        "name": "北京西站",
+        "url": "\/bj\/pinpaigongyu\/?dz=2207&dx=13&pagetype=sub"
+      }, {
+        "id": 2208,
+        "isSelected": false,
+        "name": "军事博物馆",
+        "url": "\/bj\/pinpaigongyu\/?dz=2208&dx=13&pagetype=sub"
+      }, {
+        "id": 2209,
+        "isSelected": false,
+        "name": "白堆子",
+        "url": "\/bj\/pinpaigongyu\/?dz=2209&dx=13&pagetype=sub"
+      }, {
+        "id": 2210,
+        "isSelected": false,
+        "name": "白石桥南",
+        "url": "\/bj\/pinpaigongyu\/?dz=2210&dx=13&pagetype=sub"
+      }, {
+        "id": 2211,
+        "isSelected": false,
+        "name": "国家图书馆",
+        "url": "\/bj\/pinpaigongyu\/?dz=2211&dx=13&pagetype=sub"
+      }],
+      "1": [{
+        "id": 1931,
+        "isSelected": false,
+        "name": "苏州街",
+        "url": "\/bj\/pinpaigongyu\/?dz=1931&dx=1&pagetype=sub"
+      }, {
+        "id": 1932,
+        "isSelected": false,
+        "name": "海淀黄庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=1932&dx=1&pagetype=sub"
+      }, {
+        "id": 1933,
+        "isSelected": false,
+        "name": "知春里",
+        "url": "\/bj\/pinpaigongyu\/?dz=1933&dx=1&pagetype=sub"
+      }, {
+        "id": 1934,
+        "isSelected": false,
+        "name": "知春路",
+        "url": "\/bj\/pinpaigongyu\/?dz=1934&dx=1&pagetype=sub"
+      }, {
+        "id": 1935,
+        "isSelected": false,
+        "name": "西土城",
+        "url": "\/bj\/pinpaigongyu\/?dz=1935&dx=1&pagetype=sub"
+      }, {
+        "id": 1936,
+        "isSelected": false,
+        "name": "牡丹园",
+        "url": "\/bj\/pinpaigongyu\/?dz=1936&dx=1&pagetype=sub"
+      }, {
+        "id": 1937,
+        "isSelected": false,
+        "name": "健德门",
+        "url": "\/bj\/pinpaigongyu\/?dz=1937&dx=1&pagetype=sub"
+      }, {
+        "id": 1938,
+        "isSelected": false,
+        "name": "北土城",
+        "url": "\/bj\/pinpaigongyu\/?dz=1938&dx=1&pagetype=sub"
+      }, {
+        "id": 1939,
+        "isSelected": false,
+        "name": "安贞门",
+        "url": "\/bj\/pinpaigongyu\/?dz=1939&dx=1&pagetype=sub"
+      }, {
+        "id": 1940,
+        "isSelected": false,
+        "name": "惠新西街南口",
+        "url": "\/bj\/pinpaigongyu\/?dz=1940&dx=1&pagetype=sub"
+      }, {
+        "id": 1941,
+        "isSelected": false,
+        "name": "芍药居",
+        "url": "\/bj\/pinpaigongyu\/?dz=1941&dx=1&pagetype=sub"
+      }, {
+        "id": 1942,
+        "isSelected": false,
+        "name": "太阳宫",
+        "url": "\/bj\/pinpaigongyu\/?dz=1942&dx=1&pagetype=sub"
+      }, {
+        "id": 1943,
+        "isSelected": false,
+        "name": "三元桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=1943&dx=1&pagetype=sub"
+      }, {
+        "id": 1944,
+        "isSelected": false,
+        "name": "亮马桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=1944&dx=1&pagetype=sub"
+      }, {
+        "id": 1945,
+        "isSelected": false,
+        "name": "农业展览馆",
+        "url": "\/bj\/pinpaigongyu\/?dz=1945&dx=1&pagetype=sub"
+      }, {
+        "id": 1946,
+        "isSelected": false,
+        "name": "团结湖",
+        "url": "\/bj\/pinpaigongyu\/?dz=1946&dx=1&pagetype=sub"
+      }, {
+        "id": 1947,
+        "isSelected": false,
+        "name": "呼家楼",
+        "url": "\/bj\/pinpaigongyu\/?dz=1947&dx=1&pagetype=sub"
+      }, {
+        "id": 1948,
+        "isSelected": false,
+        "name": "金台夕照",
+        "url": "\/bj\/pinpaigongyu\/?dz=1948&dx=1&pagetype=sub"
+      }, {
+        "id": 1949,
+        "isSelected": false,
+        "name": "国贸",
+        "url": "\/bj\/pinpaigongyu\/?dz=1949&dx=1&pagetype=sub"
+      }, {
+        "id": 1950,
+        "isSelected": false,
+        "name": "双井",
+        "url": "\/bj\/pinpaigongyu\/?dz=1950&dx=1&pagetype=sub"
+      }, {
+        "id": 1951,
+        "isSelected": false,
+        "name": "劲松",
+        "url": "\/bj\/pinpaigongyu\/?dz=1951&dx=1&pagetype=sub"
+      }, {
+        "id": 1952,
+        "isSelected": false,
+        "name": "潘家园",
+        "url": "\/bj\/pinpaigongyu\/?dz=1952&dx=1&pagetype=sub"
+      }, {
+        "id": 1953,
+        "isSelected": false,
+        "name": "十里河",
+        "url": "\/bj\/pinpaigongyu\/?dz=1953&dx=1&pagetype=sub"
+      }, {
+        "id": 1954,
+        "isSelected": false,
+        "name": "分钟寺",
+        "url": "\/bj\/pinpaigongyu\/?dz=1954&dx=1&pagetype=sub"
+      }, {
+        "id": 1955,
+        "isSelected": false,
+        "name": "成寿寺",
+        "url": "\/bj\/pinpaigongyu\/?dz=1955&dx=1&pagetype=sub"
+      }, {
+        "id": 1956,
+        "isSelected": false,
+        "name": "宋家庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=1956&dx=1&pagetype=sub"
+      }, {
+        "id": 1957,
+        "isSelected": false,
+        "name": "石榴庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=1957&dx=1&pagetype=sub"
+      }, {
+        "id": 1958,
+        "isSelected": false,
+        "name": "大红门",
+        "url": "\/bj\/pinpaigongyu\/?dz=1958&dx=1&pagetype=sub"
+      }, {
+        "id": 1959,
+        "isSelected": false,
+        "name": "角门东",
+        "url": "\/bj\/pinpaigongyu\/?dz=1959&dx=1&pagetype=sub"
+      }, {
+        "id": 1960,
+        "isSelected": false,
+        "name": "角门西",
+        "url": "\/bj\/pinpaigongyu\/?dz=1960&dx=1&pagetype=sub"
+      }, {
+        "id": 1961,
+        "isSelected": false,
+        "name": "草桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=1961&dx=1&pagetype=sub"
+      }, {
+        "id": 1962,
+        "isSelected": false,
+        "name": "纪家庙",
+        "url": "\/bj\/pinpaigongyu\/?dz=1962&dx=1&pagetype=sub"
+      }, {
+        "id": 1963,
+        "isSelected": false,
+        "name": "首经贸",
+        "url": "\/bj\/pinpaigongyu\/?dz=1963&dx=1&pagetype=sub"
+      }, {
+        "id": 1964,
+        "isSelected": false,
+        "name": "丰台",
+        "url": "\/bj\/pinpaigongyu\/?dz=1964&dx=1&pagetype=sub"
+      }, {
+        "id": 1965,
+        "isSelected": false,
+        "name": "泥洼",
+        "url": "\/bj\/pinpaigongyu\/?dz=1965&dx=1&pagetype=sub"
+      }, {
+        "id": 1966,
+        "isSelected": false,
+        "name": "西局",
+        "url": "\/bj\/pinpaigongyu\/?dz=1966&dx=1&pagetype=sub"
+      }, {
+        "id": 1967,
+        "isSelected": false,
+        "name": "六里桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=1967&dx=1&pagetype=sub"
+      }, {
+        "id": 1968,
+        "isSelected": false,
+        "name": "莲花桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=1968&dx=1&pagetype=sub"
+      }, {
+        "id": 1969,
+        "isSelected": false,
+        "name": "公主坟",
+        "url": "\/bj\/pinpaigongyu\/?dz=1969&dx=1&pagetype=sub"
+      }, {
+        "id": 1970,
+        "isSelected": false,
+        "name": "西钓鱼台",
+        "url": "\/bj\/pinpaigongyu\/?dz=1970&dx=1&pagetype=sub"
+      }, {
+        "id": 1971,
+        "isSelected": false,
+        "name": "慈寿寺",
+        "url": "\/bj\/pinpaigongyu\/?dz=1971&dx=1&pagetype=sub"
+      }, {
+        "id": 1972,
+        "isSelected": false,
+        "name": "车道沟",
+        "url": "\/bj\/pinpaigongyu\/?dz=1972&dx=1&pagetype=sub"
+      }, {
+        "id": 1973,
+        "isSelected": false,
+        "name": "长春桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=1973&dx=1&pagetype=sub"
+      }, {
+        "id": 1974,
+        "isSelected": false,
+        "name": "火器营",
+        "url": "\/bj\/pinpaigongyu\/?dz=1974&dx=1&pagetype=sub"
+      }, {
+        "id": 1975,
+        "isSelected": false,
+        "name": "巴沟",
+        "url": "\/bj\/pinpaigongyu\/?dz=1975&dx=1&pagetype=sub"
+      }],
+      "2": [{
+        "id": 1976,
+        "isSelected": false,
+        "name": "西直门",
+        "url": "\/bj\/pinpaigongyu\/?dz=1976&dx=2&pagetype=sub"
+      }, {
+        "id": 1977,
+        "isSelected": false,
+        "name": "大钟寺",
+        "url": "\/bj\/pinpaigongyu\/?dz=1977&dx=2&pagetype=sub"
+      }, {
+        "id": 1978,
+        "isSelected": false,
+        "name": "知春路",
+        "url": "\/bj\/pinpaigongyu\/?dz=1978&dx=2&pagetype=sub"
+      }, {
+        "id": 1979,
+        "isSelected": false,
+        "name": "五道口",
+        "url": "\/bj\/pinpaigongyu\/?dz=1979&dx=2&pagetype=sub"
+      }, {
+        "id": 1980,
+        "isSelected": false,
+        "name": "上地",
+        "url": "\/bj\/pinpaigongyu\/?dz=1980&dx=2&pagetype=sub"
+      }, {
+        "id": 1981,
+        "isSelected": false,
+        "name": "西二旗",
+        "url": "\/bj\/pinpaigongyu\/?dz=1981&dx=2&pagetype=sub"
+      }, {
+        "id": 1982,
+        "isSelected": false,
+        "name": "龙泽",
+        "url": "\/bj\/pinpaigongyu\/?dz=1982&dx=2&pagetype=sub"
+      }, {
+        "id": 1983,
+        "isSelected": false,
+        "name": "回龙观",
+        "url": "\/bj\/pinpaigongyu\/?dz=1983&dx=2&pagetype=sub"
+      }, {
+        "id": 1984,
+        "isSelected": false,
+        "name": "霍营",
+        "url": "\/bj\/pinpaigongyu\/?dz=1984&dx=2&pagetype=sub"
+      }, {
+        "id": 1985,
+        "isSelected": false,
+        "name": "立水桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=1985&dx=2&pagetype=sub"
+      }, {
+        "id": 1986,
+        "isSelected": false,
+        "name": "北苑",
+        "url": "\/bj\/pinpaigongyu\/?dz=1986&dx=2&pagetype=sub"
+      }, {
+        "id": 1987,
+        "isSelected": false,
+        "name": "望京西",
+        "url": "\/bj\/pinpaigongyu\/?dz=1987&dx=2&pagetype=sub"
+      }, {
+        "id": 1988,
+        "isSelected": false,
+        "name": "芍药居",
+        "url": "\/bj\/pinpaigongyu\/?dz=1988&dx=2&pagetype=sub"
+      }, {
+        "id": 1989,
+        "isSelected": false,
+        "name": "光熙门",
+        "url": "\/bj\/pinpaigongyu\/?dz=1989&dx=2&pagetype=sub"
+      }, {
+        "id": 1990,
+        "isSelected": false,
+        "name": "柳芳",
+        "url": "\/bj\/pinpaigongyu\/?dz=1990&dx=2&pagetype=sub"
+      }, {
+        "id": 1991,
+        "isSelected": false,
+        "name": "东直门",
+        "url": "\/bj\/pinpaigongyu\/?dz=1991&dx=2&pagetype=sub"
+      }],
+      "3": [{
+        "id": 1992,
+        "isSelected": false,
+        "name": "北京南站",
+        "url": "\/bj\/pinpaigongyu\/?dz=1992&dx=3&pagetype=sub"
+      }, {
+        "id": 1993,
+        "isSelected": false,
+        "name": "永定门外",
+        "url": "\/bj\/pinpaigongyu\/?dz=1993&dx=3&pagetype=sub"
+      }, {
+        "id": 1994,
+        "isSelected": false,
+        "name": "景泰",
+        "url": "\/bj\/pinpaigongyu\/?dz=1994&dx=3&pagetype=sub"
+      }, {
+        "id": 1995,
+        "isSelected": false,
+        "name": "蒲黄榆",
+        "url": "\/bj\/pinpaigongyu\/?dz=1995&dx=3&pagetype=sub"
+      }, {
+        "id": 1996,
+        "isSelected": false,
+        "name": "方庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=1996&dx=3&pagetype=sub"
+      }, {
+        "id": 1997,
+        "isSelected": false,
+        "name": "十里河",
+        "url": "\/bj\/pinpaigongyu\/?dz=1997&dx=3&pagetype=sub"
+      }, {
+        "id": 1998,
+        "isSelected": false,
+        "name": "北工大西门",
+        "url": "\/bj\/pinpaigongyu\/?dz=1998&dx=3&pagetype=sub"
+      }, {
+        "id": 1999,
+        "isSelected": false,
+        "name": "九龙山",
+        "url": "\/bj\/pinpaigongyu\/?dz=1999&dx=3&pagetype=sub"
+      }, {
+        "id": 2000,
+        "isSelected": false,
+        "name": "大望路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2000&dx=3&pagetype=sub"
+      }, {
+        "id": 2001,
+        "isSelected": false,
+        "name": "金台路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2001&dx=3&pagetype=sub"
+      }, {
+        "id": 4112,
+        "isSelected": false,
+        "name": "朝阳公园",
+        "url": "\/bj\/pinpaigongyu\/?dz=4112&dx=3&pagetype=sub"
+      }, {
+        "id": 2002,
+        "isSelected": false,
+        "name": "枣营",
+        "url": "\/bj\/pinpaigongyu\/?dz=2002&dx=3&pagetype=sub"
+      }, {
+        "id": 2003,
+        "isSelected": false,
+        "name": "东风北桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2003&dx=3&pagetype=sub"
+      }, {
+        "id": 2004,
+        "isSelected": false,
+        "name": "将台",
+        "url": "\/bj\/pinpaigongyu\/?dz=2004&dx=3&pagetype=sub"
+      }, {
+        "id": 2005,
+        "isSelected": false,
+        "name": "望京南",
+        "url": "\/bj\/pinpaigongyu\/?dz=2005&dx=3&pagetype=sub"
+      }, {
+        "id": 2006,
+        "isSelected": false,
+        "name": "阜通",
+        "url": "\/bj\/pinpaigongyu\/?dz=2006&dx=3&pagetype=sub"
+      }, {
+        "id": 2007,
+        "isSelected": false,
+        "name": "望京",
+        "url": "\/bj\/pinpaigongyu\/?dz=2007&dx=3&pagetype=sub"
+      }, {
+        "id": 2008,
+        "isSelected": false,
+        "name": "东湖渠",
+        "url": "\/bj\/pinpaigongyu\/?dz=2008&dx=3&pagetype=sub"
+      }, {
+        "id": 2009,
+        "isSelected": false,
+        "name": "来广营",
+        "url": "\/bj\/pinpaigongyu\/?dz=2009&dx=3&pagetype=sub"
+      }, {
+        "id": 2010,
+        "isSelected": false,
+        "name": "善各庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2010&dx=3&pagetype=sub"
+      }],
+      "4": [{
+        "id": 2011,
+        "isSelected": false,
+        "name": "张郭庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2011&dx=4&pagetype=sub"
+      }, {
+        "id": 2012,
+        "isSelected": false,
+        "name": "园博园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2012&dx=4&pagetype=sub"
+      }, {
+        "id": 2013,
+        "isSelected": false,
+        "name": "大瓦窑",
+        "url": "\/bj\/pinpaigongyu\/?dz=2013&dx=4&pagetype=sub"
+      }, {
+        "id": 2014,
+        "isSelected": false,
+        "name": "郭庄子",
+        "url": "\/bj\/pinpaigongyu\/?dz=2014&dx=4&pagetype=sub"
+      }, {
+        "id": 2015,
+        "isSelected": false,
+        "name": "大井",
+        "url": "\/bj\/pinpaigongyu\/?dz=2015&dx=4&pagetype=sub"
+      }, {
+        "id": 2016,
+        "isSelected": false,
+        "name": "七里庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2016&dx=4&pagetype=sub"
+      }, {
+        "id": 2017,
+        "isSelected": false,
+        "name": "西局",
+        "url": "\/bj\/pinpaigongyu\/?dz=2017&dx=4&pagetype=sub"
+      }],
+      "5": [{
+        "id": 2018,
+        "isSelected": false,
+        "name": "俸伯",
+        "url": "\/bj\/pinpaigongyu\/?dz=2018&dx=5&pagetype=sub"
+      }, {
+        "id": 2019,
+        "isSelected": false,
+        "name": "顺义",
+        "url": "\/bj\/pinpaigongyu\/?dz=2019&dx=5&pagetype=sub"
+      }, {
+        "id": 2020,
+        "isSelected": false,
+        "name": "石门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2020&dx=5&pagetype=sub"
+      }, {
+        "id": 2021,
+        "isSelected": false,
+        "name": "南法信",
+        "url": "\/bj\/pinpaigongyu\/?dz=2021&dx=5&pagetype=sub"
+      }, {
+        "id": 2022,
+        "isSelected": false,
+        "name": "后沙峪",
+        "url": "\/bj\/pinpaigongyu\/?dz=2022&dx=5&pagetype=sub"
+      }, {
+        "id": 2023,
+        "isSelected": false,
+        "name": "花梨坎",
+        "url": "\/bj\/pinpaigongyu\/?dz=2023&dx=5&pagetype=sub"
+      }, {
+        "id": 2024,
+        "isSelected": false,
+        "name": "国展",
+        "url": "\/bj\/pinpaigongyu\/?dz=2024&dx=5&pagetype=sub"
+      }, {
+        "id": 2025,
+        "isSelected": false,
+        "name": "孙河",
+        "url": "\/bj\/pinpaigongyu\/?dz=2025&dx=5&pagetype=sub"
+      }, {
+        "id": 2026,
+        "isSelected": false,
+        "name": "马泉营",
+        "url": "\/bj\/pinpaigongyu\/?dz=2026&dx=5&pagetype=sub"
+      }, {
+        "id": 2027,
+        "isSelected": false,
+        "name": "崔各庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2027&dx=5&pagetype=sub"
+      }, {
+        "id": 4117,
+        "isSelected": false,
+        "name": "望京东",
+        "url": "\/bj\/pinpaigongyu\/?dz=4117&dx=5&pagetype=sub"
+      }, {
+        "id": 2028,
+        "isSelected": false,
+        "name": "望京",
+        "url": "\/bj\/pinpaigongyu\/?dz=2028&dx=5&pagetype=sub"
+      }, {
+        "id": 2029,
+        "isSelected": false,
+        "name": "望京西",
+        "url": "\/bj\/pinpaigongyu\/?dz=2029&dx=5&pagetype=sub"
+      }, {
+        "id": 2030,
+        "isSelected": false,
+        "name": "关庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2030&dx=5&pagetype=sub"
+      }, {
+        "id": 2031,
+        "isSelected": false,
+        "name": "大屯路东",
+        "url": "\/bj\/pinpaigongyu\/?dz=2031&dx=5&pagetype=sub"
+      }, {
+        "id": 2032,
+        "isSelected": false,
+        "name": "安立路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2032&dx=5&pagetype=sub"
+      }, {
+        "id": 2033,
+        "isSelected": false,
+        "name": "奥林匹克公园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2033&dx=5&pagetype=sub"
+      }, {
+        "id": 2034,
+        "isSelected": false,
+        "name": "北沙滩",
+        "url": "\/bj\/pinpaigongyu\/?dz=2034&dx=5&pagetype=sub"
+      }, {
+        "id": 2035,
+        "isSelected": false,
+        "name": "六道口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2035&dx=5&pagetype=sub"
+      }, {
+        "id": 2036,
+        "isSelected": false,
+        "name": "清华东路西口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2036&dx=5&pagetype=sub"
+      }],
+      "110": [{
+        "id": 4646,
+        "isSelected": false,
+        "name": "西苑",
+        "url": "\/bj\/pinpaigongyu\/?dz=4646&dx=110&pagetype=sub"
+      }, {
+        "id": 4772,
+        "isSelected": false,
+        "name": "马连洼",
+        "url": "\/bj\/pinpaigongyu\/?dz=4772&dx=110&pagetype=sub"
+      }, {
+        "id": 4773,
+        "isSelected": false,
+        "name": "西北旺",
+        "url": "\/bj\/pinpaigongyu\/?dz=4773&dx=110&pagetype=sub"
+      }, {
+        "id": 4774,
+        "isSelected": false,
+        "name": "永丰南",
+        "url": "\/bj\/pinpaigongyu\/?dz=4774&dx=110&pagetype=sub"
+      }, {
+        "id": 4775,
+        "isSelected": false,
+        "name": "永丰",
+        "url": "\/bj\/pinpaigongyu\/?dz=4775&dx=110&pagetype=sub"
+      }, {
+        "id": 4776,
+        "isSelected": false,
+        "name": "屯佃",
+        "url": "\/bj\/pinpaigongyu\/?dz=4776&dx=110&pagetype=sub"
+      }, {
+        "id": 4777,
+        "isSelected": false,
+        "name": "稻香湖路",
+        "url": "\/bj\/pinpaigongyu\/?dz=4777&dx=110&pagetype=sub"
+      }, {
+        "id": 4778,
+        "isSelected": false,
+        "name": "温阳路",
+        "url": "\/bj\/pinpaigongyu\/?dz=4778&dx=110&pagetype=sub"
+      }, {
+        "id": 4779,
+        "isSelected": false,
+        "name": "北安河",
+        "url": "\/bj\/pinpaigongyu\/?dz=4779&dx=110&pagetype=sub"
+      }],
+      "141": [{
+        "id": 4727,
+        "isSelected": false,
+        "name": "金安桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=4727&dx=141&pagetype=sub"
+      }, {
+        "id": 4728,
+        "isSelected": false,
+        "name": "四道桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=4728&dx=141&pagetype=sub"
+      }, {
+        "id": 4729,
+        "isSelected": false,
+        "name": "桥户营",
+        "url": "\/bj\/pinpaigongyu\/?dz=4729&dx=141&pagetype=sub"
+      }, {
+        "id": 4730,
+        "isSelected": false,
+        "name": "上岸",
+        "url": "\/bj\/pinpaigongyu\/?dz=4730&dx=141&pagetype=sub"
+      }, {
+        "id": 4731,
+        "isSelected": false,
+        "name": "栗园庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=4731&dx=141&pagetype=sub"
+      }, {
+        "id": 4732,
+        "isSelected": false,
+        "name": "小园",
+        "url": "\/bj\/pinpaigongyu\/?dz=4732&dx=141&pagetype=sub"
+      }, {
+        "id": 4733,
+        "isSelected": false,
+        "name": "石厂",
+        "url": "\/bj\/pinpaigongyu\/?dz=4733&dx=141&pagetype=sub"
+      }],
+      "15": [{
+        "id": 2222,
+        "isSelected": false,
+        "name": "四惠",
+        "url": "\/bj\/pinpaigongyu\/?dz=2222&dx=15&pagetype=sub"
+      }, {
+        "id": 2223,
+        "isSelected": false,
+        "name": "四惠东",
+        "url": "\/bj\/pinpaigongyu\/?dz=2223&dx=15&pagetype=sub"
+      }, {
+        "id": 2224,
+        "isSelected": false,
+        "name": "高碑店",
+        "url": "\/bj\/pinpaigongyu\/?dz=2224&dx=15&pagetype=sub"
+      }, {
+        "id": 2225,
+        "isSelected": false,
+        "name": "传媒大学",
+        "url": "\/bj\/pinpaigongyu\/?dz=2225&dx=15&pagetype=sub"
+      }, {
+        "id": 2226,
+        "isSelected": false,
+        "name": "双桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2226&dx=15&pagetype=sub"
+      }, {
+        "id": 2227,
+        "isSelected": false,
+        "name": "管庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2227&dx=15&pagetype=sub"
+      }, {
+        "id": 2228,
+        "isSelected": false,
+        "name": "八里桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2228&dx=15&pagetype=sub"
+      }, {
+        "id": 2229,
+        "isSelected": false,
+        "name": "通州北苑",
+        "url": "\/bj\/pinpaigongyu\/?dz=2229&dx=15&pagetype=sub"
+      }, {
+        "id": 2230,
+        "isSelected": false,
+        "name": "果园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2230&dx=15&pagetype=sub"
+      }, {
+        "id": 2231,
+        "isSelected": false,
+        "name": "九棵树",
+        "url": "\/bj\/pinpaigongyu\/?dz=2231&dx=15&pagetype=sub"
+      }, {
+        "id": 2232,
+        "isSelected": false,
+        "name": "梨园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2232&dx=15&pagetype=sub"
+      }, {
+        "id": 2233,
+        "isSelected": false,
+        "name": "临河里",
+        "url": "\/bj\/pinpaigongyu\/?dz=2233&dx=15&pagetype=sub"
+      }, {
+        "id": 4636,
+        "isSelected": false,
+        "name": "土桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=4636&dx=15&pagetype=sub"
+      }],
+      "16": [{
+        "id": 2235,
+        "isSelected": false,
+        "name": "昌平西山口",
+        "url": "\/bj\/pinpaigongyu\/?dz=2235&dx=16&pagetype=sub"
+      }, {
+        "id": 2236,
+        "isSelected": false,
+        "name": "十三陵景区",
+        "url": "\/bj\/pinpaigongyu\/?dz=2236&dx=16&pagetype=sub"
+      }, {
+        "id": 2237,
+        "isSelected": false,
+        "name": "昌平",
+        "url": "\/bj\/pinpaigongyu\/?dz=2237&dx=16&pagetype=sub"
+      }, {
+        "id": 2238,
+        "isSelected": false,
+        "name": "昌平东关",
+        "url": "\/bj\/pinpaigongyu\/?dz=2238&dx=16&pagetype=sub"
+      }, {
+        "id": 2239,
+        "isSelected": false,
+        "name": "北邵洼",
+        "url": "\/bj\/pinpaigongyu\/?dz=2239&dx=16&pagetype=sub"
+      }, {
+        "id": 2240,
+        "isSelected": false,
+        "name": "南邵",
+        "url": "\/bj\/pinpaigongyu\/?dz=2240&dx=16&pagetype=sub"
+      }, {
+        "id": 2241,
+        "isSelected": false,
+        "name": "沙河高教园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2241&dx=16&pagetype=sub"
+      }, {
+        "id": 2242,
+        "isSelected": false,
+        "name": "沙河",
+        "url": "\/bj\/pinpaigongyu\/?dz=2242&dx=16&pagetype=sub"
+      }, {
+        "id": 2243,
+        "isSelected": false,
+        "name": "巩华城",
+        "url": "\/bj\/pinpaigongyu\/?dz=2243&dx=16&pagetype=sub"
+      }, {
+        "id": 2244,
+        "isSelected": false,
+        "name": "朱辛庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2244&dx=16&pagetype=sub"
+      }, {
+        "id": 2245,
+        "isSelected": false,
+        "name": "生命科学园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2245&dx=16&pagetype=sub"
+      }, {
+        "id": 2246,
+        "isSelected": false,
+        "name": "西二旗",
+        "url": "\/bj\/pinpaigongyu\/?dz=2246&dx=16&pagetype=sub"
+      }],
+      "17": [{
+        "id": 2247,
+        "isSelected": false,
+        "name": "苏庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2247&dx=17&pagetype=sub"
+      }, {
+        "id": 2248,
+        "isSelected": false,
+        "name": "良乡南关",
+        "url": "\/bj\/pinpaigongyu\/?dz=2248&dx=17&pagetype=sub"
+      }, {
+        "id": 2249,
+        "isSelected": false,
+        "name": "良乡大学城西",
+        "url": "\/bj\/pinpaigongyu\/?dz=2249&dx=17&pagetype=sub"
+      }, {
+        "id": 2250,
+        "isSelected": false,
+        "name": "良乡大学城",
+        "url": "\/bj\/pinpaigongyu\/?dz=2250&dx=17&pagetype=sub"
+      }, {
+        "id": 2251,
+        "isSelected": false,
+        "name": "良乡大学城北",
+        "url": "\/bj\/pinpaigongyu\/?dz=2251&dx=17&pagetype=sub"
+      }, {
+        "id": 2252,
+        "isSelected": false,
+        "name": "广阳城",
+        "url": "\/bj\/pinpaigongyu\/?dz=2252&dx=17&pagetype=sub"
+      }, {
+        "id": 2253,
+        "isSelected": false,
+        "name": "篱笆房",
+        "url": "\/bj\/pinpaigongyu\/?dz=2253&dx=17&pagetype=sub"
+      }, {
+        "id": 2254,
+        "isSelected": false,
+        "name": "长阳",
+        "url": "\/bj\/pinpaigongyu\/?dz=2254&dx=17&pagetype=sub"
+      }, {
+        "id": 2255,
+        "isSelected": false,
+        "name": "稻田",
+        "url": "\/bj\/pinpaigongyu\/?dz=2255&dx=17&pagetype=sub"
+      }, {
+        "id": 2256,
+        "isSelected": false,
+        "name": "大葆台",
+        "url": "\/bj\/pinpaigongyu\/?dz=2256&dx=17&pagetype=sub"
+      }, {
+        "id": 2257,
+        "isSelected": false,
+        "name": "郭公庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2257&dx=17&pagetype=sub"
+      }],
+      "18": [{
+        "id": 4639,
+        "isSelected": false,
+        "name": "东直门",
+        "url": "\/bj\/pinpaigongyu\/?dz=4639&dx=18&pagetype=sub"
+      }, {
+        "id": 2259,
+        "isSelected": false,
+        "name": "三元桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2259&dx=18&pagetype=sub"
+      }, {
+        "id": 2260,
+        "isSelected": false,
+        "name": "T3航站楼",
+        "url": "\/bj\/pinpaigongyu\/?dz=2260&dx=18&pagetype=sub"
+      }, {
+        "id": 2261,
+        "isSelected": false,
+        "name": "T2航站楼",
+        "url": "\/bj\/pinpaigongyu\/?dz=2261&dx=18&pagetype=sub"
+      }],
+      "140": [{
+        "id": 4708,
+        "isSelected": false,
+        "name": "巴沟",
+        "url": "\/bj\/pinpaigongyu\/?dz=4708&dx=140&pagetype=sub"
+      }, {
+        "id": 4709,
+        "isSelected": false,
+        "name": "颐和园西门",
+        "url": "\/bj\/pinpaigongyu\/?dz=4709&dx=140&pagetype=sub"
+      }, {
+        "id": 4710,
+        "isSelected": false,
+        "name": "茶棚",
+        "url": "\/bj\/pinpaigongyu\/?dz=4710&dx=140&pagetype=sub"
+      }, {
+        "id": 4711,
+        "isSelected": false,
+        "name": "万安",
+        "url": "\/bj\/pinpaigongyu\/?dz=4711&dx=140&pagetype=sub"
+      }, {
+        "id": 4712,
+        "isSelected": false,
+        "name": "植物园",
+        "url": "\/bj\/pinpaigongyu\/?dz=4712&dx=140&pagetype=sub"
+      }, {
+        "id": 4713,
+        "isSelected": false,
+        "name": "香山",
+        "url": "\/bj\/pinpaigongyu\/?dz=4713&dx=140&pagetype=sub"
+      }],
+      "19": [{
+        "id": 2262,
+        "isSelected": false,
+        "name": "宋家庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=2262&dx=19&pagetype=sub"
+      }, {
+        "id": 2263,
+        "isSelected": false,
+        "name": "肖村",
+        "url": "\/bj\/pinpaigongyu\/?dz=2263&dx=19&pagetype=sub"
+      }, {
+        "id": 2264,
+        "isSelected": false,
+        "name": "小红门",
+        "url": "\/bj\/pinpaigongyu\/?dz=2264&dx=19&pagetype=sub"
+      }, {
+        "id": 2265,
+        "isSelected": false,
+        "name": "旧宫",
+        "url": "\/bj\/pinpaigongyu\/?dz=2265&dx=19&pagetype=sub"
+      }, {
+        "id": 2266,
+        "isSelected": false,
+        "name": "亦庄桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=2266&dx=19&pagetype=sub"
+      }, {
+        "id": 2267,
+        "isSelected": false,
+        "name": "亦庄文化园",
+        "url": "\/bj\/pinpaigongyu\/?dz=2267&dx=19&pagetype=sub"
+      }, {
+        "id": 2268,
+        "isSelected": false,
+        "name": "万源街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2268&dx=19&pagetype=sub"
+      }, {
+        "id": 2269,
+        "isSelected": false,
+        "name": "荣京东街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2269&dx=19&pagetype=sub"
+      }, {
+        "id": 2270,
+        "isSelected": false,
+        "name": "荣昌东街",
+        "url": "\/bj\/pinpaigongyu\/?dz=2270&dx=19&pagetype=sub"
+      }, {
+        "id": 2271,
+        "isSelected": false,
+        "name": "同济南路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2271&dx=19&pagetype=sub"
+      }, {
+        "id": 2272,
+        "isSelected": false,
+        "name": "经海路",
+        "url": "\/bj\/pinpaigongyu\/?dz=2272&dx=19&pagetype=sub"
+      }, {
+        "id": 2273,
+        "isSelected": false,
+        "name": "次渠南",
+        "url": "\/bj\/pinpaigongyu\/?dz=2273&dx=19&pagetype=sub"
+      }, {
+        "id": 2274,
+        "isSelected": false,
+        "name": "次渠",
+        "url": "\/bj\/pinpaigongyu\/?dz=2274&dx=19&pagetype=sub"
+      }],
+      "133": [{
+        "id": 4716,
+        "isSelected": false,
+        "name": "阎村东",
+        "url": "\/bj\/pinpaigongyu\/?dz=4716&dx=133&pagetype=sub"
+      }, {
+        "id": 4717,
+        "isSelected": false,
+        "name": "紫草坞",
+        "url": "\/bj\/pinpaigongyu\/?dz=4717&dx=133&pagetype=sub"
+      }, {
+        "id": 4718,
+        "isSelected": false,
+        "name": "阎村",
+        "url": "\/bj\/pinpaigongyu\/?dz=4718&dx=133&pagetype=sub"
+      }, {
+        "id": 4719,
+        "isSelected": false,
+        "name": "星城",
+        "url": "\/bj\/pinpaigongyu\/?dz=4719&dx=133&pagetype=sub"
+      }, {
+        "id": 6359,
+        "isSelected": false,
+        "name": "大石河东",
+        "url": "\/bj\/pinpaigongyu\/?dz=6359&dx=133&pagetype=sub"
+      }, {
+        "id": 4720,
+        "isSelected": false,
+        "name": "马各庄",
+        "url": "\/bj\/pinpaigongyu\/?dz=4720&dx=133&pagetype=sub"
+      }, {
+        "id": 4607,
+        "isSelected": false,
+        "name": "饶乐府",
+        "url": "\/bj\/pinpaigongyu\/?dz=4607&dx=133&pagetype=sub"
+      }, {
+        "id": 4721,
+        "isSelected": false,
+        "name": "房山城关",
+        "url": "\/bj\/pinpaigongyu\/?dz=4721&dx=133&pagetype=sub"
+      }, {
+        "id": 4722,
+        "isSelected": false,
+        "name": "燕山",
+        "url": "\/bj\/pinpaigongyu\/?dz=4722&dx=133&pagetype=sub"
+      }],
+      "1007": [{
+        "id": 10156,
+        "isSelected": false,
+        "name": "珠市口",
+        "url": "\/bj\/pinpaigongyu\/?dz=10156&dx=1007&pagetype=sub"
+      }, {
+        "id": 10165,
+        "isSelected": false,
+        "name": "天桥",
+        "url": "\/bj\/pinpaigongyu\/?dz=10165&dx=1007&pagetype=sub"
+      }, {
+        "id": 10167,
+        "isSelected": false,
+        "name": "永定门外",
+        "url": "\/bj\/pinpaigongyu\/?dz=10167&dx=1007&pagetype=sub"
+      }, {
+        "id": 10158,
+        "isSelected": false,
+        "name": "木樨园",
+        "url": "\/bj\/pinpaigongyu\/?dz=10158&dx=1007&pagetype=sub"
+      }, {
+        "id": 10161,
+        "isSelected": false,
+        "name": "海户屯",
+        "url": "\/bj\/pinpaigongyu\/?dz=10161&dx=1007&pagetype=sub"
+      }, {
+        "id": 10155,
+        "isSelected": false,
+        "name": "大红门",
+        "url": "\/bj\/pinpaigongyu\/?dz=10155&dx=1007&pagetype=sub"
+      }, {
+        "id": 10164,
+        "isSelected": false,
+        "name": "大红门南",
+        "url": "\/bj\/pinpaigongyu\/?dz=10164&dx=1007&pagetype=sub"
+      }, {
+        "id": 10157,
+        "isSelected": false,
+        "name": "和义",
+        "url": "\/bj\/pinpaigongyu\/?dz=10157&dx=1007&pagetype=sub"
+      }, {
+        "id": 10159,
+        "isSelected": false,
+        "name": "东高地",
+        "url": "\/bj\/pinpaigongyu\/?dz=10159&dx=1007&pagetype=sub"
+      }, {
+        "id": 10166,
+        "isSelected": false,
+        "name": "火箭万源",
+        "url": "\/bj\/pinpaigongyu\/?dz=10166&dx=1007&pagetype=sub"
+      }, {
+        "id": 10163,
+        "isSelected": false,
+        "name": "五福堂",
+        "url": "\/bj\/pinpaigongyu\/?dz=10163&dx=1007&pagetype=sub"
+      }, {
+        "id": 10162,
+        "isSelected": false,
+        "name": "德茂",
+        "url": "\/bj\/pinpaigongyu\/?dz=10162&dx=1007&pagetype=sub"
+      }, {
+        "id": 10160,
+        "isSelected": false,
+        "name": "瀛海",
+        "url": "\/bj\/pinpaigongyu\/?dz=10160&dx=1007&pagetype=sub"
+      }]
+    }
+  </script>
+
+  <!-- <script>
+    wxjs.ready(function (api) {
+      api.share.set({
+        title: "北京品牌公寓",
+        desc: "58同城品牌公寓——只做靠谱、放心、高品质的公寓",
+        link: "",
+        imgUrl: "//img.58cdn.com.cn/olympia/img/house/list/apartment/weixinshare.png",
+        success: function () {},
+        cancel: function () {}
+      });
+    });
+  </script> -->
+  <script src="//down.58.com/js/callWbApp_2019_min.js"></script>
+  <script src="//j1.58cdn.com.cn/resource/xxzl/xxfw/xxfw.min_v20180730165131.js"></script>
+
+  //
+  <!--baidu统计代码begin 58shenqi-fc-->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c010a6802a6179de2ca02754bbca29d9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  //
+  <!--baidu统计代码end-->
+<script type="text/javascript" src="/vendor.js"></script><script type="text/javascript" src="/listtest/index.js"></script></body>
+
+</html>

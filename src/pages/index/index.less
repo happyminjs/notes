@@ -1,0 +1,127 @@
+@import '../../assets/less/base.less';
+
+.borderee{
+  width: @width;
+  height: @height;
+  .border1px();
+}
+
+.testdiv{
+  background-color: blueviolet;
+  font-size: 0
+}
+.testdiv .testimg{
+  display: inline-block;
+  width: 100px;
+}
+
+.flex-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* min-height: 100px; */
+  align-content: flex-start;
+  text-align: center;
+  align-items: center;
+}
+.flex-box div {
+  box-sizing: border-box;
+  width: 25%;
+  height: 60px;
+  border: 1px solid salmon;
+  /* margin-bottom: 10px; */
+}
+.flex-box div:nth-child(odd) {
+  background-color: antiquewhite;
+}
+.flex-box div:nth-child(even) {
+  background-color: rgb(220, 243, 118);
+}
+
+
+/* 三角形 */
+.trangle {
+  margin: 10px 0;
+  width: 0;
+  height: 0;
+  border-color: rgb(255, 94, 0) transparent transparent transparent;
+  border-width: 30px;
+  border-style: solid;
+}
+
+/* 文本溢出 */
+.ellipsis {
+  margin: 10px 0;
+  width: 400px;
+  position: relative;
+  line-height: 20px;
+  max-height: 40px;
+  overflow: hidden;
+}
+.ellipsis::after{
+  content: "...";
+  position: absolute; 
+  bottom: 0; 
+  right: 0; 
+  padding-left: 40px;
+  background: linear-gradient(to right, transparent, #fff 55%);
+}
+
+/* 品字布局 1 */
+.pin {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+}
+.pin * {
+  margin: 0;
+  padding: 0;
+}
+.pin .top {
+  height: 50px;
+  background-color: aquamarine;
+}
+.pin .left {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  width: 200px;
+  background-color: rgb(204, 127, 255);
+  z-index: 2;
+}
+.pin .right {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  height: 200px;
+  width: 100%;
+  padding-left: 200px;
+  background-color: rgb(255, 185, 127);
+}
+
+/* 品字布局 2 */
+.pin2 {
+  position: relative;
+  width: 100%;
+  margin-top: 100px;
+}
+.pin2 .top {
+  height: 50px;
+  background-color: aquamarine;
+}
+.pin2 .left {
+  position: fixed;
+  height: 100%;
+  top: 50px;
+  left: 0;
+  width: 300px;
+  background-color: rgba(204, 127, 255, 0.6);
+}
+.pin2 .right{
+  height: 400px;
+  background-color: rgb(255, 185, 127);
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 300px;
+}

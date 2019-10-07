@@ -1,0 +1,1738 @@
+@charset "UTF-8";
+/*公用重置*/
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  color: #000;
+}
+
+html * {
+  outline: 0;
+  -webkit-text-size-adjust: none;
+  tap-highlight-color: rgba(0, 0, 0, 0.05);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+  -ms-tap-highlight-color: rgba(0, 0, 0, 0.05);
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, em {
+  margin: 0;
+  padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+input, select, textarea {
+  font-size: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+i, em, address {
+  font-style: normal;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+iframe {
+  line-height: 0;
+  overflow: hidden;
+}
+
+/*列表工具类 mixin*/
+/*品牌公寓列表头部*/
+.header {
+  width: 100%;
+  height: 1.40625rem;
+  line-height: 1.40625rem;
+  background-color: #ff552e;
+  color: #fff;
+  z-index: 999;
+  -webkit-transform: translateZ(0);
+  overflow: hidden;
+}
+
+.city {
+  display: inline-block;
+  position: relative;
+  padding-right: 0.21875rem;
+  vertical-align: middle;
+  float: left;
+  margin-left: 0.5625rem;
+}
+
+.city-text {
+  width: 0.9375rem;
+  font-size: 0.375rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.city:after {
+  content: "";
+  border: 0.15625rem solid #000;
+  border-color: #fff transparent transparent transparent;
+  position: absolute;
+  top: 0.625rem;
+  right: 0;
+  border-left-width: 0.125rem;
+  border-right-width: 0.125rem;
+}
+
+.search-input {
+  position: absolute;
+  left: 2.1875rem;
+  right: 1.71875rem;
+  height: 1.03125rem;
+  line-height: 1.03125rem;
+  background-color: rgba(255, 123, 93, 0.9);
+  font-size: 0.375rem;
+  border-radius: 0.0625rem;
+  text-align: center;
+  margin-top: 0.1875rem;
+  color: #ffdad3;
+}
+
+.search-input:before {
+  content: "";
+  padding-right: 0.125rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 2px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.my {
+  width: 1.25rem;
+  text-align: center;
+  font-size: 0.375rem;
+  float: right;
+  position: relative;
+}
+
+.my {
+  margin-right: 0.1875rem;
+}
+
+/*品牌公寓列表筛选*/
+.list-head {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 100%;
+}
+.list-head .house-nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  background-color: #fff;
+  font-size: 0.375rem;
+  border-bottom: 1px solid #dedfe0;
+  z-index: 100;
+}
+.list-head .house-filter {
+  width: 100%;
+  height: 9.375rem;
+  font-size: 0.375rem;
+  background: #fff;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  z-index: 98;
+}
+
+.house-nav li {
+  width: 25%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  position: relative;
+  text-align: center;
+}
+
+.house-nav li a {
+  display: inline-block;
+  width: 1.5rem;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: -0.65625rem;
+}
+
+.icon:after {
+  content: "";
+  display: inline-block;
+  border-top: 0.125rem solid #e6e6e6;
+  border-left: 0.125rem solid transparent;
+  border-right: 0.125rem solid transparent;
+  position: absolute;
+}
+
+.icon-arrow-down:after {
+  top: 0.5625rem;
+}
+
+.icon-arrow-right:after {
+  position: absolute;
+  right: 0.46875rem;
+  margin-top: -0.6875rem;
+  -webkit-transform: rotate(-90deg);
+}
+
+.icon-arrow-up a {
+  color: #CC9F0F;
+}
+
+.icon-arrow-up:after {
+  -webkit-transform: rotate(-180deg);
+  border-top: 0.125rem solid #CC9F0F;
+}
+
+.box-ul {
+  width: 100%;
+}
+.box-ul .box-li {
+  width: 100%;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  position: relative;
+}
+.box-ul .box-li a {
+  display: block;
+  padding: 0 0.46875rem;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.f-box-more .box-ul {
+  padding-bottom: 6px;
+}
+
+/*更多*/
+.f-box .submit-buttom {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.f-box .submit-buttom .btn-style {
+  width: 100%;
+  height: 1.33333rem;
+  line-height: 1.33333rem;
+  font-size: 0.4266667rem;
+}
+.f-box .submit-buttom-clear {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.f-box .submit-buttom-clear .btn-more-clear {
+  width: 0;
+  -webkit-box-flex: 200;
+  -webkit-flex-grow: 200;
+  flex-grow: 200;
+  background: #FBFBFB;
+  color: #3A3A3A;
+}
+.f-box .submit-buttom-clear .btn-more {
+  width: 0;
+  -webkit-box-flex: 474;
+  -webkit-flex-grow: 474;
+  flex-grow: 474;
+}
+
+.rent-type, .room, .acreage, .room-tag, .room-towards, .room-type, .rent-room-type, .rent-room-num, .rent-room-prefer, .room-tagPref, .check-status, .coupon-status {
+  padding: 0 0.4266667rem;
+  overflow: hidden;
+}
+.rent-type .tit, .room .tit, .acreage .tit, .room-tag .tit, .room-towards .tit, .room-type .tit, .rent-room-type .tit, .rent-room-num .tit, .rent-room-prefer .tit, .room-tagPref .tit, .check-status .tit, .coupon-status .tit {
+  height: 0.75rem;
+  line-height: 0.75rem;
+  margin-top: 15px;
+  color: #3A3A3A;
+  font-size: 0.56rem;
+}
+.rent-type .tit .room-type-instruction, .room .tit .room-type-instruction, .acreage .tit .room-type-instruction, .room-tag .tit .room-type-instruction, .room-towards .tit .room-type-instruction, .room-type .tit .room-type-instruction, .rent-room-type .tit .room-type-instruction, .rent-room-num .tit .room-type-instruction, .rent-room-prefer .tit .room-type-instruction, .room-tagPref .tit .room-type-instruction, .check-status .tit .room-type-instruction, .coupon-status .tit .room-type-instruction {
+  width: 0.45rem;
+  height: 0.45rem;
+  display: inline-block;
+  background-image: url(//img.58cdn.com.cn/fangrs/img/5852607d3eecacb93a5e5717c8b36575.png);
+  background-size: cover;
+  margin-left: 0.15rem;
+}
+.rent-type .box-li-div, .room .box-li-div, .acreage .box-li-div, .room-tag .box-li-div, .room-towards .box-li-div, .room-type .box-li-div, .rent-room-type .box-li-div, .rent-room-num .box-li-div, .rent-room-prefer .box-li-div, .room-tagPref .box-li-div, .check-status .box-li-div, .coupon-status .box-li-div {
+  width: 31.1%;
+  height: 0.98666667rem;
+  line-height: 0.98666667rem;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #f3f3f3;
+  border-radius: 2px;
+  margin: 0.2rem 0.17rem 0 0;
+  float: left;
+  color: #3A3A3A;
+  position: relative;
+}
+.rent-type .box-li-div i, .room .box-li-div i, .acreage .box-li-div i, .room-tag .box-li-div i, .room-towards .box-li-div i, .room-type .box-li-div i, .rent-room-type .box-li-div i, .rent-room-num .box-li-div i, .rent-room-prefer .box-li-div i, .room-tagPref .box-li-div i, .check-status .box-li-div i, .coupon-status .box-li-div i {
+  display: none;
+}
+.rent-type .selected, .room .selected, .acreage .selected, .room-tag .selected, .room-towards .selected, .room-type .selected, .rent-room-type .selected, .rent-room-num .selected, .rent-room-prefer .selected, .room-tagPref .selected, .check-status .selected, .coupon-status .selected {
+  display: block;
+  background: #FCF6E4;
+  border: 1px solid rgba(204, 159, 15, 0.5);
+  border-radius: 2px;
+  color: #CC9F0F;
+}
+.rent-type .selected i, .room .selected i, .acreage .selected i, .room-tag .selected i, .room-towards .selected i, .room-type .selected i, .rent-room-type .selected i, .rent-room-num .selected i, .rent-room-prefer .selected i, .room-tagPref .selected i, .check-status .selected i, .coupon-status .selected i {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(//img.58cdn.com.cn/fangrs/img/694d0e453531f8382f053b6c613a7800.png);
+}
+
+.f-box-type .box-li-div {
+  width: 22.77%;
+}
+.f-box-type .rent-room-prefer {
+  padding-bottom: 1.5rem;
+}
+
+.room-tag {
+  padding-bottom: 2px;
+}
+.room-tag .box-li-div:last-child {
+  width: 31%;
+}
+
+.btn-style {
+  display: block;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #AC5100;
+  text-align: center;
+  color: #fff;
+  border: 0;
+}
+
+/*多级筛选展示*/
+.f-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 9.375rem;
+  overflow: hidden;
+}
+.f-box .box-wrap {
+  width: 100%;
+  border-left: 1px solid #f3f3f3;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  position: relative;
+}
+
+.f-box-inner {
+  border-left: 1px solid #e3e3e3;
+  height: 9.375rem;
+  overflow: hidden;
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  position: relative;
+}
+
+.f-box-city .box-ul, .f-box-rent .box-ul {
+  position: absolute;
+  display: block;
+  height: auto;
+}
+
+.f-box-rent {
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+/*滚动浮动筛选和筛选浮动*/
+.position-fixed .header {
+  margin-bottom: 1.25rem;
+}
+.position-fixed .house-nav {
+  position: fixed;
+  top: 0;
+}
+.position-fixed .house-record {
+  position: fixed;
+  top: 1.25rem;
+  background-color: white;
+  width: 100%;
+  line-height: 1.066667rem;
+  z-index: 98;
+  font-size: 0.2933333rem;
+  color: #7F7F7F;
+  padding-left: 0.533333rem;
+  border-bottom: 1px solid #dedfe0;
+  height: 1.066667rem;
+  overflow: hidden;
+}
+.position-fixed .house-record-items {
+  display: inline-block;
+  margin-left: 0.37333rem;
+  color: #666;
+}
+.position-fixed .house-filter {
+  position: fixed;
+  top: 1.25rem;
+}
+
+/*品牌公寓列表信息*/
+.house-apartment-list {
+  height: 100%;
+  background-color: #f6f6f6;
+  color: #555;
+}
+
+.house-list-wrap .active {
+  color: #CC9F0F;
+}
+
+.house-content {
+  height: 100%;
+  overflow: hidden;
+}
+.house-content .itemli {
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 0.3125rem;
+  overflow: hidden;
+  display: block;
+}
+.house-content .itemli:last-child {
+  margin-bottom: 0;
+}
+.house-content .no-itemli {
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+
+.house-con-group {
+  display: block;
+}
+.house-con-group .group-wrapper {
+  width: 100%;
+  display: inline-block;
+}
+.house-con-group .ui-detail {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 0.46875rem;
+  position: relative;
+}
+
+.house-con-group:visited {
+  color: #999;
+}
+.house-con-group:visited .room-des {
+  color: #999;
+}
+
+.ui-detail .company-logo {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: #fff;
+  position: absolute;
+  right: 0.46875rem;
+  margin-top: 10px;
+  border: 1px solid #e9e9e9;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.ui-detail .company-logo img {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.ui-detail .room-des {
+  display: block;
+  margin: 0.15625rem 0 0.15625rem 0.46875rem;
+  font-size: 0.46875rem;
+  color: #000;
+}
+.ui-detail .room-tag0 {
+  margin: 0px 0 0.15625rem 0.46875rem;
+  line-height: 18px;
+  font-size: 0.3125rem;
+  color: #555;
+}
+.ui-detail .room_icon {
+  padding-left: 0.46875rem;
+  padding-right: 0.46875rem;
+  height: 0.515625rem;
+  overflow: hidden;
+}
+.ui-detail .room_icon span {
+  display: block;
+  float: left;
+}
+.ui-detail .room_icon_yuefu {
+  width: 2.640625rem;
+  height: 0.5rem;
+  background: url("//img.58cdn.com.cn/olympia/img/house/list/apartment/yuefutag.png") no-repeat;
+  background-size: 2.625rem 0.46875rem;
+  background-position: 0rem 0rem;
+  overflow: hidden;
+}
+.ui-detail .room_icon_coupon {
+  width: 1.71875rem;
+  height: 0.46875rem;
+  margin-left: 0.15625rem;
+  line-height: 0.46875rem;
+  background: #ffedf2;
+  color: #fd527c;
+  font-size: 0.3125rem;
+  text-align: center;
+}
+.ui-detail .room_icon_baozhang {
+  width: 1.875rem;
+  height: 0.46875rem;
+  margin-left: 0.15625rem;
+  line-height: 0.46875rem;
+  background: #e7f7f4;
+  color: #12af98;
+  font-size: 0.3125rem;
+  text-align: center;
+}
+.ui-detail .room_icon_baozhang i {
+  display: inline-block;
+  background: url("//img.58cdn.com.cn/olympia/img/house/detail/bzIcon.png") no-repeat;
+  background-size: 0.40625rem 1.5625rem;
+  display: inline-block;
+  width: 0.40625rem;
+  height: 0.40625rem;
+  vertical-align: -22%;
+}
+.ui-detail .room_tag {
+  color: #ff552e;
+  border: 1px solid #ff552e;
+  line-height: 0.4375rem;
+  padding: 0 0.140625rem;
+  margin-right: 0.171875rem;
+}
+.ui-detail .room-tag-special .pay-monthly {
+  background-position: 0 0;
+}
+.ui-detail .juan-block {
+  height: 16px;
+}
+
+.room-tag i {
+  width: 84px;
+  height: 15px;
+  background: url("//img.58cdn.com.cn/olympia/img/house/list/apartment/list_apartment_icons.png?v=20160701");
+  background-size: 100%;
+  display: block;
+}
+
+/*租房节的标签*/
+.room-juan {
+  position: absolute;
+  left: 2.5rem;
+  top: 5.234375rem;
+  z-index: 9;
+}
+.room-juan .zfj-juan {
+  width: 78px;
+  height: 25px;
+  background-position: 0 -33px;
+}
+.room-juan .zfj-juan-txt {
+  position: absolute;
+  left: 24%;
+  top: 17.8%;
+  color: #fff;
+  font-size: 11px;
+}
+
+.group-wrapper {
+  height: 6.25rem;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+.group-wrapper .ui-slider-group {
+  width: 100%;
+  -webkit-transform: translateZ(0);
+}
+
+.ui-price-num {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+.ui-price-num .ui-slider-dots2 {
+  display: inline-block;
+  position: absolute;
+  right: 0.46875rem;
+  top: 5.625rem;
+  color: #fff;
+  font-size: 0.3125rem;
+  font-weight: bold;
+  z-index: 9;
+}
+.ui-price-num .month-rent {
+  position: absolute;
+  display: inline-block;
+  left: 0.46875rem;
+  top: 5.15625rem;
+  height: 0.78125rem;
+  line-height: 0.78125rem;
+  padding: 0 0.15625rem;
+  background-color: rgba(255, 85, 46, 0.8);
+  color: #fff;
+  font-size: 0.375rem;
+  font-weight: bold;
+  z-index: 9;
+}
+
+.ui-slider-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #e3e3e3;
+  text-align: center;
+  position: relative;
+  float: left;
+  -webkit-box-sizing: border-box;
+}
+.ui-slider-item img {
+  width: 100%;
+  -webkit-touch-callout: none;
+  /* disables the callout*/
+  pointer-events: none;
+}
+
+.bzfBox {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.bzfBox_des {
+  display: block;
+  width: 100%;
+  height: 0.625rem;
+  background: rgba(65, 191, 172, 0.7);
+  font-size: 0.3125rem;
+  color: #ffffff;
+  line-height: 0.625rem;
+  text-align: center;
+}
+.bzfBox_jzsIcon {
+  display: block;
+  float: right;
+  width: 3.4375rem;
+  height: 0.625rem;
+  padding-left: 0.46875rem;
+  padding-right: 0.46875rem;
+  text-align: center;
+  color: #ffffff;
+  line-height: 0.625rem;
+  margin-top: 0.3125rem;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.jzs_icon {
+  display: block;
+  height: 0.625rem;
+  padding-left: 0.46875rem;
+  padding-right: 0.46875rem;
+  text-align: center;
+  color: #ffffff;
+  line-height: 0.625rem;
+  position: absolute;
+  top: 0.3125rem;
+  right: 0rem;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.ui-slider-item::after {
+  content: "";
+  height: 0.625rem;
+  width: 100%;
+  background-image: -moz-linear-gradient(top, #8fa1ff, #3757fa);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.1)), color-stop(0, rgba(0, 0, 0, 0)), color-stop(1, rgba(0, 0, 0, 0.54)));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c6ff00", endColorstr="#538300", GradientType="0");
+  opacity: 0.1;
+  display: block;
+  z-index: 10;
+  position: absolute;
+  top: 5.625rem;
+}
+
+/*加载更多*/
+.loadbtn {
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+
+.load-app {
+  margin-bottom: 1.40625rem;
+}
+
+/*信息11~19条时*/
+.bottom-style {
+  margin-bottom: 1.5rem;
+}
+
+/*无信息样式*/
+.ui-refresh {
+  text-align: center;
+  height: 1.875rem;
+  position: relative;
+  padding: 0 1.5625rem;
+}
+.ui-refresh .none-house-lost {
+  font-size: 0.3125rem;
+  color: #555;
+  padding-top: 0.59375rem;
+}
+.ui-refresh .none-house-lost::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.65625rem;
+  border-bottom: 1px solid #e6e6e6;
+  height: 0.9375rem;
+  width: 1.0625rem;
+}
+.ui-refresh .none-house-lost::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 1.65625rem;
+  border-bottom: 1px solid #e6e6e6;
+  height: 0.9375rem;
+  width: 1.0625rem;
+}
+
+/*图片底部阴影*/
+.pic-shadows {
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: -webkit-repeating-linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.46) 50%, black 100%);
+  background: repeating-linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.46) 50%, black 100%);
+  z-index: 9;
+  position: absolute;
+  bottom: 0;
+  opacity: 0.3;
+}
+
+/*附近相关提示弹窗*/
+.nearbyPointsWindow {
+  width: 80%;
+  height: 160px;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-left: -40%;
+  z-index: 101;
+}
+
+.titMsg {
+  text-align: center;
+  line-height: 45px;
+  height: 45px;
+}
+
+.bodyMsg {
+  text-align: center;
+  padding: 0 24px;
+  line-height: 20px;
+}
+
+.sureBtn {
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  bottom: 0;
+  border: 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #f3f3f3;
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+  color: blue;
+}
+
+/*遮蔽层*/
+.coverLayer {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.8;
+}
+
+/*弹窗遮蔽层*/
+.tanchuang {
+  z-index: 100;
+}
+
+/*筛选遮蔽层*/
+#mask {
+  z-index: 90;
+}
+
+/*品牌公寓列表底部*/
+@font-face {
+  font-family: "list_apartment_iconfont";
+  src: url("//img.58cdn.com.cn/webfonts/house/list_apartment_iconfont.woff?v=20160804") format("woff"), url("//img.58cdn.com.cn/webfonts/house/list_apartment_iconfont.ttf?v=20160804"), url("//img.58cdn.com.cn/webfonts/house/list_apartment_iconfont.svg?v=20160804");
+  /* iOS 4.1- */
+}
+.iicon {
+  font-family: "list_apartment_iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: block;
+  position: absolute;
+}
+
+.iicon-position {
+  color: #b7b7b7;
+  font-size: 24px;
+  top: -8px;
+  left: 50%;
+  margin-left: -12px;
+}
+
+.footer-wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  border-top: 1px solid #ebebeb;
+  text-align: center;
+  z-index: 10;
+  visibility: hidden;
+}
+.footer-wrap .a-box {
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  position: relative;
+  color: #666;
+  padding-top: 0.4375rem;
+  line-height: 1.21875rem;
+}
+.footer-wrap .box-active {
+  color: #ff552e;
+}
+.footer-wrap .box-active i {
+  color: #ff552e;
+}
+
+.icon-find:before {
+  content: "";
+}
+
+.icon-yuefu:before {
+  content: "";
+}
+
+.icon-mine:before {
+  content: "";
+}
+
+/*品牌公寓租房节banner*/
+/* .content-banner-zfj {
+  width: 100%;
+  position: relative;
+  display: block;
+} */
+.content-banner-zfj img {
+  width: 100%;
+  display: inherit;
+}
+
+.banner-discount {
+  position: absolute;
+  top: 39.4%;
+  left: 20%;
+  color: #fff600;
+  font-size: 0.375rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.max-price {
+  font-style: italic;
+}
+
+.banner-right {
+  width: 38%;
+  position: absolute;
+  right: 0;
+  top: 18%;
+}
+
+.banner-right p {
+  font-size: 9px;
+  color: #fff;
+}
+
+.banner-person-num em, .banner-total em {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff600;
+}
+
+/*轮播图*/
+.gy_banner {
+  position: relative;
+  overflow: hidden;
+  margin: 0.3125rem 0;
+  z-index: 1;
+}
+
+.gy_banner ul {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.gy_banner ul li {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+
+.gy_banner a {
+  vertical-align: top;
+  display: block;
+}
+
+.gy_banner img {
+  width: 100%;
+  border: 0;
+  display: block;
+}
+
+.banner_icon {
+  text-align: center;
+  position: absolute;
+  bottom: 7px;
+  right: 15px;
+}
+
+.banner_icon i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #d8d8d8;
+  margin-left: 5px;
+}
+
+.banner_icon i.active {
+  background-color: #ff552e;
+}
+
+/*附近弹窗样式*/
+/* 弹窗 */
+#alert_box {
+  width: 250px;
+  border: 1px solid #2a2c30;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 1001;
+  margin-left: -127px;
+  margin-top: -50px;
+  background-color: #595d61;
+  border-radius: 2px;
+  box-shadow: 0 0 3px #c9cbcc;
+  padding: 1px;
+}
+
+#show_mes {
+  text-align: center;
+  line-height: 12px;
+  padding: 10px;
+  color: #fff;
+  background-color: #42474c;
+}
+
+#but_div {
+  display: -webkit-box;
+  height: 40px;
+  background-color: #42474c;
+  border-top: 1px solid #595d61;
+}
+
+#but01, #but02 {
+  width: 125px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+}
+
+#but01 {
+  border-right: 1px solid #595d61;
+}
+
+#but_div .but_hover {
+  background-color: #545f69;
+}
+
+/* tips */
+#tipsDiv {
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  z-index: 2000;
+  width: 190px;
+  line-height: 24px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  margin-left: -100px;
+  padding: 5px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/*提示窗口样式*/
+.msgBox {
+  width: 80%;
+  height: 50px;
+  line-height: 50px;
+  position: fixed;
+  top: 25%;
+  left: 10%;
+  text-align: center;
+  background-color: #000;
+  opacity: 0.8;
+  color: #fff;
+  border-radius: 2px;
+  z-index: 100;
+}
+
+.boxHide {
+  display: none;
+}
+
+/*品牌公寓城市列表*/
+.city-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+}
+.city-list .title {
+  height: 0.9375rem;
+  line-height: 0.9375rem;
+  background-color: #e1e0e0;
+  color: #555;
+  font-size: 0.34375rem;
+}
+
+.city-select {
+  width: 100%;
+  height: 1.40625rem;
+  line-height: 1.40625rem;
+  text-align: center;
+  background-color: #ff552e;
+  color: #fff;
+  font-size: 0.40625rem;
+}
+.city-select .icon-back {
+  padding-left: 0.46875rem;
+  color: #fff;
+}
+.city-select .icon-back:before {
+  width: 0.5625rem;
+  height: 0.5625rem;
+  line-height: 1.40625rem;
+  content: "";
+  font-size: 24px;
+}
+
+.city-current, .city-item {
+  display: block;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.375rem;
+}
+
+.city-item {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.padding-l {
+  padding-left: 0.46875rem;
+}
+
+/*品牌公寓搜索*/
+.search_container {
+  width: 100%;
+  background: #FFF;
+  height: 100%;
+  z-index: 5000;
+  position: absolute;
+  top: 0;
+}
+
+.search_container form {
+  display: -webkit-box;
+  border-bottom: 1px solid #efefef;
+  padding: 0.15625rem 0.46875rem;
+  background: #f6f6f6;
+}
+
+.search_container .search_input {
+  background: #FFF;
+  -webkit-box-flex: 1;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+}
+
+.search_container .input_keys {
+  -webkit-appearance: none;
+  -webkit-user-select: text;
+  color: #999;
+  display: block;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 5px;
+  padding-left: 6%;
+  width: 86%;
+  border: 0;
+}
+
+.border-l {
+  border-left: 1px solid #ff552e;
+  width: 1px;
+  height: 14px;
+  display: block;
+  position: absolute;
+  left: 10px;
+  top: 9px;
+}
+
+.search_icon {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  background: url("//img.58cdn.com.cn/m58/m3/img/search_btn.png");
+  width: 14px;
+  height: 14px;
+  background-size: 14px auto;
+  display: none;
+}
+
+.search_cancel {
+  width: 1.15625rem;
+  text-align: right;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.search_container .search_ajax {
+  width: 100%;
+  background-color: #FFF;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.search_container .search_ajax .title {
+  height: 0.90625rem;
+  line-height: 0.90625rem;
+  color: #999;
+  font-weight: 500;
+  font-size: 0.34375rem;
+  border-bottom: 1px solid #ececec;
+}
+.search_container .search_ajax .del-btn {
+  position: absolute;
+  right: 15px;
+  top: 0;
+}
+.search_container .search_ajax .del-btn:before {
+  width: 0.40625rem;
+  height: 0.40625rem;
+  color: #555;
+  content: "";
+}
+
+.search_container .search_ajax a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.search_container .search_ajax ul li {
+  color: #374565;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 5px;
+  border-bottom: 1px solid #ececec;
+  display: block;
+  word-break: break-all;
+  position: relative;
+}
+
+.delBtnInput {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  background: #FFF url("//img.58cdn.com.cn/m58/m4/index/deletebg.png") no-repeat;
+  background-size: 28px 31px;
+  width: 27px;
+  height: 28px;
+  vertical-align: middle;
+}
+
+.history-msg .h-item a:before {
+  content: "";
+  padding-right: 6px;
+}
+
+/*品牌公寓租金区间选择*/
+/*租金自定义价格*/
+.custom-price-wrapper {
+  padding: 0 0.46875rem;
+}
+
+.custom-price {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 1.2rem;
+}
+
+.custom-price-text, .custom-price-num, .submit-btn {
+  display: block;
+  height: 0.9375rem;
+  line-height: 0.9375rem;
+}
+
+.custom-price-num {
+  width: 220px;
+  position: relative;
+  left: 50%;
+  margin-left: -110px;
+}
+.custom-price-num .low-month-rent {
+  float: left;
+}
+.custom-price-num .high-month-rent {
+  float: right;
+}
+
+.submit-btn {
+  width: 30%;
+}
+.submit-btn .btn-confirm {
+  position: absolute;
+  line-height: 13.3333vw;
+  height: 13.3333vw;
+  width: 100%;
+  margin-left: -0.46875rem;
+}
+
+.ui-progressbar-h {
+  margin-top: 0.3125rem;
+  position: relative;
+  left: 8px;
+}
+
+.ui-progressbar-bg {
+  height: 0.16rem;
+  background-color: #ff6921;
+  border-radius: 5px;
+  position: relative;
+  -webkit-user-select: none;
+}
+
+.ui-progressbar-filled {
+  background-color: #cacaca;
+}
+
+.ui-progressbar-filled2 {
+  right: 0;
+}
+
+.ui-progressbar-button {
+  left: -0.15625rem;
+  top: -0.125rem;
+  width: 0.46875rem;
+  height: 0.46875rem;
+  // background: url(icon-slide.png) no-repeat center center;
+  background-size: 100% auto;
+  position: relative;
+  z-index: 10;
+}
+
+.slider-container {
+  width: 100%;
+}
+
+.slider-container .back-bar {
+  height: 10px;
+  position: relative;
+}
+
+.slider-container .back-bar .selected-bar {
+  position: absolute;
+  height: 100%;
+}
+
+.slider-container .back-bar .pointer {
+  position: absolute;
+  background-color: red;
+  cursor: col-resize;
+  opacity: 1;
+}
+
+.slider-container .back-bar .pointer.last-active {
+  z-index: 3;
+}
+
+.slider-container .back-bar .pointer-label {
+  position: absolute;
+  top: -2px;
+  font-size: 10px;
+  background: white;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.slider-container .back-bar .focused {
+  z-index: 10;
+}
+
+.slider-container .clickable-dummy {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slider-container .scale {
+  top: 2px;
+  position: relative;
+}
+
+.slider-container .scale span {
+  position: absolute;
+  height: 5px;
+  border-left: 1px solid #999;
+  font-size: 0;
+}
+
+.slider-container .scale ins {
+  font-size: 9px;
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  color: #999;
+  line-height: 1;
+}
+
+.slider-container.slider-readonly .clickable-dummy,
+.slider-container.slider-readonly .pointer {
+  cursor: auto;
+}
+
+.theme-green .back-bar {
+  width: 200px;
+  height: 5px;
+  border-radius: 2px;
+  background-color: #d4d4d4;
+}
+
+.theme-green .back-bar .selected-bar {
+  width: 200px;
+  left: 0.5px;
+  border-radius: 2px;
+  background-color: #ff552e;
+}
+
+.theme-green .back-bar .pointer {
+  top: -6px;
+  width: 18px;
+  height: 18px;
+  z-index: 10;
+  background: url("//img.58cdn.com.cn/olympia/img/house/list/apartment/list_apartment_icons.png?v=20160804") no-repeat;
+  background-position: 0 -21px;
+  background-size: 100px;
+}
+
+.theme-green .back-bar .high {
+  left: 190px;
+}
+
+.theme-green .back-bar .low {
+  left: -9px;
+}
+
+.theme-green .back-bar .pointer-label {
+  color: #000;
+  width: 40px;
+  text-align: center;
+}
+
+.no-lumit:before {
+  content: "￥";
+}
+
+.high-label {
+  left: 206px;
+}
+
+.low-label {
+  margin-left: -41px;
+}
+
+.theme-green .back-bar .focused {
+  color: #333;
+}
+
+.theme-green .scale span {
+  border-left: 1px solid #e5e5e5;
+}
+
+.theme-green .scale ins {
+  color: #999;
+}
+
+/*品牌公寓2017春运角标*/
+.itemli {
+  position: relative;
+}
+.itemli .chunyun-jiaobiao {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9;
+  border: 0.890625rem solid rgba(0, 0, 0, 0);
+  border-top: 0.890625rem solid #ff6767;
+  border-right: 0.890625rem solid #ff6767;
+  height: 0;
+  width: 0;
+  color: #fff;
+  font-size: 0.25rem;
+}
+.itemli .jiaobiao-content {
+  position: absolute;
+  width: 1.5625rem;
+  transform: rotate(45deg);
+  -moz-border-transform: rotate(45deg);
+  -webkit-border-transform: rotate(45deg);
+  -o-border-transform: rotate(45deg);
+  left: -0.25rem;
+  top: -0.359375rem;
+}
+
+/*品牌公寓列表小卡片样式*/
+/*列表信息样式*/
+.body_container {
+  background-color: #FFF;
+}
+
+.data-list {
+  display: block;
+  /*     padding: pxToRem(10px) 0; */
+  width: 100%;
+  background-color: #fff;
+}
+.data-list li.item:first-child {
+  border-top: 0;
+}
+
+.item {
+  border-top: 1px solid #f3f3f3;
+}
+.item a {
+  box-sizing: border-box;
+  height: 3.1467rem;
+  padding: 0.48rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+}
+.item a .secure_icon {
+  width: 1rem;
+  height: 0.46875rem;
+  background: url("https://img.58cdn.com.cn/fangrs/img/d21544c6232335e5b34af40c82f360d2.png") no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0.48rem;
+  left: 0.48rem;
+}
+.item a .item-thumb {
+  width: 3.28rem;
+  height: 2.18667rem;
+  border: 0px;
+  object-fit: contain;
+  object-position: center;
+}
+.item a .item-info {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  padding-left: 0.40625rem;
+  width: 54.13333%;
+}
+.item a .item-tag {
+  width: 1.375rem;
+  height: 0.375rem;
+  padding: 2px;
+  line-height: 0.375rem;
+  background-color: #ff552e;
+  opacity: 0.9;
+  text-align: center;
+  color: #fff;
+  font-size: 0.3125rem;
+  position: absolute;
+  top: 0.09375rem;
+}
+.item a .hot {
+  position: absolute;
+  bottom: 0.54rem;
+  left: 0.58rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.25rem;
+  height: 0.28125rem;
+  line-height: 0.28125rem;
+  font-weight: 400;
+}
+
+.info-title {
+  height: 0.625rem;
+  line-height: 0.625rem;
+  font-size: 0.421875rem;
+  overflow: hidden;
+  position: relative;
+  top: -0.0625rem;
+  margin-bottom: -0.109375rem;
+}
+.info-title p {
+  color: #3a3a3a;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.info-title p span {
+  -webkit-flex-shrink: 10000;
+  flex-shrink: 10000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-line2-message {
+  line-height: 0.46875rem;
+  font-size: 0.34375rem;
+  color: #3A3A3A;
+  vertical-align: -webkit-baseline-middle;
+}
+.info-line2-price {
+  color: #FF6500;
+  font-size: 0.4375rem;
+  display: inline-block;
+  float: right;
+}
+
+.info-desc {
+  width: 100%;
+  display: block;
+  line-height: 0.6rem;
+  height: 0.7rem;
+  position: relative;
+  color: #aaa;
+  font-size: 0.3125rem;
+}
+.info-desc-detail {
+  width: 100%;
+  color: #7F7F7F;
+  font-size: 0.32rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.info-desc-detail em {
+  display: inline-block;
+  color: #3A3A3A;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.info-desc-detail img {
+  width: 0.2rem;
+  padding-right: 0.1rem;
+}
+
+.room_icon {
+  height: 0.6rem;
+  overflow: hidden;
+}
+.room_icon .room_tag {
+  color: #828282;
+  padding: 1px 0.12rem 1px;
+  margin-right: 0.16rem;
+  display: block;
+  float: left;
+  font-size: 0.267rem;
+  margin-bottom: 0.5rem;
+  background-image: linear-gradient(180deg, rgba(204, 159, 15, 0.5), rgba(204, 159, 15, 0.5) 50%, transparent 50%), linear-gradient(270deg, #f3b6a9, #f3b6a9 50%, transparent 50%), linear-gradient(0deg, #f3b6a9, #f3b6a9 50%, transparent 50%), linear-gradient(90deg, #f3b6a9, #f3b6a9 50%, transparent 50%);
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+  background-repeat: no-repeat;
+  background-position: top, right top, bottom, left top;
+}
+.room_icon .room_tag.coupon_tag {
+  background-image: linear-gradient(180deg, rgba(204, 159, 15, 0.5), rgba(204, 159, 15, 0.5) 3%, #FCF6E4 3%), linear-gradient(270deg, rgba(204, 159, 15, 0.5), rgba(204, 159, 15, 0.5) 50%, transparent 50%), linear-gradient(0deg, rgba(204, 159, 15, 0.5), rgba(204, 159, 15, 0.5) 50%, transparent 50%), linear-gradient(90deg, rgba(204, 159, 15, 0.5), rgba(204, 159, 15, 0.5) 50%, transparent 50%);
+  background-size: calc(100% - 2px) calc(100% - 1px), 1px 100%, 100% 1px, 1px 100%;
+  color: #CC9F0F;
+}
+.room_icon .room_tag:nth-of-type(2) {
+  background-image: linear-gradient(180deg, #8AA8D8, #8AA8D8 50%, transparent 50%), linear-gradient(270deg, #8AA8D8, #8AA8D8 50%, transparent 50%), linear-gradient(0deg, #8AA8D8, #8AA8D8 50%, transparent 50%), linear-gradient(90deg, #8AA8D8, #8AA8D8 50%, transparent 50%);
+}
+.room_icon .room_tag:nth-of-type(3) {
+  background-image: linear-gradient(180deg, #FFA743, #FFA743 50%, transparent 50%), linear-gradient(270deg, #FFA743, #FFA743 50%, transparent 50%), linear-gradient(0deg, #FFA743, #FFA743 50%, transparent 50%), linear-gradient(90deg, #FFA743, #FFA743 50%, transparent 50%);
+}
+.room_icon .room_tag:nth-of-type(4) {
+  background-image: linear-gradient(180deg, #7AD7C1, #7AD7C1 50%, transparent 50%), linear-gradient(270deg, #7AD7C1, #7AD7C1 50%, transparent 50%), linear-gradient(0deg, #7AD7C1, #7AD7C1 50%, transparent 50%), linear-gradient(90deg, #7AD7C1, #7AD7C1 50%, transparent 50%);
+}
+
+/*品牌公寓列表排序弹窗*/
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.select {
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  z-index: 11;
+  padding-bottom: 6vw;
+  text-align: center;
+}
+.select li {
+  line-height: 1.146667rem;
+  font-size: 0.373333rem;
+  color: #3a3a3a;
+}
+.select .title {
+  line-height: 1.146667rem;
+  font-size: 0.373333rem;
+  color: #3a3a3a;
+}
+
+.select li.selected {
+  color: #CC9F0F;
+}
+
+.slide-in-up {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+.slide-in-up.active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slide-in-up {
+  -webkit-transition: transform cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: transform cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+
+.order_open_btn {
+  position: fixed;
+  bottom: 5%;
+  right: 4%;
+  width: 1.9466667rem;
+  display: none;
+}

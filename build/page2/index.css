@@ -1,0 +1,1 @@
+.border1px{position:relative;border:none}.border1px:after{content:"";position:absolute;border:1px solid #000;top:-50%;right:-50%;bottom:-50%;left:-50%;-webkit-transform:scale(.5);transform:scale(.5)}.hairlines .border1px:after{border:.5px solid #000}html{background-color:#0ff}html,html body{margin:0;padding:0}html body{background-color:#deb887;font-size:.373333rem}

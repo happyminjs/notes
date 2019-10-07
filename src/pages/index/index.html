@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <title>Document</title> -->
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <script>
+    (function (win, doc) {
+      var docEl = doc.documentElement;
+      function setRemUnit () {
+        var docWidth = docEl.clientWidth;
+        var rem = docWidth / 7.5;
+        docEl.style.fontSize = rem + 'px';
+      }
+    
+      win.addEventListener('resize', function () {
+        setRemUnit();
+      }, false);
+      win.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          setRemUnit();
+        }
+      }, false);
+    
+      setRemUnit();
+    
+      if (win.devicePixelRatio && win.devicePixelRatio >= 2) {
+        var testEl = doc.createElement('div');
+        var fakeBody = doc.createElement('body');
+        testEl.style.border = '0.5px solid transparent';
+        fakeBody.appendChild(testEl);
+        docEl.appendChild(fakeBody);
+        if (testEl.offsetHeight === 1) {
+          docEl.classList.add('hairlines');
+        }
+        docEl.removeChild(fakeBody);
+      }
+    }) (window, document);
+  </script>
+  <!-- <style>
+    /* 清楚浮动 */
+    .clearfix {
+      zoom: 1;
+    }
+    .clearfix::after, .clearfix::before{
+      content: "";
+      display: table;
+    }
+    .clearfix::after{
+      clear: both;
+      visibility: hidden;
+      font-size: 0;
+      height: 0;
+    }
+    .hover{
+      width: 100px;
+      height: 80px;
+      background-color: aquamarine;
+      position: relative;
+    }
+    .hover::after{
+      content: attr(testattr)
+    }
+  </style> -->
+</head>
+<body>
+  <div>start</div>
+  <div id="app"></div>
+
+  <div class="borderee">哈哈哈哈</div>
+
+  <!-- <div class="hover" testattr="阿士大夫撒旦法">hove me</div> -->
+
+  <!-- <div style="position: relative;">
+      <p class="test" style="position: relative;">paragraph</p>
+  </div>
+  <script>
+      const p = document.querySelector('p')
+      p.addEventListener("click", (event) => {
+        alert("我是p元素上被绑定的第一个监听函数");
+      }, false);
+
+      p.addEventListener("click", (event) => {
+        alert("我是p元素上被绑定的第二个监听函数");
+      //   event.stopPropagation();
+        event.stopImmediatePropagation();
+      //   执行stopImmediatePropagation方法,阻止click事件冒泡,并且阻止p元素上绑定的其他click事件的事件监听函数的执行.
+      }, false);
+
+      p.addEventListener("click",(event) => {
+        alert("我是p元素上被绑定的第三个监听函数");
+        // 该监听函数排在上个函数后面，该函数不会被执行
+      }, false);
+
+      document.querySelector("div").addEventListener("mousedown", (event) => {
+        alert("我是div元素,我是p元素的上层元素");
+        // p元素的click事件没有向上冒泡，该函数不会被执行
+      }, false);
+  </script>
+
+  <ul class="study-list">待学列表
+      <li></li>
+  </ul>
+  <p></p>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+  <script>
+    $('.test').click(function() {
+      $(this).animate({
+        left: '30px'
+      })
+    })
+  </script> -->
+
+  <!-- <div class="hoverbtn">
+    hover me
+    <div class="show">show me</div>
+  </div>
+  <style>
+    .hoverbtn {
+      width: 100px;
+      height: 50px;
+      background-color: blueviolet;
+      overflow: hidden;
+      position: relative;
+    }
+    .hoverbtn:hover{
+      overflow: inherit;
+    }
+    .hoverbtn .show{
+      position: absolute;
+      width: 100px;
+      height: 30px;
+      bottom: -30px;
+      background-color: aquamarine;
+    }
+  </style> -->
+
+  <!-- 1px -->
+  <!-- <div class="box scale-1px">一像素</div>
+  <style>
+    .scale-1px{
+      margin: 10px;
+      width: 100px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      background-color: rgb(155, 245, 10);
+      position: relative;
+      border:none;
+      border-top: 1px solid;
+      /* transform: scale(0.5); */
+    }
+    .scale-1px:after{
+      content:'';
+      position:absolute;
+      border-bottom: 1px solid #000;
+      top:-50%;
+      right:-50%;
+      bottom:-50%;
+      left:-50%;
+      transform:scale(0.5);
+    }
+  </style> -->
+
+  <!-- <p>边界塌陷</p>
+  <style>
+    .border-box {
+      background-color: antiquewhite;
+      /* border: 10px solid salmon; */
+      /* padding: 10px; */
+      margin: 10px;
+      overflow: hidden;
+    }
+    .border-box .A,.B {
+      width: 200px;
+      height: 100px;
+      padding: 5px;
+    }
+    .b-box{
+      /* position: absolute; */
+      overflow: hidden;
+    }
+    .border-box .A {
+      background-color: aqua;
+      margin: 30px 0;
+      border: 10px solid rgb(7, 31, 248);
+    }
+    .border-box .B {
+      margin-top: 10px;
+      border: 10px solid seagreen;
+      background-color: rgb(255, 238, 0);
+    }
+  </style>
+  <div class="border-box">
+    <div class="A"></div>
+    <div class="B" id="bbb"></div>
+    <div class="b-box">
+      <div class="B"></div>
+    </div>
+  </div> -->
+
+  <!-- display inline inline-block 的间隙 -->
+  <!-- <div class="testdiv">
+    <p style="font-size: 13px;">display inline inline-block 的间隙</p>
+    <img class="testimg" src="//pic1.58cdn.com.cn/gongyu/n_v299f690fed45446bc92ce90a747e90641_f66fab723c82504d.jpg?w=1080" alt="">
+    <img class="testimg" src="//pic1.58cdn.com.cn/gongyu/n_v299f690fed45446bc92ce90a747e90641_f66fab723c82504d.jpg?w=1080" alt="">
+  </div> -->
+
+  <!-- css实现三角形 -->
+  <!-- <div class="trangle"></div> -->
+
+  <!-- 文本溢出 -->
+  <!-- <style>
+    .father {
+      border: 2px solid red;
+      width: 200px;
+      /* overflow: hidden; */
+    }
+    .cf:after {
+      clear: both;
+      content: '';
+      display: block;
+      visibility: hidden;
+      height: 0;
+    }
+    .father div {
+      width: 100%;
+      height: 50px;
+    }
+    .float {
+      float: left;
+    }
+  </style>
+  <div class="ellipsis">文本溢出文本溢出文本溢出文本溢出文本溢出文本溢出文本溢出文本溢出</div> -->
+
+  <!-- 清除浮动 -->
+  <!-- <div class="father cf">
+    <div class="float" style="background: rosybrown"></div>
+    <div class="float" style="background: rgb(255, 194, 25)"></div>
+  </div> -->
+
+  <!-- 品字布局 左侧一起向下滑动-->
+  <!-- <div class="pin clearfix">
+    <div class="top">
+      <p>品字布局一： 我是上口</p>
+      <p>宽度100%，高度固定</p>
+    </div>
+    <div class="left">
+      <p>左左左左，宽度固定</p>
+      <p>左侧高度保持与右侧一致，</p>
+      <p>可设置min-height保持最小与页面高度一致。</p>
+      <p>设置position： absolute</p>
+      <p>z-index 高于右侧 </p>
+      <p>滚动时随页面一起滚动</p>
+    </div>
+    <div class="right">
+      <p>右侧：高度内容撑开即可</p>
+      <p>box-sizing: border-box; 宽度100%；padding-left 与左侧宽度一致</p>
+    </div>
+  </div> -->
+  <!-- 品字布局 左侧固定，不随页面滚动 -->
+  <!-- <div class="pin2 clearfix">
+    <div class="top"></div>
+    <div class="left">
+      <p>left position: fixed</p>
+    </div>
+    <div class="right"></div>
+  </div> -->
+  <script src="./dll/dll.js"></script>
+
+</body>
+</html>

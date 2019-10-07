@@ -1,0 +1,156 @@
+## 事件的触发过程
+###### 事件触发分为三个阶段：
+* window 往事件触发处传播，遇到注册的捕获事件会触发
+* 传播到事件触发处时触发注册的事件
+* 从事件触发处往 window 传播，遇到注册的冒泡事件会触发
+
+**特例**：如果给一个 body 中的子节点同时注册冒泡和捕获事件，事件触发会按照注册的顺序执行。
+```js
+// 以下会先打印冒泡然后是捕获
+node.addEventListener(
+  'click',
+  event => {
+    console.log('冒泡')
+  },
+  false
+)
+node.addEventListener(
+  'click',
+  event => {
+    console.log('捕获 ')
+  },
+  true
+)
+```
+#### 注册事件
+###### 注册事件
+```js
+element.addEventListener(event, function, useCapture)
+// event: 指定事件名
+// function: 事件触发时执行的函数
+/**
+* useCapture: 可选
+* 布尔值: true - 事件在捕获阶段执行; false- 默认。事件在冒泡阶段执行
+* 对象: {
+*   capture：布尔值，和 useCapture 取布尔值时作用一样
+*   once：布尔值，值为 true 表示该回调只会调用一次，调用后会移除监听
+*   passive：布尔值，表示永远不会调用 preventDefault
+* }
+*/
+```
+###### 阻止冒泡和捕获事件
+```js
+event.stopPropagation()
+```
+event.stopImmediatePropagation() :阻止事件冒泡并且阻止相同事件的其他侦听器被调用
+```js
+node.addEventListener(
+  'click',
+  event => {
+    event.stopImmediatePropagation()
+    console.log('冒泡')
+  },
+  false
+)
+// 点击 node 只会执行上面的函数，该函数不会执行
+node.addEventListener(
+  'click',
+  event => {
+    console.log('捕获 ')
+  },
+  true
+)
+```
+#### 事件代理
+如果一个节点中的子节点是动态生成的，那么子节点需要注册事件的话应该注册在父节点上。
+```html
+<ul id="ul">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+<script>
+  let ul = document.querySelector('#ul')
+  ul.addEventListener('click', (event) => {
+    console.log(event.target);
+  })
+</script>
+```
+**优点**：节省内存；不需要给子节点注销事件
+
+
+**----------------------------------------------------------------------**
+
+## 跨域
+**定义：** 因为浏览器出于安全考虑，有同源策略。也就是说，如果协议、域名或者端口有一个不同就是跨域，Ajax 请求会失败。
+**同源策略引入原因：** 其实主要是用来防止 CSRF 攻击的。简单点说，CSRF 攻击是利用用户的登录态发起恶意请求。
+```
+跨域是为了阻止用户读取到另一个域名下的内容，Ajax 可以获取响应，浏览器认为这不安全，所以拦截了响应。
+但是表单并不会获取新的内容，所以可以发起跨域请求。同时也说明了跨域并不能完全阻止 CSRF，因为请求毕竟是发出去了。
+```
+#### 跨域方式
+##### jsonp
+利用 \<script\> 标签没有跨域限制的漏洞
+```js
+<script src="http://domain/api?param1=a&param2=b&callback=jsonp"></script>
+<script>
+  function jsonp(data) {
+    console.log(data)
+  }
+</script>   
+```
+**缺点：** 只限于 get 请求
+###### 处理多个jsonp请求的回调函数名相同的问题
+```js
+function jsonp(url, jsonpCallback, success) {
+  let script = document.createElement('script');
+  script.src = url;
+  script.async = true;
+  script.type = 'text/javascript';
+  window[jsonpCallback] = function(data) {
+    success && success(data);
+  }
+  document.body.appendChild(script)
+}
+jsonp('http://xxx', 'callback', function(value) {
+  console.log(value)
+})
+```
+##### iframe + document.domain
+仅限主域相同，子域不同的跨域应用场景
+通过js强制设置document.domain为基础主域，就实现了同域
+##### CORS
+##### nginx代理跨域
+###### nginx配置解决iconfont跨域
+iconfont字体文件(eot|otf|ttf|woff|svg)不可跨域，可在nginx的静态资源服务器中加入以下配置。
+```js
+location / {
+  add_header Access-Control-Allow-Origin *;
+}
+```
+###### nginx反向代理接口跨域
+
+##### WebSocket协议跨域
+实现了浏览器与服务器全双工通信，同时允许跨域通讯，是server push技术的一种很好的实现。使用 Socket.io，它很好地封装了webSocket接口，提供了更简单、灵活的接口，也对不支持webSocket的浏览器提供了向下兼容。
+##### nodejs中间件代理跨域
+原理大致与nginx相同，都是通过启一个代理服务器，实现数据的转发，也可以通过设置cookieDomainRewrite参数修改响应头中cookie中域名，实现当前域的cookie写入，方便接口登录认证
+
+------------------------
+## 存储
+##### cookie，localStorage，sessionStorage，indexDB
+| 特性 | cookie | localStorage | sessionStorage | indexDB |
+| -- | -- | -- | -- | -- |
+| 数据生命周期 | 可以设置过期时间 | 除非手动清理，否则一直存在 | 页面关闭就清理 | 除非被清理，否则一直存在 |
+| 数据存储大小 | 4K | 5M | 5M | 无限 |
+| 与服务端通信 | 每次都会携带在 | header中，对于请求性能影响 | 不参与 | 不参与 | 不参与 |
+##### cookie的安全问题
+| 属性 | 作用 |
+| -- | -- |
+| value | 如果用于保存用户登录态，应该将该值加密，不能使用明文的用户标识 |
+| http-only | 不能通过 JS 访问 Cookie，减少 XSS 攻击 | 
+| secure | 只能在协议为 HTTPS 的请求中携带 |
+| same-site | 规定浏览器不能在跨域请求中携带 Cookie，减少 CSRF 攻击 |
+##### Service Worker
+Service Worker 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能。使用 Service Worker的话，传输协议必须为 HTTPS。因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。
+**PWA**
+
