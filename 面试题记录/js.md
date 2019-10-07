@@ -10,6 +10,24 @@ Object.prototype.toString.call('aaa')  ==== '[object Undefined]'
 Object.prototype.toString.call(true)  ==== '[object Boolean]'
 Object.prototype.toString.call(1)  ==== '[object Number]'
 ```
+----
+### instanceof 原理
+用于测试构造函数的prototype属性，是否出现在对象的原型链中的任何位置。
+```js
+function Car(mark,model,year){
+    this.mark = mark;
+    this.model = model;
+    this.year = year;
+}
+var auto = new Car('Honda','Accord',1998);
+
+console.log(auto instanceof Car);  //true
+console.log(auto instanceof Object);  //true
+```
+理解原理就是： 判断构造函数的原型对象(如Car.prototype和Object.prototype)是否在实例对象（auto）的原型链上（proto）;
+如果在对象的原型链上，就返回true，如果不在就返回false;
+
+--------------
 ### new() 发生了什么
 * 创建一个新对象
 * 将构造函数的作用域赋值给新对象（this指向这个新对象）
@@ -53,244 +71,40 @@ console.log(p2 instanceof Person) // true
 
 ------------
 ### 原型链
+https://juejin.im/post/58f94c9bb123db411953691b
 
 ---------
 
 ### 继承
+继承主要依靠原型链来实现的
+https://juejin.im/post/58f94c9bb123db411953691b
+
 -------------
-### call/apply/bind
-使用的区别
-```js
-arg.call(this, arguments1, arguments2, ...)
-arg.apply(this, [arguments1, arguments2, ...])
-arg.bind(this, arguments1, arguments2, ...)()
-```
----------------
-### escape 、 encodeURI 和 encodeURIComponent
-##### escape
-简单来说，escape是对字符串(string)进行编码(而另外两种是对URL)   
-ASCII字母、数字、@*/+这几个字符不会被编码,由于js是unicode编码，中文会被编为unicode  
-<img src="/imgs/escape.png" width=200></img>
-##### encodeURI
-encodeURI方法不会对下列字符编码  ASCII字母、数字、~!@#$&*()=:/,;?+'
-##### encodeURIComponent
-不会对下列字符编码 ASCII字母、数字、~!*()'
-##### 应用场景
-* 只是编码字符串，不和URL有半毛钱关系，那么用escape
-* 码整个URL，然后需要使用这个URL，那么用encodeURI
-* 当你需要编码URL中的参数的时候，那么encodeURIComponent是最好方法
-```
-注意不要使用encodeURIComponent编码要直接使用的完整的url，
-因为编码后的字符串，浏览器不认为是一个网址
-```
-<img src="/imgs/encode.png" width=400></img>
+### 闭包
 
-------------------
-### index db
-客户端浏览器的存储。
-##### 概述
-* 键值对储存： 所有类型的数据都可以直接存入，包括 JavaScript 对象。每一个数据记录都有对应的主键，主键不能有重复，否则会抛出一个错误。
-* 异步操作： 
-* 支持事务: 意味着一系列操作步骤之中，只要有一步失败，整个事务就都取消，数据库回滚到事务发生之前的状态，不存在只改写一部分数据的情况。
-* **同源限制**
-* 储存空间大, 一般来说不少于 250MB
-* 支持二进制储存
-##### 基本概念
-* 数据库：IDBDatabase 对象
-* 对象仓库：IDBObjectStore 对象： 类似与sql中的表
-* 索引： IDBIndex 对象
-* 事务： IDBTransaction 对象
-```
-数据记录的读写和删改，都要通过事务完成。
-事务对象提供error、abort和complete三个事件，用来监听操作结果
-```
-* 操作请求：IDBRequest 对象
-* 指针： IDBCursor 对象
-* 主键集合：IDBKeyRange 对象
-##### 打开数据库
-```js
-var request = window.indexedDB.open(databaseName, version);
-```
-* databaseName： 字符串，表示数据库的名字，如果不存在，则新建一个
-* version： 数据库的版本， 默认当前版本；新建时默认是1
-* return： IDBRequest 对象，可以通过三种事件error、success、upgradeneeded，处理打开数据库的操作结果
-```js
-// error
-request.onerror = function (event) {
-  console.log('数据库打开报错');
-};
-// success
-var db;
-request.onsuccess = function (event) {
-  db = request.result;
-  console.log('数据库打开成功');
-};
-// 如果指定的版本号，大于数据库的实际版本号，就会发生数据库升级事件upgradeneeded
-// 通常也是新建数据库时的触发事件
-var db;
-request.onupgradeneeded = function (event) {
-  db = event.target.result;
-}
-```
-##### 表操作
-```js
-// 新建表，一般是在新建数据库的触发事件里新建
-request.onupgradeneeded = function(event) {
-  db = event.target.result;
-  var objectStore;
-  // 最好先判断一下，这张表格是否存在，如果不存在再新建
-  if (!db.objectStoreNames.contains('person')) {
-    // 新增一张叫做person的表格，主键是id
-    objectStore = db.createObjectStore('person', { keyPath: 'id' });
-  }
-}
-```
-##### 新建索引
-```js
-var db;
-request.onupgradeneeded = function(event) {
-  db = event.target.result;
-  var objectStore;
-  if (!db.objectStoreNames.contains('person')) {
-    objectStore = db.createObjectStore('person', { keyPath: 'id' });
-  }
-  objectStore.createIndex('name', 'name', { unique: false });
-  objectStore.createIndex('email', 'email', { unique: true });
-  // 参数： 索引名称、索引所在的属性、配置对象（说明该属性是否包含重复的值）
-}
-```
-##### 新增数据
-新增数据指的是向对象仓库写入数据记录。这需要通过事务完成。
-```js
-function add() {
-  var request = db.transaction(['person'], 'readwrite');
-  // objectStore 拿到 IDBObjectStore 对象
-  var presonStore = request.objectStore('person')
-  // 表格对象的add()方法，向表格写入一条记录
-  var insert = presonStore.add({ id: 1, name: '张三', age: 24, email: 'zhs@example.com' });
-  insert.onsuccess = function (event) {
-    console.log('数据写入成功');
-  };
-  insert.onerror = function (event) {
-    console.log('数据写入失败');
-  }
-}
-add()
-```
-db.transaction([tablename1, tablename2], model)
-* tablename: 要打开的表的名字，数组，可一次多个表中取数据
-* model：表格读取模式
-  * readwrite: 可以进行读写操作
-  * read：不能修改数据库数据，可以并发执行
-  * verionchange： 版本变更
-##### 读取数据
-```js
-function read() {
-   var transaction = db.transaction(['person']);
-   var objectStore = transaction.objectStore('person');
-  //  objectStore.get 读取数据，参数是主键的值
-   var request = objectStore.get(1);
-   request.onerror = function(event) {
-     console.log('事务失败');
-   };
-   request.onsuccess = function( event) {
-      if (request.result) {
-        console.log('Name: ' + request.result.name);
-      } else {
-        console.log('未获得数据记录');
-      }
-   };
-}
-read();
-```
-##### 遍历数据
-遍历数据表格的所有记录，要使用指针对象 IDBCursor。
-新建指针对象的 openCursor() 方法是一个异步操作，所以要监听success事件
-```js
-function readAll() {
-  var objectStore = db.transaction('person').objectStore('person');
-   objectStore.openCursor().onsuccess = function (event) {
-     var cursor = event.target.result;
-     if (cursor) {
-       console.log('Id: ' + cursor.key);
-       console.log('Name: ' + cursor.value.name);
-       cursor.continue();
-    } else {
-      console.log('没有更多数据了！');
-    }
-  };
-}
-readAll();
-```
-##### 更新数据
-使用 IDBObject.put() 方法
-```js
-function update() {
-  var request = db.transaction(['person'], 'readwrite')
-    .objectStore('person')
-    // put()方法自动更新了主键为1的记录
-    .put({ id: 1, name: '李四', age: 35, email: 'lisi@example.com' });
-  request.onsuccess = function (event) {
-    console.log('数据更新成功');
-  };
-  request.onerror = function (event) {
-    console.log('数据更新失败');
-  }
-}
-update();
-```
-##### 删除数据
-IDBObjectStore.delete()方法用于删除记录
-```js
-function remove() {
-  var request = db.transaction(['person'], 'readwrite')
-    .objectStore('person')
-    .delete(1);
-  request.onsuccess = function (event) {
-    console.log('数据删除成功');
-  };
-}
-remove();
-```
-##### 使用索引
-如果不建立索引，默认只能搜索主键（即从主键取值）。
-```js
-// 在上边的新建表格的时候，需要同时新建索引 ，以name为例
-objectStore.createIndex('name', 'name', { unique: false });
+------
 
-// 有了name索引，就可以根据name搜索了
-var transaction = db.transaction(['person'], 'readonly');
-var store = transaction.objectStore('person');
-var index = store.index('name');
-var request = index.get('李四');
-
-request.onsuccess = function (e) {
-  var result = e.target.result;
-  if (result) {
-    // ...
-  } else {
-    // ...
-  }
-}
+### 模块化
+将项目按照功能划分，理论上一个功能一个模块，互不影响，按需加载
+**模块化分类：**
+* CommonJS
 ```
-----------
-### instanceof 原理
-用于测试构造函数的prototype属性，是否出现在对象的原型链中的任何位置。
-```js
-function Car(mark,model,year){
-    this.mark = mark;
-    this.model = model;
-    this.year = year;
-}
-var auto = new Car('Honda','Accord',1998);
-
-console.log(auto instanceof Car);  //true
-console.log(auto instanceof Object);  //true
+1、一个单独的js就是一个模块
+2、每个模块都有一个单独的作用域，
+3、导出方式： exports.aa = aa; 和 module.exports = {}
+4、模块导入： require()
 ```
-理解原理就是： 判断构造函数的原型对象(如Car.prototype和Object.prototype)是否在实例对象（auto）的原型链上（proto）;
-如果在对象的原型链上，就返回true，如果不在就返回false;
-
---------------
+* AMD
+```
+1、预加载
+2、应用需要：RequireJS
+```
+* CMD
+```
+1、懒加载
+2、应用需要： SeaJS
+```
+-----
 ### module.exports 、 exports 、 export 、 export default 、 import()
 下面主要介绍的是CommonJS和ES6中的方法  
 * 前者是值的拷贝，后者是值的引用
@@ -406,9 +220,6 @@ import('./dialogBox.js').then(dialogBox => {
 })
 ```
 --------------
-
-
-
 ### es6 的代理
 ---------------
 ### 正则
@@ -420,7 +231,201 @@ str.replace(/\s*/g, ''); // 去除所有空格
 
 // 手机号
 /^[1][3,4,5,7,8][0-9]{9}$/.test(phone)
-
-
 ```
+### call/apply/bind
+使用的区别
+```js
+arg.call(this, arguments1, arguments2, ...)
+arg.apply(this, [arguments1, arguments2, ...])
+arg.bind(this, arguments1, arguments2, ...)()
+```
+---------------
+### escape 、 encodeURI 和 encodeURIComponent
+##### escape
+简单来说，escape是对字符串(string)进行编码(而另外两种是对URL)   
+ASCII字母、数字、@*/+这几个字符不会被编码,由于js是unicode编码，中文会被编为unicode  
+<img src="/imgs/escape.png" width=200></img>
+##### encodeURI
+encodeURI方法不会对下列字符编码  ASCII字母、数字、~!@#$&*()=:/,;?+'
+##### encodeURIComponent
+不会对下列字符编码 ASCII字母、数字、~!*()'
+##### 应用场景
+* 只是编码字符串，不和URL有半毛钱关系，那么用escape
+* 码整个URL，然后需要使用这个URL，那么用encodeURI
+* 当你需要编码URL中的参数的时候，那么encodeURIComponent是最好方法
+```
+注意不要使用encodeURIComponent编码要直接使用的完整的url，
+因为编码后的字符串，浏览器不认为是一个网址
+```
+<img src="/imgs/encode.png" width=400></img>
+
+------------------
+### vue实现思想（数据双向绑定、虚拟dom，diff算法，vue.use, vue.component）
+https://www.cnblogs.com/wind-lanyan/p/9061684.html
+### vue router
+单页面进入判断登录
+### css的局部作用域 已 vue 的 scoped 属性为例
+
+-----
+
+### DOMContentLoaded 与 load 
+* **Load** 事件触发代表页面中的 DOM，CSS，JS，图片已经全部加载完毕。
+* **DOMContentLoaded** 事件触发代表初始的 HTML 被完全加载和解析，不需要等待 CSS，JS，图片加载。
+```js
+window.onload=function(){} // 等待所有的内容都加载完之后执行，包括图片，内容，js，css等。
+$(window).load(function (){}) // 同上，等待所有的内容都加载完之后执行
+$(function(){}) // 是等待DOM加载完之后执行，不包括图片等。
+$(document).ready(function() { // ...代码... })  // 就是 $(function(){})
+// 另外：
+// 不管是外链js还是页面中的js的window.onload都只执行最后的一个
+// $(window).load(function (){})可以有多个，而且都是顺序执行
+```
+ps：图片的加载判断
+* 1、图片的onload事件
+* 2、判断 readystatechange 加载状态
+
+-------
+### DOM 的各种宽度
+名词解释：
+* screen：屏幕。这一类取到的是关于屏幕的宽度和距离，与浏览器无关。
+* client：使用区、客户区。指的是客户区，当然是指浏览器区域。
+* offset：偏移。指的是目标甲相对目标乙的距离。
+* scroll：卷轴、卷动。指的是包含滚动条的的属性。
+* inner：内部。指的是内部部分，不含滚动条。
+* avail：可用的。可用区域，不含滚动条，易与inner混淆。
+
+常用方法：
+* 屏幕宽度：window.screen.width
+* 浏览器内宽度：window.innerWidth || document.documentElement.clientWidth
+* 元素内容宽度：element.clientWidth
+* 元素占位宽度：element.offsetWidth
+##### window.innerWidth/innerHeight
+浏览器可见区域的内宽度、高度（不含浏览器的边框，但包含滚动条）
+##### window.outerWidth/outerHeight
+浏览器外宽度（包含浏览器的边框，因各个浏览器的边框边一样，得到的值也是不一样的）
+##### window.screenLeft/screenTop
+浏览器的位移  
+* ie浏览器的内边缘距离屏幕边缘的距离。  
+* chrome浏览器的外边缘距离屏幕边缘的距离。  
+##### window.screenX/screenY
+也是 浏览器的位移 ，但是ie的包括边框等部分 
+* ie9/10浏览器的外边缘距离屏幕边缘的距离
+* chrome浏览器的外边缘距离屏幕边缘的距离
+##### window.pageXOffset/pageYOffset
+表示浏览器X轴（水平）、Y轴（垂直）滚动条的偏移距离
+##### window.scrollX/scrollY
+也是 浏览器X轴（水平）、Y轴（垂直）滚动条的偏移距离
+##### screen.width/height
+屏幕的宽度、高度
+##### screen.availWidth/availHeight
+屏幕的可用宽度、高度（通常与屏幕的宽度、高度一致）
+##### elment.clientWidth/clientHeight
+box-sizing: content-box;标准：
+document.getElementsByClassName('B')[0].clientWidth
+元素的content + padding * 2（不包括元素的滚动条宽度）即：
+* 有滚动条时：clientWidth=元素左内边距宽度+元素宽度+元素右内边距宽度-元素垂直滚动条宽度  
+* 无滚动条时：clientWidth=元素左内边距宽度+元素宽度+元素右内边距宽度
+##### element.clientLeft/clientTop
+clientLeft为左边框宽度，clientTop为上边框宽度。
+##### element.offsetWidth/offsetHeight
+元素的 content + padding * 2 + border * 2
+##### element.offsetLeft/offsetTop
+该元素相对于最近的定位祖先元素的距离
+* chrome：offsetLeft = 定位祖先左边框宽度 + 定位祖先元素左内边距宽度 + 左位移 + 左外边距宽度
+* 其他：offsetLeft=定位祖先元素左内边距宽度+左位移+左外边距宽度
+##### element.scrollWidth/scrollHeight
+* 有滚动条时： 左内边距宽度 + 内容宽度
+* 无滚动条时：左内边距宽度+宽度+右内边距宽度
+##### element.scrollLeft/scrollTop
+获得水平、垂直滚动条的距离。
+
+-------------------
+### Dom操作、事件（创建、插入位置、子元素、兄弟节点、父亲节点）
+###### 创建DOM
+```js
+var divDom = document.createElement('div');
+```
+###### 添加属性
+```js
+var divId = document.createAttribute("id");
+divId.value = 'name';
+divDom.setAttributeNode(divId);
+```
+###### 添加文本
+```js
+var pText = document.createTextNode("我是文本");
+divDom.appendChild(pText);
+```
+###### 插入DOM
+```js
+// 向节点 fatherDom 添加最后一个子节点
+fatherDom.appendChild(divDom)
+// 向节点 fatherDom 所有子节点之前插入一个新的子节点
+fatherDom.insertBefore(divDom)
+// 拼接元素的字符串，可以利用父元素的innerHTML设置父元素的内容
+fatherDom.innerHTML="<p>啊啊啊</p>"
+```
+<font color=red>注意: </font> <font size="2">如果是获取的页面中存在的元素，会删除原有节点。所以 appendChild 和 insertBefore 这两个方法都可以用来从一个元素向另一个元素中移动</font> 
+
+###### 替换DOM
+替换下例中的item的内部元素
+```js
+divDom.replaceChild(newnode,oldnode)
+// 例：
+var textnode = document.createTextNode("Water");
+var item = document.getElementById("item");
+item.replaceChild(textnode, item.childNodes[0]);
+```
+
+###### 删除DOM
+如需删除某个 HTML 元素，您需要知晓该元素的父节点。
+```js
+fatherDom.removeChild(divDom);
+```
+
+###### 遍历
+```js
+node.children   // 只返回子元素节点，不支持ie低版本
+node.childNodes // 所有的子节点，包括文本节点、注释节点
+node.firstChild  // 第一个子元素
+node.lastChild // 最后一个子元素
+node.previousSibling // 相同的树层级中的上一个相邻元素，若没有返回 null
+node.nextSibling // 相同的树层级中的下一个相邻元素，若没有返回 null
+node.parentNode // node 的直接父元素
+```
+通过封装 childNodes + node.nodeType 可以实现 children 的效果：
+```js
+var nodeList = fatherDom.childNodes;
+var ary = [];
+for(var i = 0; i < nodeList.length; i++){
+  var curNode = nodeList[i];
+  if(curNode.nodeType ===1){
+    ary[ary.length] = curNode;
+  }
+}
+// nodeType 常用的取值：
+// 1: node元素
+// 2: 属性
+// 3: 元素中或属性中的文本内容
+// 8: 注释 
+```
+获取某个特定的元素，如：某个类型为 tagName 的子元素
+```js
+for(var k = 0; k < ary.length; k++){
+  var curTag = ary[k]; // ary是children返回数组或者上边例子中返回的ary
+  if (curTag.nodeName.toLowerCase() !== tagName.toLowerCase()){
+    break;
+  }
+}
+console.log(ary[k]);
+```
+###### 获取元素内容
+```js
+Dom.textContent // 只有本身及所有子元素的文本内容
+Dom.innerHTML // 包括标签和属性
+```
+总结汇总：
+<image width=600 src="/imgs/dom.png"></image>
+
+-----------------------------
 

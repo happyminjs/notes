@@ -79,7 +79,7 @@ node.addEventListener(
 **优点**：节省内存；不需要给子节点注销事件
 
 
-**----------------------------------------------------------------------**
+---
 
 ## 跨域
 **定义：** 因为浏览器出于安全考虑，有同源策略。也就是说，如果协议、域名或者端口有一个不同就是跨域，Ajax 请求会失败。
@@ -120,6 +120,11 @@ jsonp('http://xxx', 'callback', function(value) {
 仅限主域相同，子域不同的跨域应用场景
 通过js强制设置document.domain为基础主域，就实现了同域
 ##### CORS
+一般需要配置的三项
+```
+Access-Control-Allow-Origin: 域名
+Access-Control-Allow-Credentials: 携带cookie
+```
 ##### nginx代理跨域
 ###### nginx配置解决iconfont跨域
 iconfont字体文件(eot|otf|ttf|woff|svg)不可跨域，可在nginx的静态资源服务器中加入以下配置。
