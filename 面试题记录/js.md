@@ -1,40 +1,7 @@
-### 数组方法汇总
-https://juejin.im/post/5902d56e1b69e60058c634d6
-#### 数组去重
-```js
-// 方法一: for...of + Object
-function distinct(arr) {
-  let obj = {}
-  for (let i of arr) {
-    obj[i] = (obj[i] || 0) + 1
-  }
-  return Object.keys(obj)
-}
-// 方法二: 排序后遍历
-function distinct(arr) {
-    arr = arr.sort()
-    let result = [arr[0]]
-    for (let i = 1, len = arr.length; i < len; i++) {
-      let resLen = result.length
-      arr[i] !== result[resLen - 1] && result.push(arr[i])
-    }
-    return result
-}
-// 方法三: filter + indexOf
-function distinct(arr) {
-  return arr.filter((item, index, arr)=> {
-    return arr.indexOf(item) === index
-  })
-}
-// 方法四: new Set()
-function distinct(arr) {
-  let set = new Set(arr);
-  return [...set]
-}
-```
 ### 基础类型
 null、undefined、Boolean、String、Number
 判断类型
+
 ```js
 Object.prototype.toString.call({})  ==== '[object Object]'
 Object.prototype.toString.call([])  ==== '[object Array]'
@@ -45,23 +12,6 @@ Object.prototype.toString.call(true)  ==== '[object Boolean]'
 Object.prototype.toString.call(1)  ==== '[object Number]'
 ```
 ----
-### instanceof 原理
-用于测试构造函数的prototype属性，是否出现在对象的原型链中的任何位置。
-```js
-function Car(mark,model,year){
-    this.mark = mark;
-    this.model = model;
-    this.year = year;
-}
-var auto = new Car('Honda','Accord',1998);
-
-console.log(auto instanceof Car);  //true
-console.log(auto instanceof Object);  //true
-```
-理解原理就是： 判断构造函数的原型对象(如Car.prototype和Object.prototype)是否在实例对象（auto）的原型链上（proto）;
-如果在对象的原型链上，就返回true，如果不在就返回false;
-
---------------
 ### new() 发生了什么
 * 创建一个新对象
 * 将构造函数的作用域赋值给新对象（this指向这个新对象）
@@ -102,22 +52,7 @@ console.log(p2 instanceof Person) // true
 * 如果想要原型属性，就必须要用prototype了
 * 操作符的写法，用class是不可能实现的
 
-
 ------------
-### 原型链
-https://juejin.im/post/58f94c9bb123db411953691b
-
----------
-
-### 继承
-继承主要依靠原型链来实现的
-https://juejin.im/post/58f94c9bb123db411953691b
-
--------------
-### 闭包
-
-------
-
 ### 模块化
 将项目按照功能划分，理论上一个功能一个模块，互不影响，按需加载
 **模块化分类：**
@@ -311,6 +246,22 @@ ps：图片的加载判断
 * 2、判断 readystatechange 加载状态
 
 -------
+### 获取页面元素相对于视窗的位置
+**dom.getBoundingClientRect**
+返回这样一个对象
+```js
+{
+    width: 690,         // 元素宽度
+    height: 26,         // 元素高度
+    bottom: 220.875,    // 底边距离可视区顶部的距离
+    left: 354.5,        // 左边距离可视区左边的距离
+    right: 1044.5,      // 右边距离可视区左边的距离
+    top: 194.875,       // 顶边距离可视区顶部的距离
+    x: 354.5,           // 元素左上角的可视区x坐标
+    y: 194.875          // 元素的左上角可视区y坐标
+}
+```
+--------
 ### DOM 的各种宽度
 名词解释：
 * screen：屏幕。这一类取到的是关于屏幕的宽度和距离，与浏览器无关。

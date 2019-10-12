@@ -4,7 +4,7 @@
   "description": "notes",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --env.development --config ./webpack.config.dll.build.js",
+    "dev": "webpack-dev-server --env.development --config ./webpack.config.glob.js",
     "build": "webpack --env.production --test.aa --config ./webpack.config.glob.js",
     "watch": "webpack --watch",
     "dll": "webpack --env.production --config ./webpack.config.dll.js",

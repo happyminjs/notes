@@ -33,7 +33,7 @@ for(let key = 0, klen = entryArr.length; key < klen; key++) {
   entryObj[keyStr] = path.resolve(__dirname, entryArr[key]);
   pluginConfg.push(new HtmlWebpackPlugin({
     filename: keyStr + '.html',
-    chunks: [keyStr, 'dll/dll', 'vendor'], 
+    chunks: [keyStr, 'vendor'], 
     inject: true,
     // <%= htmlWebpackPlugin.options.title %> 在html中以这种方式获取title值
     title: 'tesssd title',
@@ -153,7 +153,7 @@ module.exports = function(options) {
       compress: true,
       host: '0.0.0.0',
       port: 3008,
-      https: true,
+      // https: true,
       // open: true,
     }
   }

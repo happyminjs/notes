@@ -4,6 +4,11 @@
     <h2>biaosdsof啥电费卡是否</h2>
     <div class="bgimg"></div>
     <div class="bgimg2"></div>
+    <ul class="ulpart">
+      <li>111<p>卡撒的发生李海峰</p></li>
+      <li>2<p>的放散阀</p></li>
+      <li>3<p>阿士大夫撒旦法玩儿</p></li>
+    </ul>
   </div>
 </template>
 
@@ -15,7 +20,9 @@ export default {
     }
   },
   mounted() {
-    
+    document.getElementsByClassName('ulpart')[0].addEventListener('click',(event) => {
+      console.log(event.target.index)
+    })
   }
 }
 </script>

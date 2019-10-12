@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const glob = require('glob')
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -24,7 +24,7 @@ let pluginConfg = [
     chunkFilename: '[id].css',
   }),
   new OptimizeCssAssetsPlugin(),  // css 压缩
-  new BundleAnalyzerPlugin(), // webpack 文件分析插件
+  // new BundleAnalyzerPlugin(), // webpack 文件分析插件
 ]; // plugin Arr
 
 // 入口 entry and plugin start

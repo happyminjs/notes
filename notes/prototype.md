@@ -78,5 +78,70 @@ console.log('arr: ', arr);
 console.log('arr.__proto__: ', arr.__proto__);
 ```
 ### 确定原型和实例的关系
-##### 1、instanceof
-##### 2、isPrototypeOf
+    var a = new A();
+##### 1、 instanceof
+检测**构造函数（A）的 prototype** 属性是否出现在某个**实例对象（a）的原型链**
+ps：字面量创建的对象，是无法使用instanceof运算符，例如 var a = 'sss'，不能使用 a instanceof String，会报错。
+```js
+a instanceof Object;   // true
+a instanceof A;   // true
+a instanceof Array; // false
+```
+##### 2、 isPrototypeOf
+测试一个**对象**(A)是否存在于另一个**对象(a)的原型链**上
+```js
+Object.prototype.isPrototypeOf(a)  // true
+A.prototype.isPrototypeOf(a)   // true
+Array.prototype.isPrototypeOf(a)   // false
+```
+>可以看到两者的区别，前者是 **A的prototype**，后者是 **A 本身**
+### 原型链的问题
+问题一: 当原型链中包含引用类型值的原型时,该引用类型值会被所有实例共享  
+问题二: 在创建子类型时,不能向超类型的构造函数中传递参数
+```js
+function father (){}
+function son () {}
+son.prototype = new father();
+// 此时创建 son 的实例时，不能向 father 的构造函数中传递参数
+```
+##### 解决方法一  ------- 构造函数
+```js
+function father () {
+  this.colors = ['red', 'blue']
+}
+function son () {
+  father.call(this) // 继承了father，且向父类型传递采纳数
+}
+var aaa = new son();
+aaa.colors.push('black') // ['red', 'blue', 'black']
+var bbb = new son();    // ['red', 'blue']
+```
+
+
+
+
+auto rename tag
+beautify
+bracket pair colorizer
+debugger for chrome
+element ui snippets
+filesize
+gitlens - git supercharged
+html css support
+html snippets
+jquery snippets
+json2ts
+minapp
+move ts - move typescript
+path intellisense
+prettier - code formatter
+project manager
+sass
+setting sync
+smarty
+typescript extension pack
+typescript hero
+typescript importer
+vetur
+view in browser
+vscode-element-helper
