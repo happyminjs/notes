@@ -43,7 +43,8 @@ https://qiaoshi123.github.io/harvester-offer/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%9
 https://juejin.im/post/5bce6a26e51d4579e9711f1d  
 https://qiaoshi123.github.io/harvester-offer/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93/21-Vue%20%E5%B8%B8%E8%80%83%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9.htm
 ### Vue为什么不能检测数组变动
-
+Object.definePropoty 的 set 不会触发
+maybe是 可能是因为数组每一项的修改都需要修改数值、然后修改下标。如果插入一条数据，可能会影响后边的数据都要来一边修改。
 ### render函数原理
 https://juejin.im/post/5be2f0ae6fb9a049fa0f3dd2
 ### 虚拟dom 和 diff算法
