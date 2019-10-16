@@ -116,32 +116,3 @@ var aaa = new son();
 aaa.colors.push('black') // ['red', 'blue', 'black']
 var bbb = new son();    // ['red', 'blue']
 ```
-
-
-
-
-auto rename tag
-beautify
-bracket pair colorizer
-debugger for chrome
-element ui snippets
-filesize
-gitlens - git supercharged
-html css support
-html snippets
-jquery snippets
-json2ts
-minapp
-move ts - move typescript
-path intellisense
-prettier - code formatter
-project manager
-sass
-setting sync
-smarty
-typescript extension pack
-typescript hero
-typescript importer
-vetur
-view in browser
-vscode-element-helper
