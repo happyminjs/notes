@@ -161,7 +161,7 @@ this.$broadcast('say', 200); // 子孙组件中有绑定 say 方法的 都执行
   }
 </script>
 ```
-* 父组件取子组件的数据： 应用 ref 属性
+* **父组件取子**组件的数据： 应用 ref 属性
 ref属性在元素上，则获取到的是dom元素；组件上则获取到的组件
 ```html
 <!-- 父组件中 用 子组件数据方法 -->
@@ -189,16 +189,6 @@ this.$bus.$on('eventname', function(){ 执行逻辑....})
 this.$nextTick(() => {
   this.$bus.$emit('eventname', value)
 })
-```
-
-
-```js
-// 父组件调用子组件方法
-// 在子组件上添加 ref 属性，这样 this.$refs 中就可以取到子组件的所有属性和方法
-
-this.$refs.son.say(); // say方法是子组件 son 中定义的方法
-
-// 没有关系的组件之间通信
 ```
 
 ### vue 自定义指令
