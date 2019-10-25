@@ -101,6 +101,7 @@ node.addEventListener(
 ```
 **缺点：** 只限于 get 请求
 ###### 处理多个jsonp请求的回调函数名相同的问题
+为啥不能用 img 图片src ---- todo
 ```js
 function jsonp(url, jsonpCallback, success) {
   let script = document.createElement('script');
