@@ -167,4 +167,12 @@ Promise.reject = function(reason){
         resolve(reason);
     })
 }
+Promise.resolve.finally = function (cb) {
+     return p.then(
+         data => Promise.resolve(cb()).then(() => data),
+         err => Promise.resolve(cb()).then(() => {
+             throw err
+         })
+     )
+}
 module.exports = Promise;
