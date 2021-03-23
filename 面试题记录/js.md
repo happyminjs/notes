@@ -1,7 +1,147 @@
-### 基础类型
-null、undefined、Boolean、String、Number
-判断类型
+### 数组方法汇总
+#### 数组遍历方法
+* arr.forEach(fn(value, index, array), thisArg)  
+没有返回值，若在fn中对 array 进行修改，则 arr 会改变
+* arr.map(fn(value, index, arr), thisArg)  
+遍历数组，并返回 fn return 值组成的新数组
+```js
+var array = [1, 3, 5];
+var array2 = array.map(function(value,index,arr){
+    return value*2
+})
+console.log(array2) // [2, 6, 10]
+```
+* arr.filter(fn(value, index, arr), thisArg)  
+筛选 arr 中符合 fn 条件的元素，返回符合的新数组
+```js
+var array = [18, 9, 10, 35, 80];
+var array2 = array.filter(function(value, index, array){
+  return value > 20;
+});
+console.log(array2); // [35, 80]
+```
+* arr.reduce(fn(total, value, index, arr), startTotal = 0)  
+一般累加器使用，数组中每个值开始合并，最终返回一个值
+```js
+var arr = [32, 33, 41, 8]
+var arr2 = arr.reduce(function(total, value, index, arr){
+    return total + value
+}, 0)
+console.log(arr2) // 114
+```
+* reduceRight(fn(total, value, index, arr), startTotal = 0)  
+倒叙执行 reduce 
+* arr.every(fn(value, index, arr), thisArg)  
+检测数组 arr 中是否都符合 fn 的条件，都符合返回 true，有一项不符合返回 false，且剩余元素不再进行检查
+* arr.some(fn(value, index, arr), thisArg)  
+检测数组是否有符合 fn 的条件，有一个符合则返回 true
+* entries 、 keys 、 values   
+ES6 中的遍历数组的方法，都是返回遍厉器(Iterator)，不同的是分别遍历的是 键值对、键名、键值，返回的结果可以用 for...of 循环
+```js
+var arr = ['a', 'b', 'c']
+for(let index of arr.keys()) {
+    console.log(index)
+}
+// 输出 0  1  2
+for(let index of arr.values()) {
+    console.log(index)
+}
+// 输出 'a'  'b'  'c'
+for(let [index, val] of arr.entries()) {
+    console.log(index, val)
+}
+// 输出 0 'a'    1 'b'   2 'c'
+```
+* find(fn(value, index, arr), thisArg) & findIndex(fn(value, index, arr), thisArg)   
+返回找到符合 fn 的第一个元素 / 第一个元素索引，没有则返回 undefined/-1
+```js
+var arr = [1,3,4,5,6,7]
+var value = arr.find(function(value, index, arr){
+    return value > 5
+})
+console.log(value)
+// 6
+// 如果是 findIndex，则返回 6 的索引 4
+```
+* Symbol.iterator
+#### ES6 中新增的数组方法
+* Array.of 除了只有一个整数参数时不同，其他时候都是相同的
+```js
+Array.of(8.0)  // [8]
+Array(8) // [empty × 8]
+```
+若ie等浏览器不支持，可以实现一个polyfill
+```js
+if(!Array.of){
+    Array.of = function(){
+        return Array.prototype.slice.call(arguments)
+        // return Array.from(arguments);  // 两行代码效果相同，只是此方法是ES6的
+    }
+}
+```
+* Array.from(arrayLike[,processingFn[, thisArg]])    
+  将类数组arrayLike按照processingFn的方法生成新数组，thisArg是作用域，表示函数执行时this的值。
+```js
+var obj = {0: 'a', 1: 'b', 2:'c', length: 3}
+Array.from(obj, function(value, index){
+    console.log(value, index, this, arguments.length)
+    return value.repeat(3); // 必须指定返回值，否则返回 undefined
+}, obj)
+// 执行结果如下： 
+// a 0 {0: "a", 1: "b", 2: "c", length: 3} 2
+// b 1 {0: "a", 1: "b", 2: "c", length: 3} 2
+// c 2 {0: "a", 1: "b", 2: "c", length: 3} 2
+// ["aaa", "bbb", "ccc"]
+```
+如果不传入第三个参数 obj，则this会是调用环境，即 window
+* Array.fill(value, start[, end = this.length]) 用给定的数值value，填充一个数组的start到end之前的项。
+```js
+['a', 'b', 'c'].fill(7)  // [7,7,7]
+new Array(3).fill(7)  // [7,7,7]
+['a', 'b', 'c'].fill(7, 1, 2)   // ['a',7,'c']
+```
+* Array.flat([num = 1])    
+将嵌套的数组拉平
+```js
+[1,2,[3,[4,5]]].flat()  // [1,2,3,[4,5]]  默认拉平一层
+[1,2,[3,[4,5]]].flat(2) // [1,2,3,4,5]  参数设置拉平的层级，若不管几层都拉平为一维，则用关键字 Infinity 为参数
+``` 
+* Array.flatMap(fn(value,index,array), thisArg)  
+对原数组每个成员执行 fn，然后执行 flat 方法，只能展开一层数组
+```js
+[2, 3, 4].flatMap((x) => [x, x * 2])
+// [2,4,3,6,4,8]
+```
 
+#### js 判断一个对象是否是数组
+```js
+var a = []
+Array.isArray(a)  // ES6
+Object.prototype.toString.call(a) === '[object Array]'  // ES5中能准确判断类型的方法
+// 下边的如果用户手动设置来 var a = {__proto__: Array.prototype}，则下边方法都会返回true，所以保险方法是上边的方法
+a instanceof Array
+a.constructor === Array
+Array.prototype.isPrototypeOf(a)
+Object.getPrototypeOf(a) === Array.prototype
+```
+#### arguments 是不是数组，如果不是，怎么转为数组
+```js
+var arr = Array.prototype.slice.call(arguments);
+var arr = [].slice.call(arguments);
+var arr = Array.from(arguments);  // ES6
+```
+若ie等浏览器不支持，实现 polyfill 方法
+```js
+if(!Array.isArray) {
+    Array.isArray = function(arg) {
+        return Object.prototype.toString.call(arg) === '[object Array]'
+    }
+}
+```
+--------------
+#### 基础类型
+null、undefined、Boolean、String、Number  
+判断类型
 ```js
 Object.prototype.toString.call({})  ==== '[object Object]'
 Object.prototype.toString.call([])  ==== '[object Array]'
@@ -11,7 +151,57 @@ Object.prototype.toString.call('aaa')  ==== '[object Undefined]'
 Object.prototype.toString.call(true)  ==== '[object Boolean]'
 Object.prototype.toString.call(1)  ==== '[object Number]'
 ```
+ES6中新增了 Symbol 类型，当在使用了他人提供的对象，但是又想添加新方法，为了避免 新名字导致冲突而提出的，保证每个属性的名字都是独一无二的。要注意做为object的属性名时不能被for、Object.keys 等方法遍历到，需要使用 Object.getOwnPropertySymbols(obj) 取Symbol类型的属性。或者 Reflect.ownKeys(obj) 可以取到普通key和Symbol的key。
+```js
+Object.prototype.toString.call(Symbol()) === '[object Symbol]'
+```
+----------------
+#### 基础类型与引用类型的区别
+引用类型： Array，Object  
+存储位置：   
+* 基本类型的值直接存储在栈区，访问直接是实际的值  
+* 引用类型在栈区存储的是引用地址，实际数据是存储在堆内存中，访问的是保存的地址。  
+
+----------
+### js中的内存管理
 ----
+### instanceof 原理
+用于测试构造函数的prototype属性，是否出现在对象的原型链中的任何位置。
+```js
+function Car(mark,model,year){
+    this.mark = mark;
+    this.model = model;
+    this.year = year;
+}
+var auto = new Car('Honda','Accord',1998);
+
+console.log(auto instanceof Car);  //true
+console.log(auto instanceof Object);  //true
+```
+理解原理就是： 判断构造函数的原型对象(如Car.prototype和Object.prototype)是否在实例对象（auto）的原型链上（proto）;
+如果在对象的原型链上，就返回true，如果不在就返回false;
+```js
+function myInstanceof(left, right) {
+  let prototype = right.prototype
+  left = left.__proto__
+  while (true) {
+    if (left === null || left === undefined)
+      return false
+    if (prototype === left)
+      return true
+    left = left.__proto__
+  }
+}
+```
+--------------
+### call/apply/bind
+使用的区别
+```js
+arg.call(this, arguments1, arguments2, ...)
+arg.apply(this, [arguments1, arguments2, ...])
+arg.bind(this, arguments1, arguments2, ...)()
+```
+--------------
 ### new() 发生了什么
 * 创建一个新对象
 * 将构造函数的作用域赋值给新对象（this指向这个新对象）
@@ -43,6 +233,23 @@ console.log(p2.name)  // 小花
 console.log(p2 instanceof Person) // true
 ```
 ---------
+### async/await 捕获具体错误
+```js
+function to (promise) {
+  return promise.then(data => {
+      return [null, data]
+  }).catch(err => [err])
+}
+function asyncFn(){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(res)
+        }, 1000)
+    })
+}
+let [err, id] = await to(asyncFn())
+```
+--------------
 ### Es6的class和普通的prototype有啥区别
 * class实际上只是prototype的语法糖而已。
   * class更加贴近于面向对象的写法
@@ -53,142 +260,8 @@ console.log(p2 instanceof Person) // true
 * 操作符的写法，用class是不可能实现的
 
 ------------
-### 模块化
-将项目按照功能划分，理论上一个功能一个模块，互不影响，按需加载
-**模块化分类：**
-* CommonJS
-```
-1、一个单独的js就是一个模块
-2、每个模块都有一个单独的作用域，
-3、导出方式： exports.aa = aa; 和 module.exports = {}
-4、模块导入： require()
-```
-* AMD
-```
-1、预加载
-2、应用需要：RequireJS
-```
-* CMD
-```
-1、懒加载
-2、应用需要： SeaJS
-```
------
-### module.exports 、 exports 、 export 、 export default 、 import()
-下面主要介绍的是CommonJS和ES6中的方法  
-* 前者是值的拷贝，后者是值的引用
-```
-值拷贝的意思是一旦输出一个值，模块内的变化不会影响到这个值，
-值的引用是说只会生成一个只读索引，脚本真正运行时，在根据这个地址到被加载的那个模块中去取值
-```
-* 前者只能一个对象；后者可以对象、变量、function都可以
-* 前者是运行时加载，后者是编译时输出接口（只能在模块的顶层，不能在代码块之中，所以条件加载就不可能实现）
-```
-编译时：代码还没有提交到内存中运行起来，还在硬盘中保存，属于静态定义（编译器对代码进行语法检查等操作） 
-运行时：代码编译没有问题后，提交到内存中跑起来了，属于动态定义
-```
-#### CommonJS 规范
-node.js应用的此规范。
-* 通过<font color=red>require</font>方法来<font color=red>同步</font>加载依赖的其他模块  
-* 通过<font color=red>module.exports</font>导出需要暴露的接口  
 
-每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。
-##### module.exports
-```js
-// a.js
-let appid = '123456'
-let bar = function (id) {
-  return id
-}
-// 通过module.exports将appid与bar暴露出去
-module.exports = {
-  appid, bar
-}
 
-// 通过require引入utils
-let utils = require('./a');
-console.log(utils.appid) // 123456
-console.log(utils.bar(2)) // 2
-```
-##### exports
-可以理解为module.exports的简写。因为Node为每个模块提供一个exports变量，指向module.exports。这等同在每个模块头部，有一行 let exports = module.exports 的命令。
-<font color=red>注意：不能直接将exports变量赋值为一个值。</font>
-```js
-let appid = '123456'
-// 错误写法
-exports = {
-	appid
-}
-// 正确写法
-exports.appid = appid
-```
-#### ES6 规范
-使用 export 和 import 来导出、导入模块。其中 export 和 export default 之间也有些区别：  
-
-##### export
-<font color="red">export命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系。</font>看下边例子：
-```js
-export 1; // 报错
-
-var m = 1;
-export m; // 报错
-
-function f() {}
-export f; // 报错
-```
-因为没有提供对外的接口。
-第一种写法直接输出 1，第二种写法通过变量m，还是直接输出 1。
-1只是一个值，不是接口。 正确的应该下边这样用：  
-```js
-// a.js
-export const m = '1'
-export function getAppid() {
-  return '1'
-}
-function f() {}
-export {f};
-// ------------------------------------------------------
-// 导出的几种方式：
-import { appid , getAppid } from './utils' // 导入多个导出
-import * as utils from 'utils' // 作为命名空间导入整个模块
-console.log(appid) // 123234
-console.log(getAppid ()) // 123456
-```
-##### export default
-为模块指定默认输出。本质上，export default就是输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。  
-所以：
-* import命令可以为导出的内容指定任意名字。  
-```js
-// a.js
-export default function() {}
-
-// b.js
-import utils from './a'
-```
-* 不能跟变量声明语句  
-```js
-export default const appid = '123456'  // 报错
-```
-* 可以直接将一个值写在export default之后。  
-```js
-export default 42;
-```
-同时输入默认方法和其他接口  
-```js
-import fn3, { a, fn1} from './a';
-// let module = await import('./a'); // 支持await关键字
-```
-##### import()
-为解决es6中的 import 不能动态按需加载提出的提案。  
-import()返回一个 Promise 对象。  
-```js
-import('./dialogBox.js').then(dialogBox => {
-  dialogBox.open();
-}).catch(error => {
-  /* Error handling */
-})
-```
---------------
 ### es6 的代理
 ---------------
 ### 正则
@@ -201,208 +274,35 @@ str.replace(/\s*/g, ''); // 去除所有空格
 // 手机号
 /^[1][3,4,5,7,8][0-9]{9}$/.test(phone)
 ```
-### call/apply/bind
-使用的区别
-```js
-arg.call(this, arguments1, arguments2, ...)
-arg.apply(this, [arguments1, arguments2, ...])
-arg.bind(this, arguments1, arguments2, ...)()
-```
+
 ---------------
 ### escape 、 encodeURI 和 encodeURIComponent
 ##### escape
 简单来说，escape是对字符串(string)进行编码(而另外两种是对URL)   
 ASCII字母、数字、@*/+这几个字符不会被编码,由于js是unicode编码，中文会被编为unicode  
-<img src="/imgs/escape.png" width=200></img>
+```js
+escape('啊')  // %u554A
+unescape('%u554A') // 啊
+```
 ##### encodeURI
 encodeURI方法不会对下列字符编码  ASCII字母、数字、~!@#$&*()=:/,;?+'
 ##### encodeURIComponent
 不会对下列字符编码 ASCII字母、数字、~!*()'
+```js
+location.href
+// "https://www.baidu.com/?aa=1w12&bb=dfew"
+encodeURI(location.href)
+// "https://www.baidu.com/?aa=1w12&bb=dfew"
+encodeURIComponent(location.href)
+// "https%3A%2F%2Fwww.baidu.com%2F%3Faa%3D1w12%26bb%3Ddfew"
+```
 ##### 应用场景
 * 只是编码字符串，不和URL有半毛钱关系，那么用escape
-* 码整个URL，然后需要使用这个URL，那么用encodeURI
+* 编码整个URL，然后需要使用这个URL，那么用encodeURI
 * 当你需要编码URL中的参数的时候，那么encodeURIComponent是最好方法
 ```
 注意不要使用encodeURIComponent编码要直接使用的完整的url，
 因为编码后的字符串，浏览器不认为是一个网址
 ```
-<img src="/imgs/encode.png" width=400></img>
-
 ------------------
-### DOMContentLoaded 与 load 
-* **Load** 事件触发代表页面中的 DOM，CSS，JS，图片已经全部加载完毕。
-* **DOMContentLoaded** 事件触发代表初始的 HTML 被完全加载和解析，不需要等待 CSS，JS，图片加载。
-```js
-window.onload=function(){} // 等待所有的内容都加载完之后执行，包括图片，内容，js，css等。
-$(window).load(function (){}) // 同上，等待所有的内容都加载完之后执行
-$(function(){}) // 是等待DOM加载完之后执行，不包括图片等。
-$(document).ready(function() { // ...代码... })  // 就是 $(function(){})
-// 另外：
-// 不管是外链js还是页面中的js的window.onload都只执行最后的一个
-// $(window).load(function (){})可以有多个，而且都是顺序执行
-```
-ps：图片的加载判断
-* 1、图片的onload事件
-* 2、判断 readystatechange 加载状态
-
--------
-### 获取页面元素相对于视窗的位置
-**dom.getBoundingClientRect**
-返回这样一个对象
-```js
-{
-    width: 690,         // 元素宽度
-    height: 26,         // 元素高度
-    bottom: 220.875,    // 底边距离可视区顶部的距离
-    left: 354.5,        // 左边距离可视区左边的距离
-    right: 1044.5,      // 右边距离可视区左边的距离
-    top: 194.875,       // 顶边距离可视区顶部的距离
-    x: 354.5,           // 元素左上角的可视区x坐标
-    y: 194.875          // 元素的左上角可视区y坐标
-}
-```
---------
-### DOM 的各种宽度
-名词解释：
-* screen：屏幕。这一类取到的是关于屏幕的宽度和距离，与浏览器无关。
-* client：使用区、客户区。指的是客户区，当然是指浏览器区域。
-* offset：偏移。指的是目标甲相对目标乙的距离。
-* scroll：卷轴、卷动。指的是包含滚动条的的属性。
-* inner：内部。指的是内部部分，不含滚动条。
-* avail：可用的。可用区域，不含滚动条，易与inner混淆。
-
-常用方法：
-* 屏幕宽度：window.screen.width
-* 浏览器内宽度：window.innerWidth || document.documentElement.clientWidth
-* 元素内容宽度：element.clientWidth
-* 元素占位宽度：element.offsetWidth
-##### window.innerWidth/innerHeight
-浏览器可见区域的内宽度、高度（不含浏览器的边框，但包含滚动条）
-##### window.outerWidth/outerHeight
-浏览器外宽度（包含浏览器的边框，因各个浏览器的边框边一样，得到的值也是不一样的）
-##### window.screenLeft/screenTop
-浏览器的位移  
-* ie浏览器的内边缘距离屏幕边缘的距离。  
-* chrome浏览器的外边缘距离屏幕边缘的距离。  
-##### window.screenX/screenY
-也是 浏览器的位移 ，但是ie的包括边框等部分 
-* ie9/10浏览器的外边缘距离屏幕边缘的距离
-* chrome浏览器的外边缘距离屏幕边缘的距离
-##### window.pageXOffset/pageYOffset
-表示浏览器X轴（水平）、Y轴（垂直）滚动条的偏移距离
-##### window.scrollX/scrollY
-也是 浏览器X轴（水平）、Y轴（垂直）滚动条的偏移距离
-##### screen.width/height
-屏幕的宽度、高度
-##### screen.availWidth/availHeight
-屏幕的可用宽度、高度（通常与屏幕的宽度、高度一致）
-##### elment.clientWidth/clientHeight
-box-sizing: content-box;标准：
-document.getElementsByClassName('B')[0].clientWidth
-元素的content + padding * 2（不包括元素的滚动条宽度）即：
-* 有滚动条时：clientWidth=元素左内边距宽度+元素宽度+元素右内边距宽度-元素垂直滚动条宽度  
-* 无滚动条时：clientWidth=元素左内边距宽度+元素宽度+元素右内边距宽度
-##### element.clientLeft/clientTop
-clientLeft为左边框宽度，clientTop为上边框宽度。
-##### element.offsetWidth/offsetHeight
-元素的 content + padding * 2 + border * 2
-##### element.offsetLeft/offsetTop
-该元素相对于最近的定位祖先元素的距离
-* chrome：offsetLeft = 定位祖先左边框宽度 + 定位祖先元素左内边距宽度 + 左位移 + 左外边距宽度
-* 其他：offsetLeft=定位祖先元素左内边距宽度+左位移+左外边距宽度
-##### element.scrollWidth/scrollHeight
-* 有滚动条时： 左内边距宽度 + 内容宽度
-* 无滚动条时：左内边距宽度+宽度+右内边距宽度
-##### element.scrollLeft/scrollTop
-获得水平、垂直滚动条的距离。
-
--------------------
-### Dom操作、事件（创建、插入位置、子元素、兄弟节点、父亲节点）
-###### 创建DOM
-```js
-var divDom = document.createElement('div');
-```
-###### 添加属性
-```js
-var divId = document.createAttribute("id");
-divId.value = 'name';
-divDom.setAttributeNode(divId);
-```
-###### 添加文本
-```js
-var pText = document.createTextNode("我是文本");
-divDom.appendChild(pText);
-```
-###### 插入DOM
-```js
-// 向节点 fatherDom 添加最后一个子节点
-fatherDom.appendChild(divDom)
-// 向节点 fatherDom 所有子节点之前插入一个新的子节点
-fatherDom.insertBefore(divDom)
-// 拼接元素的字符串，可以利用父元素的innerHTML设置父元素的内容
-fatherDom.innerHTML="<p>啊啊啊</p>"
-```
-<font color=red>注意: </font> <font size="2">如果是获取的页面中存在的元素，会删除原有节点。所以 appendChild 和 insertBefore 这两个方法都可以用来从一个元素向另一个元素中移动</font> 
-
-###### 替换DOM
-替换下例中的item的内部元素
-```js
-divDom.replaceChild(newnode,oldnode)
-// 例：
-var textnode = document.createTextNode("Water");
-var item = document.getElementById("item");
-item.replaceChild(textnode, item.childNodes[0]);
-```
-
-###### 删除DOM
-如需删除某个 HTML 元素，您需要知晓该元素的父节点。
-```js
-fatherDom.removeChild(divDom);
-```
-
-###### 遍历
-```js
-node.children   // 只返回子元素节点，不支持ie低版本
-node.childNodes // 所有的子节点，包括文本节点、注释节点
-node.firstChild  // 第一个子元素
-node.lastChild // 最后一个子元素
-node.previousSibling // 相同的树层级中的上一个相邻元素，若没有返回 null
-node.nextSibling // 相同的树层级中的下一个相邻元素，若没有返回 null
-node.parentNode // node 的直接父元素
-```
-通过封装 childNodes + node.nodeType 可以实现 children 的效果：
-```js
-var nodeList = fatherDom.childNodes;
-var ary = [];
-for(var i = 0; i < nodeList.length; i++){
-  var curNode = nodeList[i];
-  if(curNode.nodeType ===1){
-    ary[ary.length] = curNode;
-  }
-}
-// nodeType 常用的取值：
-// 1: node元素
-// 2: 属性
-// 3: 元素中或属性中的文本内容
-// 8: 注释 
-```
-获取某个特定的元素，如：某个类型为 tagName 的子元素
-```js
-for(var k = 0; k < ary.length; k++){
-  var curTag = ary[k]; // ary是children返回数组或者上边例子中返回的ary
-  if (curTag.nodeName.toLowerCase() !== tagName.toLowerCase()){
-    break;
-  }
-}
-console.log(ary[k]);
-```
-###### 获取元素内容
-```js
-Dom.textContent // 只有本身及所有子元素的文本内容
-Dom.innerHTML // 包括标签和属性
-```
-总结汇总：
-<image width=600 src="/imgs/dom.png"></image>
-
------------------------------
 

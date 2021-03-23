@@ -1,3 +1,10 @@
+#### VUE 中什么时候用 computed 和 watch （提示：VUEX 中的 state 怎么修改，直接改对象么?）
+* watch: 一个数据 **影响** 多个数据。主要用来监听数据的变化，从而进行某些具体的业务操作
+* computed: 一个属性 **受** 多个属性影响，典型例子就是购物车商品结算
+```
+computed 与 method 相比，computed 有缓存，性能开销较小。
+```
+
 ### vue 组件之间通信
 1、vue 是单向数据流，子元素中不能直接修改父元素数据
 2、@sonFn="changeFather" 在vue内实际是给元素绑定了一个属性，即key为 sonFn ，值为 changeFather ，然后在子组件内部用 this.$on('eventname', fn) 方法挂载到自己的实例上，此例则为 this.$on('sonFn', changeFather)
@@ -193,20 +200,67 @@ this.$nextTick(() => {
 
 ### vue 自定义指令
 ```js
-
+<input v-focus>
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+// 或者
+export default {
+    directive: {
+        focus: {
+            bind(){
+                // 只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置
+            },
+            inserted(el) {
+                // 被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)
+                el.focus()
+            },
+            update() {
+                // 所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前
+            },
+            componentUpdated() {
+                // 指令所在组件的 VNode 及其子 VNode 全部更新后调用。
+            },
+            unbind(){
+                // 只调用一次，指令与元素解绑时调用
+            }
+        }
+    }
+}
 ```
 https://cn.vuejs.org/v2/guide/custom-directive.html
 
+### vue 中 data 什么时候可以直接使用对象，不用写成 function 形式
+```
+组件复用时所有组件实例都会共享 data，
+如果 data 是对象的话，就会造成一个组件修改 data 以后会影响到其他所有组件，
+所以需要将 data 写成函数，每次用到就调用一次函数获得新的数据
+```
 ### 单页面权限管理
+https://blog.csdn.net/weixin_30776863/article/details/95712286  
 权限管理一般需要控制的有： 是否已登录、 相应页面访问的权限、 页面内按钮的操作权限
 ```js
 // 1、是否已登录
 // 在router.js 中使用全局的路由卫士，
+// to: 要跳转到的路径
+// from： 从哪个路径来的
+// next： 执行下一步
 router.beforeEach((to, from, next) => {
   // 判断是否有已登录的token存cookie，
   // 每次路由解析前根据token请求用户数据来判断token是否已过期
   // 若没有token 或者 请求数据的接口返回token 过期，则跳登录
   // 然后 next();
+  if (!store.state.UserToken) {
+    if (to.matched.length > 0 && !to.matched.some(record => record.meta.requiresAuth)) {
+        next()
+    } else {
+        next({ path: '/login' })
+    }
+  } 
 })
 // 2、菜单权限
 // 动态插入设置router
@@ -253,7 +307,7 @@ Vue.use(plugin, { someOption: true })
 <plugin></plugin>
 ```
 
-### vue router
+### vue router 原理，怎么监听 URL 变化然后触发切换组件的。
 http://caibaojian.com/interview-map/frontend/vue.html#vuerouter-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90
 ### 单页面进入判断登录
 公用入口index.js中判断是否已登录，可以是根据cookie来判断
@@ -267,20 +321,42 @@ const store = new Vuex.Store({
   state: {
     count: 0
   },
+  getters: {
+    // 获取state中的参数
+    // 调用方式 store.getters.getcount
+    getcount: (state) => {
+      return state.count;
+    },
+    // 通过 return 一个 function 的方式，来传递参数
+    getTodoById: (state) => {
+        return (id) => {
+            return state.todos.find(todo => todo.id === id);
+        }
+    }
+  },
   mutations: {
-    increment (state) {
-      state.count++
+    // 同步方法修改state中参数
+    // 调用方式 store.commit('increment')
+    increment (state, value) {
+      state.count = value
+    }
+  },
+  actions: {
+    // 异步修改state中的参数
+    // 调用方式 store.dispatch('increment')
+    increment (context) {
+      context.commit('increment')
     }
   }
 })
-
-
-// 通过 store.state 来获取状态对象，以及通过 store.commit 方法触发状态变更
-store.commit('increment')
-console.log(store.state.count) // -> 1
 ```
-https://vuex.vuejs.org/zh/guide/
+Vuex 在 vue 中用来做状态管理，它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  
+当项目比较大，多个组件的数据通信和状态管理就会难维护，而Vuex 就是来解决这个问题的。  
+他将状态管理单独拎出来，统一的方式处理，后期维护简单清晰。
 ### NextTick 原理分析
 https://qiaoshi123.github.io/harvester-offer/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93/21-Vue%20%E5%B8%B8%E8%80%83%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9.htm  
 http://caibaojian.com/interview-map/frontend/vue.html#nexttick-%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90   
-
+### keep-alive 实现原理
+### 针对 vue-cli 提供的 webpack 模板有什么改进，分别解决了什么问题
+```js
+```
