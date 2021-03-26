@@ -1,5 +1,5 @@
+### prototype
 https://juejin.im/post/58f94c9bb123db411953691b
-
 #### 先了解一下函数的三种角色：
 * 普通函数
 * 类
@@ -115,4 +115,62 @@ function son () {
 var aaa = new son();
 aaa.colors.push('black') // ['red', 'blue', 'black']
 var bbb = new son();    // ['red', 'blue']
+```
+### 原型链
+https://juejin.im/post/58f94c9bb123db411953691b
+### 继承及各种继承的优缺点
+https://blog.csdn.net/xuqinggangsls/article/details/51490390  
+原型链继承的缺点 => 可以 Object.create() 继承干净的原型链    
+继承主要依靠原型链来实现的  
+https://juejin.im/post/58f94c9bb123db411953691b  
+### 闭包理解、实现、应用场景
+闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
+#### 闭包的特性：
+1.函数内再嵌套函数  
+2.内部函数可以引用外层的参数和变量  
+3.参数和变量不会被垃圾回收机制回收   
+```js
+function f1(){
+    var n=999;
+    nAdd=function(){n+=1}
+    function f2(){
+        console.log(n);
+    }
+    return f2;
+}
+var result=f1();
+result(); 
+# 999
+nAdd();
+result();  
+# 1000
+
+function createFunctions(){
+    var result=new Array();
+    for (var i=0;i<5;i++){
+        result[i]=function(){
+        return i;
+        };
+    }
+    return result;
+}
+var aaa=createFunctions();
+console.log(aaa); 
+# [[Function], [Function], [Function], [Function], [Function] ]
+console.log(aaa[1]());   # 5    
+# 每个数组的函数元素都返回5，因为都引用同一个变量i，i的值是5
+# 使用闭包后能取到预期i值
+function createFunction2(){
+    var result2=new Array();
+    for (var j=0;j<5;j++){
+        result2[j]=function(num){
+            return function (){
+            return num;
+            };
+        }(j);
+    }
+    return result2;
+}
+var bbb=createFunction2();
+console.log(bbb[1]());  # 1   
 ```
