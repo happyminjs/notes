@@ -119,21 +119,33 @@ Promise.prototype.then = function(onFulfiled,onRjected){
     }
     return promise2;
 }
-Promise.all = function(promises){
+const isPromise =function (value) {
+    if ((typeof value === 'object' && value !== null) || typeof value === 'function') {
+        if (typeof value.then === 'function') {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
+Promise.all = function(promises.length){
     // promises 是一个promise的数组
     return new Promise(function(resolve,reject){
+        let arr = []; // arr是最终返回值的结果
+        let indexi = 0; // 设置成功的个数，防止后边的先返回了，设置了arr 下标后，arr长度会变最大的；
         for(let i = 0;i < promises.length; i ++){
-            let arr = []; // arr是最终返回值的结果
-            let indexi = 0;
-            function processData(index,y) {
-                arr[index] = y;
-                if(++indexi === promises.length){
-                    resolve(arr);
-                }
+            let current = promises[i];
+            if (isPromise(current){
+                current.then((data) => {
+                    indexi++;
+                    arr[i] = data;
+                    if (indexi == promises.length){
+                        resolve(arr);
+                    }
+                }, reject)
+            } else {
+                arr[i] = current;
             }
-            promises[i].then(function(y){
-                processData(i,y);
-            },reject)
         }
     })
 }
@@ -154,5 +166,13 @@ Promise.reject = function(reason){
     return new Promise(function(resolve,reject){
         resolve(reason);
     })
+}
+Promise.resolve.finally = function (cb) {
+     return p.then(
+         data => Promise.resolve(cb()).then(() => data),
+         err => Promise.resolve(cb()).then(() => {
+             throw err
+         })
+     )
 }
 module.exports = Promise;
