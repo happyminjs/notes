@@ -133,7 +133,7 @@ let p2 = promise1.then(res => {
 p2.then(res => {
   console.log('promise222', res)
 },(err) => {
-
+  
 })
 
 // ------------------ promise 链式调用规则 ------------------ 
