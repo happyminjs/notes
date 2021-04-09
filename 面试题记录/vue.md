@@ -1,7 +1,135 @@
-### vue 中  computed 的特点
+
+### vue响应式原理
+1、Vue 主要分为了两大部分，一部分是 compile（模板编译），一部分是observe（数据劫持）   
+2、在模板编译时，碰到模板中的 {{}} 或者 v- 会进行依赖收集，new Watcher    
+3、在 observe 使用 Object.defineProperty 将属性进行劫持，数组则是通过重写数组方法来实现的   
+```
+默认 Vue 初始化数据时，会给data中的属性使用 Object.defineProperty 重新定义所有属性，
+当页面取到相应属性时（即 defineProperty 的 get 属性方法），
+会进行依赖收集（收集当前组件的watcher，addSub）；
+如果属性变化（即 defineProperty 的 set 属性方法）,
+会执行 notify 通知相关依赖进行更新操作。  
+```
+```js
+class Dep{
+  constructor(){
+    this.subs = []
+  }
+  addSub(sub){
+    this.subs.push(sub)
+  }
+  notify(){
+    this.subs.forEach(sub=>{
+      sub.update()
+    })
+  }
+}
+Dep.target = null  // 全局属性，通过此属性配置 Watcher
+```
+```js
+class Watcher {
+  constructor(obj, key, cb){
+    // 将 Dep.target 指向自己，然后触发属性的getter添加监听，
+    // 最后将 Dep.target 置空
+    Dep.target = this
+    this.cb = cb
+    this.obj = obj
+    this.key = key
+    this.value = obj[key]
+    Dep.target = null
+  }
+  update(){
+    this.value = this.obj[this.key]
+    this.cb(this.value)
+  }
+}
+```
+```js
+function observe(obj) {
+  if (!obj || typeof obj !== 'object') {
+    return
+  }
+  Object.keys(obj).forEach(key => {
+    defineReactive(obj, key, obj[key])
+  })
+}
+function defineReactive(obj, key, val) {
+  // 递归子属性
+  observe(val)
+  let dp = new Dep()
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get: function reactiveGetter() {
+      console.log('get value')
+      // 将 Watcher 添加到订阅
+      if (Dep.target) {
+        dp.addSub(Dep.target)
+      }
+      return val
+    },
+    set: function reactiveSetter(newVal) {
+      console.log('change value')
+      val = newVal
+      // 执行 watcher 的 update 方法
+      dp.notify()
+    }
+  })
+}
+```
+```js
+var a = {aa: '123'}
+observe(a)
+new Watcher(a, 'aa', function(val){console.log('aaaaa', val)})
+a.aa = '456'
+// 输出 change value 、 aaaaa 342 
+```
+### Vue 中 watch 原理
+* 简述响应式
+```
+Vue 会把数据设置成响应式，即通过 Object.defineProperty，设置 get 和 set
+当数据被读取时，会触发 get，然后收集到读取他的东西，保存到依赖收集器中
+当数据被改变，会触发 set，然后通知读取他的东西进行更新
+```
+* 监听的数据改变时
+```
+在初始化时，watch 会读取一遍数据的值，此时会收集 watch 的属性的watcher
+其中设置的回调函数handler，会放到 watcher 的回调函数中
+数据改变时，会通知 watch 的 watcher 进行更新了，于是就会调用 handler 了
+```
+* 设置 immediate 时，watch 如何工作的
+```
+设置了 immediate 属性后，这个回调方法会立即执行一次
+只需要在 initWatch 的时候，读取了监听的数据的值，便立即调用一次 handler 即可
+```
+* 设置了 deep 时，watch 如何工作
+```
+在读取data属性时， 如果设置了 deep，而且值是一个对象，则会递归遍历这个对象，
+把内部属性都读取一遍，于是属性和他的对象值内的每个属性都会收集到 watch 的 watcher。
+```
+
+### vue 中  computed 的原理
+* 特点
+```
+1、computed 默认不执行，只有在使用时才会执行，即调用 object.defineProperty 的 get 方法时才执行
+2、computed 是有缓存的，多次取值如果依赖的值没有变化， 就不会重新执行 
+3、依赖的值变化了，才需要重新执行
+```
 默认 computed 也是一个 watcher，是具备缓存的，只有当依赖的属性发生变化时才会更新视图。   
 watch：是一个影响多个  
 computed： 是多个影响一个
+* computed 是响应式的
+```
+
+```
+* computed 如何控制缓存
+```
+
+```
+* computed 是响应式的
+```
+
+```
 ### vue插件
 ```html
 // 开发插件
@@ -286,7 +414,6 @@ router.addRoutes(routerArr)
 // 在路由的meta属性传入参数，这样在页面的路由守卫内能取到meta属性来判断权限
 ```
 
-### vue实现思想（数据双向绑定， vue.component）
 ### vue 编译原理
 * 1、将 template 模板转换成 ast 语法树 - parseHtml  
 ```
@@ -342,90 +469,7 @@ return render
 https://qiaoshi123.github.io/harvester-offer/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93/21-Vue%20%E5%B8%B8%E8%80%83%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9.htm
 ### render函数原理
 
-### vue响应式原理
-1、在模板编译时，碰到模板中的 {{}} 或者 v- 会进行依赖收集，new Watcher    
-2、在 observe 使用 Object.defineProperty 将属性进行劫持，数组则是通过重写数组方法来实现的   
-```
-默认 Vue 初始化数据时，会给data中的属性使用 Object.defineProperty 重新定义所有属性，
-当页面取到相应属性时（即 defineProperty 的 get 属性方法），
-会进行依赖收集（收集当前组件的watcher）；
-如果属性变化（即 defineProperty 的 set 属性方法）,
-会执行 notify 通知相关依赖进行更新操作。  
-```
-```js
-class Dep{
-  constructor(){
-    this.subs = []
-  }
-  addSub(sub){
-    this.subs.push(sub)
-  }
-  notify(){
-    this.subs.forEach(sub=>{
-      sub.update()
-    })
-  }
-}
-Dep.target = null  // 全局属性，通过此属性配置 Watcher
-```
-```js
-class Watcher {
-  constructor(obj, key, cb){
-    // 将 Dep.target 指向自己，然后触发属性的getter添加监听，
-    // 最后将 Dep.target 置空
-    Dep.target = this
-    this.cb = cb
-    this.obj = obj
-    this.key = key
-    this.value = obj[key]
-    Dep.target = null
-  }
-  update(){
-    this.value = this.obj[this.key]
-    this.cb(this.value)
-  }
-}
-```
-```js
-function observe(obj) {
-  if (!obj || typeof obj !== 'object') {
-    return
-  }
-  Object.keys(obj).forEach(key => {
-    defineReactive(obj, key, obj[key])
-  })
-}
-function defineReactive(obj, key, val) {
-  // 递归子属性
-  observe(val)
-  let dp = new Dep()
-  Object.defineProperty(obj, key, {
-    enumerable: true,
-    configurable: true,
-    get: function reactiveGetter() {
-      console.log('get value')
-      // 将 Watcher 添加到订阅
-      if (Dep.target) {
-        dp.addSub(Dep.target)
-      }
-      return val
-    },
-    set: function reactiveSetter(newVal) {
-      console.log('change value')
-      val = newVal
-      // 执行 watcher 的 update 方法
-      dp.notify()
-    }
-  })
-}
-```
-```js
-var a = {aa: '123'}
-observe(a)
-new Watcher(a, 'aa', function(val){console.log('aaaaa', val)})
-a.aa = '456'
-// 输出 change value 、 aaaaa 342 
-```
+### vue实现思想（数据双向绑定， vue.component）
 ### 组件中的 data 为什么是一个函数
 同一个组件被复用多次，会创建多个实例，这些实例都是同一个构造函数，如果data是一个对象的话，则所有实例都共享了同一个对象。    
 所以为了保证组件的数据独立性，data 函数返回一个对象，可以保证返回的是一个新的对象，不会公用。
@@ -616,7 +660,11 @@ export default new Vuex.Store({
 * 4、将 Watcher 放入到 queueWatcher 队列中，每个Watcher都有一个id，若id相同，则不重复放入  
 * 5、nextTick(flushSchedulerQueue) 异步清空 Watch 队列  
 ### NextTick 原理分析
-**用处：**  要在DOM更新后执行的方法  
+**用处：**  要在DOM更新后执行的方法   
+```
+在 created 和 mounted 中，如果需要操作渲染后的视图，也需要使用 nextTick 方法。 
+因为不能保证所有的子组件都全部渲染
+```
 **原理：** 主要是使用了 宏任务 和 微任务，定义了一个异步方法（Promise，mutationObserver，setImmediate，setTimeout）。   
 **vue多次更新数据会最后批处理更新：** 因为事件环的执行过程，可大概看下边代码   
 ```js
