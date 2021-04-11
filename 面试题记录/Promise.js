@@ -112,6 +112,41 @@ class Promise {
     return promise2; // 为了可以链式调用 then，所以需要返回一个新的 promise
   }
 }
+Promise.all = function(promises) {
+  let len = promises.length
+  let arr = new Array(len);
+  let indexI = 0;
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < len; i++) {
+      promises[i].then(res => {
+        arr[i] = res;
+        indexI++;
+        if (indexI === len) {
+          resolve(arr)
+        }
+      }, err => {
+        reject(err)
+      })
+    }
+  })
+}
+Promise.race = function(promises) {
+  return new Promise((resolve, reject) => {
+    for(let i = 0, iLen = promises.length; i < iLen; i++) {
+      promises[i].then(resolve, reject)
+    }
+  })
+}
+Promise.resolve = function(value){
+  return new Promise(function(resolve,reject){
+      resolve(value);
+  })
+}
+Promise.reject = function(reason){
+  return new Promise(function(resolve,reject){
+      resolve(reason);
+  })
+}
 
 let promise1 = new Promise((resolve, reject) => {
   // resolve(111)
@@ -135,6 +170,28 @@ p2.then(res => {
 },(err) => {
   
 })
+
+// ------------------ promise 超时中断 ------------------ 
+function wrap(p1) {
+  let abort
+  let p2 = new Promise((resolve, reject) => {
+    abort = function(){
+      reject('超时失败')
+    }
+  })
+  let p = Promise.race([p1, p2])
+  p.abort = abort
+  return p
+}
+// 使用
+let p = wrap(new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success')
+  }, 3000)
+}))
+p.then((res) => {}, (err) => {})
+p.abort();
+
 
 // ------------------ promise 链式调用规则 ------------------ 
 // 如果 return 的是普通值，则传递到下一个 then 的成功中； 
