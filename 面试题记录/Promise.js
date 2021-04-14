@@ -192,6 +192,25 @@ let p = wrap(new Promise((resolve, reject) => {
 p.then((res) => {}, (err) => {})
 p.abort();
 
+//  ------------------ 不管成功失败，都返回所有的请求 ------------------
+Promise.allBack = function(promises) {
+  let len = promises.length
+  let arr = new Array(len);
+  let indexI = 0;
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < len; i++) {
+      promises[i].then(res => {
+        arr[i] = res;
+        indexI++;
+        if (indexI === len) {
+          resolve(arr)
+        }
+      }, err => {
+        reject(err)
+      })
+    }
+  })
+}
 
 // ------------------ promise 链式调用规则 ------------------ 
 // 如果 return 的是普通值，则传递到下一个 then 的成功中； 
