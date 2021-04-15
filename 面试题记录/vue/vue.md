@@ -5,6 +5,10 @@ https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzUxNjQ1NjMwNw==&action=getalbum&a
 3、在 observe 使用 Object.defineProperty 将属性进行劫持，数组则是通过重写数组方法来实现的   
 ```
 默认 Vue 初始化数据时，会给data中的属性使用 Object.defineProperty 重新定义所有属性，
+如果是对象的话，除了拦截当前属性本身，还会递归深度拦截；
+如果是数组的话，会遍历数组，内部是对象的，也会进行拦截；
+同时，数组会 aop 切片方式，重写数组原型方法；这样在调用数组方法才能监听到数组的变化；
+
 当页面取到相应属性时（即 defineProperty 的 get 属性方法），
 会进行依赖收集（收集当前组件的watcher，addSub）；
 如果属性变化（即 defineProperty 的 set 属性方法）,
