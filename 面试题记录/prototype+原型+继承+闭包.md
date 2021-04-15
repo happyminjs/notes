@@ -1,3 +1,32 @@
+### this 问题
+```js
+var  name = 'window';
+var  obj ={
+    name:'obj',
+    normal(){
+        console.log('aaa', this.name)
+        return ()=>{ // 此处返回箭头函数，this 是不能改变的
+            console.log(this.name);
+        };
+    },
+    arrow:()=>{
+        console.log('bbb', this.name)
+        return function(){
+            console.log(this.name);
+        };
+    },
+};
+var obj1={name:'obj1'};
+obj.normal.call(obj1)(); // aaa obj1     obj1
+obj.arrow.call(obj1)(); // bbb window    window
+obj.normal().call(obj1) // aaa obj       obj
+obj.arrow().call(obj1) // bbb window     obj1
+// 前两个就是直接两个 function.call， 
+// 第一个就是call直接修改context为obj1
+// 第二个因为obj.arrow是箭头函数，不能修改this，this只能是外层的，所以是window
+// 第三个 obj.normal()输出 aaa obj，返回的是箭头函数，不能修改this，所以call之后依然是obj
+// 第四个obj.arrow()箭头函数，所以输出的是 bbb window，返回的是个普通函数，所以call后是obj1
+```
 ### prototype
 https://juejin.im/post/58f94c9bb123db411953691b
 #### 先了解一下函数的三种角色：
