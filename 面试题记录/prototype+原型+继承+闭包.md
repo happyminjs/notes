@@ -119,8 +119,60 @@ var bbb = new son();    // ['red', 'blue']
 ### 原型链
 https://juejin.im/post/58f94c9bb123db411953691b
 ### 继承及各种继承的优缺点
-https://blog.csdn.net/xuqinggangsls/article/details/51490390  
+```js
+// 父类
+function Father(name){
+  this.name = name
+  this.getName = function(){
+    return this.name
+  }
+}
+Father.prototype.getAge = function(){
+  return this.name + 'sss'
+}
+```
+* 原型链继承   
+就是让子实例的原型等于父类的实例      
+特点：可以继承所有属性    
+缺点：无法向父类构造函数传参； 继承单一； 所有新实例都共享父类实例。    
 原型链继承的缺点 => 可以 Object.create() 继承干净的原型链    
+```js
+function Son(){
+  this.name = 'son1'
+}
+Son.prototype = new Father() // 重点
+var son1 = new Son();
+```
+* 构造函数继承   
+重点： 用 call 和 apply 将父类构造函数引入子类函数（在子类函数中做了父类函数的自执行（复制））   
+特点： 只继承了父类构造函数的属性，没有继承父类原型的属性;  可以继承多个构造函数属性（即call多个）； 在子实例中可以向父实例传参；   
+缺点：只能继承父类构造函数的属性(即只有name、getName，没有getAge)； 无法实现构造函数的复用；  每个实例都有父类构造函数的副本   
+```js
+function Son2(){
+  Father.call(this, 'son2') // 重点
+  this.age = 12;
+}
+var son2 = new Son2();
+console.log(son2.name) // son2
+console.log(son2.age) // 12
+son2 instanceof Father // false
+```
+* 原型式继承   
+重点: 用一个函数包装一个对象，然后返回这个函数的调用，这个函数就变成了可以随意增添属性的实例或对象。   
+特点： 类似于复制一个对象，用函数来包装   
+缺点： 所有实例都会继承原型上的属性； 无法实现复用。   
+```js
+function content(obj) {
+  function F(){}
+  F.prototype = obj; // 继承了传入的参数
+  return new F(); // 返回函数对象
+}
+var father = new Father('ssss'); 
+var sup1 = content(father);
+
+```
+https://blog.csdn.net/xuqinggangsls/article/details/51490390  
+  
 继承主要依靠原型链来实现的  
 https://juejin.im/post/58f94c9bb123db411953691b  
 ### 闭包理解、实现、应用场景
