@@ -165,35 +165,7 @@ Object.prototype.toString.call(Symbol()) === '[object Symbol]'
 ----------
 ### js中的内存管理
 ----
-### instanceof 原理
-用于测试构造函数的prototype属性，是否出现在对象的原型链中的任何位置。
-```js
-function Car(mark,model,year){
-    this.mark = mark;
-    this.model = model;
-    this.year = year;
-}
-var auto = new Car('Honda','Accord',1998);
 
-console.log(auto instanceof Car);  //true
-console.log(auto instanceof Object);  //true
-```
-理解原理就是： 判断构造函数的原型对象(如Car.prototype和Object.prototype)是否在实例对象（auto）的原型链上（proto）;
-如果在对象的原型链上，就返回true，如果不在就返回false;
-```js
-function myInstanceof(left, right) {
-  let prototype = right.prototype
-  left = left.__proto__
-  while (true) {
-    if (left === null || left === undefined)
-      return false
-    if (prototype === left)
-      return true
-    left = left.__proto__
-  }
-}
-```
---------------
 ### call/apply/bind
 使用的区别
 ```js
@@ -201,37 +173,7 @@ arg.call(this, arguments1, arguments2, ...)
 arg.apply(this, [arguments1, arguments2, ...])
 arg.bind(this, arguments1, arguments2, ...)()
 ```
---------------
-### new() 发生了什么
-* 创建一个新对象
-* 将构造函数的作用域赋值给新对象（this指向这个新对象）
-* 执行构造函数中的代码（为这个新对象添加属性）
-* 返回新对象
 
-**用js实现new方法：**
-```js
-function _new(fn, args){
-  // 1、创建一个新对象
-  let target = {};
-  let [constructor, ...args] = [...arguments];  // 第一个参数是构造函数
-  // 2、原型链连接
-  target.__proto__ = constructor.prototype;
-  // 3、将构造函数的属性和方法添加到这个新的空对象上。
-  let result = constructor.apply(target, args);
-  if(result && (typeof result == "object" || typeof result == "function")){
-    // 如果构造函数返回的结果是一个对象，就返回这个对象
-    return result
-  }
-  // 如果构造函数返回的不是一个对象，就返回创建的新对象。
-  return target
-}
-function Person(name){
-  this.name = name
-}
-let p2 = _new(Person, "小花")
-console.log(p2.name)  // 小花
-console.log(p2 instanceof Person) // true
-```
 ---------
 ### async/await 捕获具体错误
 ```js
