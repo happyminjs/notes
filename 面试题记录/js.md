@@ -1,4 +1,5 @@
 ### 数组方法汇总
+https://juejin.im/post/5902d56e1b69e60058c634d6
 #### 数组遍历方法
 * arr.forEach(fn(value, index, array), thisArg)  
 没有返回值，若在fn中对 array 进行修改，则 arr 会改变

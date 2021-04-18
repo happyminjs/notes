@@ -1,4 +1,16 @@
 https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzUxNjQ1NjMwNw==&action=getalbum&album_id=1619085427984957440&scene=173&from_msgid=2247483922&from_itemidx=1&count=3&nolastread=1#wechat_redirect
+### 生命周期
+* beforeCreate，实例创建前，不可操作data,还没有进行劫持。可用于混入一些全局方法、全局组件    
+* created，实例创建完成，可操作data，不可操作dom。可发送ajax   
+* beforeMount,挂载前，不可操作dom    
+* mounted,挂载完成，可发送ajax ,可操控最新的真实dom    
+* beforeUpdate,更新前   
+* updated，更新后，   
+* beforeDestroy，组件销毁前，可用于清除$on绑定的事件、定时器、scroll事件等   
+* destroyed销毁后  
+### 组件中的data为什么是一个函数
+同一个组件被复用多次，会创建多个实例，这些实例用的是同一个构造函数。如果data是一个对象的话，那么就会造成多个实例共享同一个对象，同一个内存地址。
+data如果是函数的话，函数执行每次返回的都是一个全新的对象。
 ### vue响应式原理
 1、Vue 主要分为了两大部分，一部分是 compile（模板编译），一部分是observe（数据劫持）   
 2、在模板编译时，碰到模板中的 {{}} 或者 v- 会进行依赖收集，new Watcher    
@@ -9,8 +21,7 @@ https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzUxNjQ1NjMwNw==&action=getalbum&a
 如果是数组的话，会遍历数组，内部是对象的，也会进行拦截；
 同时，数组会 aop 切片方式，重写数组原型方法；这样在调用数组方法才能监听到数组的变化；
 
-当页面取到相应属性时（即 defineProperty 的 get 属性方法），
-会进行依赖收集（收集当前组件的watcher，addSub）；
+在get中会收集依赖 watcher 到 dep，除了收集当前属性本身的，还包括递归属性是引用类型的
 如果属性变化（即 defineProperty 的 set 属性方法）,
 会执行 notify 通知相关依赖进行更新操作。  
 ```
@@ -130,7 +141,7 @@ Vue 会把数据设置成响应式，即通过 Object.defineProperty，设置 ge
 ```
 首先知道 computed 计算后，会将计算结果保存到一个变量中，再次读取时就直接返回这个变量
 当 data 更新时，就会重新赋值这个变量
-其中控制缓存就是通过 watcher 的一个属性，即 脏数据标志位 dirty 属性， 
+其中控制缓存就是创建一个 watcher，有个 dirty 属性，即 脏数据标志位， 
 此属性默认是 true，所以第一次读取时会直接计算一次
 当 dirty 为 true 时，读取 computed 会重新计算
 当 dirty 为 false 时，读取 computed 会使用缓存
@@ -151,9 +162,8 @@ data C 变化后，
 ```
 watch：是一个影响多个  
 computed： 是多个影响一个
-
 ### vue 编译原理
-* 1、将 template 模板转换成 ast 语法树 - parseHtml  
+* 1、将 template 模板转换成 ast 语法树(描述html结构的语法树) - parseHtml 方法，通过正则和递归，不断解析 template   
 ```
 解析 template 模板，
 parseStartTag：
@@ -194,7 +204,7 @@ parseStartTag：
 }
 ```
 * 2、优化树  
-* 3、将ast生成render函数代码
+* 3、ast 通过字符串拼接的方式生成render函数代码
 ```js
 // 字符串拼接的形式拼接成 render 函数的字符串 
 let render = new Function(`with(this){return _c('div',{attrs:{id:idName}},[_c('p',[_v('hello')])])}`)
@@ -203,8 +213,24 @@ return render
 // _v 是生成 text 的方法
 // new Function + with  是模板编译的核心方法
 ```
-* 4、生成的 虚拟dom
-https://qiaoshi123.github.io/harvester-offer/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93/21-Vue%20%E5%B8%B8%E8%80%83%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9.htm
+* 4、 _render 方法，调用 render.call(vm)函数，提供 _c,_v,_s方法，最后返回虚拟节点vnode
+```
+ast:
+{
+    tag:'div',
+    type:1,
+    children:[{},{}],
+    attrs:[{name:1}],
+    parent:xxx
+}
+vnode:{
+    tag:'div',
+    key:'',
+    children:[],
+    data:{name:1}，
+    text:'123'
+}
+```
 ### render函数原理
 
 ### vue 自定义指令
@@ -330,13 +356,17 @@ Vue.prototype._init = function (options) {
 * 3、sub[i].update() 依次调用 Watcher 的 update  
 * 4、将 Watcher 放入到 queueWatcher 队列中，每个Watcher都有一个id，若id相同，则不重复放入  
 * 5、nextTick(flushSchedulerQueue) 异步清空 Watch 队列  
+如果我们代码同时改变多个值，那么队列中只会放入一个 watcher，并且异步调用。
 ### NextTick 原理分析
 **用处：**  要在DOM更新后执行的方法   
 ```
 在 created 和 mounted 中，如果需要操作渲染后的视图，也需要使用 nextTick 方法。 
-因为不能保证所有的子组件都全部渲染
+因为不能保证所有的子组件都全部渲染 
 ```
-**原理：** 主要是使用了 宏任务 和 微任务，定义了一个异步方法（Promise，mutationObserver，setImmediate，setTimeout）。   
+**原理：** vue内部创建了一个 callback  队列，调用nextTick时，将回调放到队列中，并且挂起一个异步任务，依次执行队列中的方法。   
+如果再次调用 nextTick，只负责往队列增加 callback，不会再次挂起一个异步任务。   
+当callback队列执行完毕，将异步任务挂起初始状态化，清空队列。    
+异步任务主要是使用了 宏任务 和 微任务，异步方法优先级是（Promise，mutationObserver，setImmediate，setTimeout）。   
 **vue多次更新数据会最后批处理更新：** 因为事件环的执行过程，可大概看下边代码   
 ```js
 let cbs = [];
@@ -361,10 +391,6 @@ nextTick(render)
 nextTick(render);
 console.log('sync...')
 ```
-
-https://qiaoshi123.github.io/harvester-offer/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E4%B9%8B%E9%81%93/21-Vue%20%E5%B8%B8%E8%80%83%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9.htm  
-http://caibaojian.com/interview-map/frontend/vue.html#nexttick-%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90   
-
 ### v-for 和 v-if 为什么不能连用 
 就是这个样子使用  \<div v-if="false" v-for="i in 3">hello\</div>   
 ```
@@ -372,4 +398,19 @@ http://caibaojian.com/interview-map/frontend/vue.html#nexttick-%E5%8E%9F%E7%90%8
 所以连用的时候会先循环，生成列表后，
 再在每个元素上添加if选项，造成性能问题。
 ```
+### v-if 和 v-show 的区别
+ v-if 会在生成的render方法中，变成三元运算符，决定是否_c元素
+ v-show 内部是指令实现的，操作display样式
+
 ### css的局部作用域(已 vue 的 scoped 属性为例)
+
+### vue 中的性能优化 
+* 不要将所有数据放到data,data中的数据都会增加getter和setter,会收集watcher.data层级也不要过深，需要递归拦截   
+* vue 在v-for给每个元素绑定事件最好用事件代理，节约性能  
+* spa应用的话，可以采用keep-alive缓存组件   
+* 拆分组件，提高复用性和可维护，减少不必要的渲染   
+* v-if 内部不会去创建dom渲染dom,节约性能    
+* key保持唯一性，默认vue会用就地复用策略。   
+* 合理使用路由懒加载、异步组件  
+* 尽量采用runtime运行时版本  
+* 防抖，节流  

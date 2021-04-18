@@ -1,3 +1,7 @@
+### 描述组件渲染和更新过程
+* 渲染组件是，会通过 vue.extend 方法构建组件的构造函数，进行实例化，  
+最终内部调用 $mount 进行挂载。  
+* 更新组件是会进行 patchVnode 流程，对比vnode,进行更新  
 ### vue插件
 ```html
 // 开发插件
@@ -108,6 +112,15 @@ export default {
 1、vue 是单向数据流，子元素中不能直接修改父元素数据  
 2、@sonFn="changeFather" 在vue内实际是给元素绑定了一个属性，即key为 sonFn ，值为 changeFather ，然后在子组件内部用 this.\$on('eventname', fn) 方法挂载到自己的实例上，此例则为 this.$on('sonFn', changeFather)  
 以下都是按组件 ： parent/son1/son2/grandson1/grandson2
+```
+1、父=>子：props,
+子=>父: @emit $on 发布订阅
+2、$parent $children 组件在初始化时会初始化这样的一个父子关系，我们可以根据这俩属性自己扩展 $dispatch('组件名','事件名') $boardCast('组件名','事件名')，配合$on方法进行通讯
+3、父组件 provide:{aa:xx} 后代组件:inject:['aa']
+4、ref可以获取组件实例调用组件实例的方法（给组件就是获取组件实例，给dom就是获取dom元素） ref='toast' this.$refs.toast.show()
+5、eventBus Vue.prototype.$bus = new Vue; this.$bus.$on(),this.$bus.$emit()
+6、vuex 全局状态管理
+```
 * 父子组件**直接通信**: 直接通过props 传递数据， $emit 触发事件
 ```html
 <!-- 在 parent.vue 中 -->
@@ -170,6 +183,10 @@ sonchange() {
 <!-- 但是有缺陷，子组件中收到的参数就只能叫 value了 -->
 <son1 v-model="param1"></son1>
 <!-- 实际是 v-model 和 value 的简写语法糖 <input v-model="xxx" value="xxx"> -->
+<el-checkbox v-model='check'></el-checkbox>
+<!-- => -->
+<el-checkbox :value='check' @input='handleInput'></el-checkbox>
+<!-- 组件内部可以 $emit('input') -->
 ```
 * **多层级直接**通信: 主要是使用 \$parent, $children
 ```html
