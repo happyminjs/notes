@@ -294,13 +294,17 @@ margin 负值一般用来调整位置，例如居中的时候设置
 ##### box-sizing
 会将 width 和的计算包括上 padding 和 border
 #### BFC理解，作用，及触发条件
-HTML文档的 块格式化上下文 (Block Formatting Context)
+就是块级格式化，就是说在这个区域内，只有 block 块 box 参与，规定内部如何布局，与外部无关。
+##### BFC的布局规则
+* 内部的box的垂直方向距离由margin决定，相邻box的margin会重叠，取值大的
+* 就是一个隔离的独立容器，容器内的不会影响外部的，反之相同
+* 计算高度时，浮动元素也参与计算
+* 浮动元素不会乱跑
 ##### 触发BFC
 * 浮动元素 (元素的 float 不是 none)
-* 绝对定位元素 (元素具有 position 为 absolute 或 fixed)
-* 内联块 (元素具有 display: inline-block)
-* 表格标题、单元格(元素具有 display: table-caption,table-cell)
-* 具有overflow 且值不是 visible 的块元素
+* 绝对定位元素 (position的值不是 static 或者 relative )
+* 内联块 (display的值是inline-block、table-cell、flex、table-caption或者inline-flex)
+* overflow 值不是 visible 的块元素
 ##### BFC 特性(功能)
 * 使 BFC 内部浮动元素不会到处乱跑
 * 和浮动元素产生边界

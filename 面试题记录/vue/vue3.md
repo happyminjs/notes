@@ -39,4 +39,40 @@ defineProperty 只能劫持对象的属性，
 ```
 
 #### 响应式原理
+##### 数据劫持
+```js
+const dinner = {
+  meal: 'tacos'
+}
+const handler = { 
+  get(target, prop, receiver) {
+    // 在 proxy 中的 getter 中执行此操作，称为 effect
+    track(target, prop)  
+    const value = Reflect.get(...arguments)
+    if (isObject(value)) {
+      // 嵌套对象时，也需要转换为 proxy
+      return reactive(value)
+    } else {
+      return value
+    }
+  },
+  set(target, key, value, receiver) {
+    // 在 proxy 中的 setter 中进行该操作，名为 trigger
+    trigger(target, key)
+    return Reflect.set(...arguments)
+  }
+}
+const proxy = new Proxy(dinner, handler)
+```
+##### 侦听器
+```
+将对象数据传递给组件实例时，
+Vue 会将其转为 proxy 。
+通过设置 proxy 的 get 和 set, 
+使 Vue 能在属性被访问或修改时，执行依赖项跟踪和更改通知。
+每个属性都是一个依赖项。
+```
+每个组件实例都有一个相应的侦听器实例，该实例将在组件渲染期间把“触碰”的所有 property 记录为依赖项。之后，当触发依赖项的 setter 时，它会通知侦听器，从而使得组件重新渲染
+```js
 
+```
