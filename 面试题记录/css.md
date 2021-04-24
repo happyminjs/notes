@@ -1,4 +1,13 @@
 ### 浏览器适配
+```
+htmlFontSize/clientWidth = baseFontSize/UiWidth
+即  
+clientWidth : js获取的设备宽度
+baseFontSize : 想要 1rem 是多少像素的宽度
+UiWidth : 设计稿的宽度
+例如 750 的设计稿，想要 1rem 是 100px
+htmlFontSize/clientWidth = 100/750
+```
 ```js
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <script>
