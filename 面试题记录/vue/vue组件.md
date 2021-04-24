@@ -1,7 +1,52 @@
 ### 描述组件渲染和更新过程
-* 渲染组件是，会通过 vue.extend 方法构建组件的构造函数，进行实例化，  
+* 渲染组件是，调用 Vue.component，内部调用 vue.extend 方法构建组件的构造函数，进行实例化，  
 最终内部调用 $mount 进行挂载。  
 * 更新组件是会进行 patchVnode 流程，对比vnode,进行更新  
+#### 全局注册 Vue.component
+就是将组件挂载到 Vue.options.components 上
+```js
+Vue.component = function (id, definition) {
+  definition.name = definition.name || id;
+  definition = this.options._base.extend(definition);
+  // 此处的 extend 就是 Vue.extend 方法； _base 就是 Vue 的构造函数
+  this.options['components'][id] = definition;
+}
+
+```
+#### 局部注册
+```js
+// 就是在vue init 初始化时，将 components 合并到 vm.$options.components 上
+let options = Object.create(parentVal)
+if(childVal){
+  for (let key in childVal) {
+    options[key] = childVal[key]
+  }
+}
+// 这样遍历属性复制的原因是防止属性被覆盖，
+// 用这种方式防止引入的子组件覆盖父组件中同名组件
+```
+>如果全局和局部都有，则先找自己(即局部组件)，若没有，则按原型链找父级的(即全局组件)
+### Vue.extend
+extend方法就是创建出一个子类，继承于Vue，并返回这个类
+```js
+function initExtend(Vue) {
+    let cid = 0;
+    Vue.extend = function (extendOptions) {
+        const Super = this; // this 就是 Vue
+        const Sub = function VueComponent(options) {
+            this._init(options)  // 组件options初始化，即编译和劫持
+        }
+        Sub.cid = cid++;
+        Sub.prototype = Object.create(Super.prototype);
+        Sub.prototype.constructor = Sub;
+        Sub.options = mergeOptions(
+            Super.options,
+            extendOptions
+        );
+        return Sub
+    }
+}
+```
 ### vue插件
 ```html
 // 开发插件
@@ -43,30 +88,6 @@ new Vue({
   }
 })
 ```
-#### 全局注册 Vue.component
-就是将组件挂载到 Vue.options.components 上
-```js
-Vue.component = function (id, definition) {
-  definition.name = definition.name || id;
-  definition = this.options._base.extend(definition);
-  this.options['components'][id] = definition;
-}
-
-```
-#### 局部注册
-```js
-// 就是在vue init 初始化时，将 components 合并到 vm.$options.components 上
-let options = Object.create(parentVal)
-if(childVal){
-  for (let key in childVal) {
-    options[key] = childVal[key]
-  }
-}
-// 这样遍历属性复制的原因是防止属性被覆盖，
-// 用这种方式防止引入的子组件覆盖父组件中同名组件
-```
->如果全局和局部都有，则先找自己(即局部组件)，若没有，则按原型链找父级的(即全局组件)
-
 #### 函数组件
 在 render 中取不到 vue 的 this，所以在不需要 data 数据，就只有纯展示时，可以用函数式组件，
 函数组件不需要 new 实例了，性能会更高 

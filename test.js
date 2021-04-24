@@ -40,3 +40,18 @@ app.use(async (next) => {
   }, 1000)
 })
 app.run();
+
+
+
+
+var a = 23456563452.235
+let arr = a.toString().split('.')
+console.log(arr)
+var str = arr[0].reduceRight((now, num, index, number) => {
+  if (index % 3 == 0 && index != 0){
+    return num + ',' + now
+  } else {
+    return num + now
+  }
+}, '')
+console.log(str)
