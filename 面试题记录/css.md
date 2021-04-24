@@ -16,6 +16,44 @@ htmlFontSize/clientWidth = 100/750
     document.documentElement.style.fontSize = clientWidth / 7.5 + 'px';
 </script>
 ```
+#### absolute 宽度问题
+如果元素设置了 position: absolute 或者 float，都会让元素以 display:inline-block 的方式展示，可以设置宽度，默认宽度不占满父元素，就算显示的设置了display的其他值，仍会无效(none 除外)。
+#### absolute 和 float 都会脱离文档流，其区别是什么？
+absolute 就不占据文档流中的位置了，float 仍会占据一个位置。
+#### BFC理解，作用，及触发条件
+就是块级格式化，就是说在这个区域内，只有 block 块 box 参与，规定内部如何布局，与外部无关。
+##### BFC的布局规则
+* 内部的box的垂直方向距离由margin决定，相邻box的margin会重叠，取值大的
+* 就是一个隔离的独立容器，容器内的不会影响外部的，反之相同
+* 计算高度时，浮动元素也参与计算
+* 浮动元素不会乱跑
+##### 触发BFC
+* 浮动元素 (元素的 float 不是 none)
+* 绝对定位元素 (position的值不是 static 或者 relative )
+* 内联块 (display的值是inline-block、table-cell、flex、table-caption或者inline-flex)
+* overflow 值不是 visible 的块元素
+##### BFC 特性(功能)
+* 使 BFC 内部浮动元素不会到处乱跑
+* 和浮动元素产生边界
+#### 解释盒模型宽高计算公式、边界塌陷、负值 和 box-sizing
+##### 盒模型宽高计算公式
+标准模式盒模型的宽度是 content，占位宽是 content + padding + border + margin
+##### 边界塌陷
+* 兄弟元素 上元素的margin-bottom 会和下一个元素的margin-top取margin值大的展示
+```css
+/* 方法1：子元素触发BFC模式 */
+```
+* 子元素的margin-top/bottom值和父元素的重叠。
+```css
+/* 方法1：父元素设置border */
+/* 方法2：父元素设置padding */
+/* 方法3：父元素设置overflow：hidden 触发bfc */
+```
+##### 负值
+只有 margin 可以使用负值，width、height、padding 设置负值都不会生效。  
+margin 负值一般用来调整位置，例如居中的时候设置
+##### box-sizing
+会将 width 和的计算包括上 padding 和 border
 #### 特殊选择器 ~ , + >
 * 1、**m~n** : 表示m**之后**的所有**同级别兄弟**节点 n 
 * 2、**m>n** : m的直接子元素中的所有n
@@ -41,11 +79,6 @@ htmlFontSize/clientWidth = 100/750
     5、怪异模式下 padding 会失效  
     6、怪异模式下 table 中的字体不能继承上层设置  
     7、怪异模式下 white-space: pre 不生效  
-
-#### absolute 宽度问题
-如果元素设置了 position: absolute 或者 float，都会让元素以 display:inline-block 的方式展示，可以设置宽度，默认宽度不占满父元素，就算显示的设置了display的其他值，仍会无效(none 除外)。
-#### absolute 和 float 都会脱离文档流，其区别是什么？
-absolute 就不占据文档流中的位置了，float 仍会占据一个位置。
 #### 三等分
 ```css
 /* 方法1：flex */
@@ -283,40 +316,6 @@ export default {
 ```
 #### 左右两列自适应布局方案
 https://segmentfault.com/a/1190000004424442#articleHeader2
-#### 解释盒模型宽高计算公式、边界塌陷、负值 和 box-sizing
-##### 盒模型宽高计算公式
-标准模式盒模型的宽度是 content，占位宽是 content + padding + border + margin
-##### 边界塌陷
-* 兄弟元素 上元素的margin-bottom 会和下一个元素的margin-top取margin值大的展示
-```css
-/* 方法1：子元素触发BFC模式 */
-```
-* 子元素的margin-top/bottom值和父元素的重叠。
-```css
-/* 方法1：父元素设置border */
-/* 方法2：父元素设置padding */
-/* 方法3：父元素设置overflow：hidden 触发bfc */
-```
-##### 负值
-只有 margin 可以使用负值，width、height、padding 设置负值都不会生效。  
-margin 负值一般用来调整位置，例如居中的时候设置
-##### box-sizing
-会将 width 和的计算包括上 padding 和 border
-#### BFC理解，作用，及触发条件
-就是块级格式化，就是说在这个区域内，只有 block 块 box 参与，规定内部如何布局，与外部无关。
-##### BFC的布局规则
-* 内部的box的垂直方向距离由margin决定，相邻box的margin会重叠，取值大的
-* 就是一个隔离的独立容器，容器内的不会影响外部的，反之相同
-* 计算高度时，浮动元素也参与计算
-* 浮动元素不会乱跑
-##### 触发BFC
-* 浮动元素 (元素的 float 不是 none)
-* 绝对定位元素 (position的值不是 static 或者 relative )
-* 内联块 (display的值是inline-block、table-cell、flex、table-caption或者inline-flex)
-* overflow 值不是 visible 的块元素
-##### BFC 特性(功能)
-* 使 BFC 内部浮动元素不会到处乱跑
-* 和浮动元素产生边界
 #### hover 展示另一个元素 ，用 after 伪元素 + attr
 ```html
 <div class="hoverbtn" testattr="show me">
@@ -460,9 +459,6 @@ div {
 
 
 --------------------------
-#### 怎么设置 meta 标签，使其适应 viewport 的宽高
-```html
-```
 ### 已知一个块级元素的宽度是包含块的50%，如何让他所占据的高度是他自己宽度的四分之三
 ```css
 
