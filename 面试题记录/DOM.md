@@ -195,6 +195,6 @@ Dom.innerHTML // 包括标签和属性
 ```
 总结汇总： 
 图片地址： https://github.com/happyminjs/notes/blob/master/imgs/dom.png
-<image width=600 src="/imgs/dom.png"></image>
+<image width=700 src="/imgs/dom.png"></image>
 
 -----------------------------

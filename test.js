@@ -42,16 +42,24 @@ app.use(async (next) => {
 app.run();
 
 
-
-
-var a = 23456563452.235
-let arr = a.toString().split('.')
-console.log(arr)
-var str = arr[0].reduceRight((now, num, index, number) => {
-  if (index % 3 == 0 && index != 0){
-    return num + ',' + now
-  } else {
-    return num + now
-  }
-}, '')
-console.log(str)
+    // a+b
+    // (d-e)+f
+    // d-e
+var str = "(a+b)*c+((d-(e))+f)" 
+function get(str) {
+  let stack = [];
+  // let stackVal = [];
+  let res = [];
+  Array.from(str).forEach((letter, index) => {
+    // stackVal.push(letter)
+    if (letter == '('){
+      stack.push(index)
+    } else if(letter == ')'){
+      let lastBegin = stack.pop()
+      let temp = str.substring(lastBegin + 1, index)
+      res.push(temp)
+    }
+  });
+  return res;
+}
+console.log(get(str))
