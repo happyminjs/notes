@@ -1,5 +1,30 @@
 ### 数组方法汇总
 https://juejin.im/post/5902d56e1b69e60058c634d6
+#### js 判断一个对象是否是数组
+```js
+var a = []
+Array.isArray(a)  // ES6
+Object.prototype.toString.call(a) === '[object Array]'  // ES5中能准确判断类型的方法
+// 下边的如果用户手动设置来 var a = {__proto__: Array.prototype}，则下边方法都会返回true，所以保险方法是上边的方法
+a instanceof Array
+a.constructor === Array
+Array.prototype.isPrototypeOf(a)
+Object.getPrototypeOf(a) === Array.prototype
+```
+#### arguments 是不是数组，如果不是，怎么转为数组
+```js
+var arr = Array.prototype.slice.call(arguments);
+var arr = [].slice.call(arguments);
+var arr = Array.from(arguments);  // ES6
+```
+若ie等浏览器不支持，实现 polyfill 方法
+```js
+if(!Array.isArray) {
+    Array.isArray = function(arg) {
+        return Object.prototype.toString.call(arg) === '[object Array]'
+    }
+}
+```
 #### 数组遍历方法
 * arr.forEach(fn(value, index, array), thisArg)  
 没有返回值，若在fn中对 array 进行修改，则 arr 会改变
@@ -112,32 +137,6 @@ new Array(3).fill(7)  // [7,7,7]
 ```js
 [2, 3, 4].flatMap((x) => [x, x * 2])
 // [2,4,3,6,4,8]
-```
-
-#### js 判断一个对象是否是数组
-```js
-var a = []
-Array.isArray(a)  // ES6
-Object.prototype.toString.call(a) === '[object Array]'  // ES5中能准确判断类型的方法
-// 下边的如果用户手动设置来 var a = {__proto__: Array.prototype}，则下边方法都会返回true，所以保险方法是上边的方法
-a instanceof Array
-a.constructor === Array
-Array.prototype.isPrototypeOf(a)
-Object.getPrototypeOf(a) === Array.prototype
-```
-#### arguments 是不是数组，如果不是，怎么转为数组
-```js
-var arr = Array.prototype.slice.call(arguments);
-var arr = [].slice.call(arguments);
-var arr = Array.from(arguments);  // ES6
-```
-若ie等浏览器不支持，实现 polyfill 方法
-```js
-if(!Array.isArray) {
-    Array.isArray = function(arg) {
-        return Object.prototype.toString.call(arg) === '[object Array]'
-    }
-}
 ```
 --------------
 #### 基础类型
