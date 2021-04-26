@@ -130,6 +130,13 @@ Promise.all = function(promises) {
     }
   })
 }
+Promise.finally = function(onFinally){
+  return this.then((res) => {
+    return Promise.resolve(onFinally()).then(() => res)
+  }, err => {
+    return Promise.resolve(onFinally()).then(() => err)
+  })
+}
 Promise.race = function(promises) {
   return new Promise((resolve, reject) => {
     for(let i = 0, iLen = promises.length; i < iLen; i++) {
