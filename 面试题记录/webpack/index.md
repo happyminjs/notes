@@ -4,6 +4,14 @@ https://segmentfault.com/a/1190000015841186
 所以没有用 webpack 版本控制，而是在部署服务器的时候做的版本控制。
 部署服务器的时候对webpack打包后的文件按一定的规则生成一个新的版本号，然后这个版本号存储起来。
 PHP或者node模板加载js、css文件的时候，动态的获取一下这个版本号，然后在渲染到模板上，引用对应版本的文件
+
+#### webpack 常见面试题 
+https://www.cnblogs.com/chengxs/p/11022842.html 
+内有各模块大概介绍，应用，以及有 loader plugin 编写方式，热更新如何做到的，如何优化
+
+#### webpack 热更新HMR过程
+https://www.jianshu.com/p/95f5f51e6fc7
+
 #### bundle 和 chunk 、module 
 其实就是同一份逻辑代码在不同转换场景下的取了三个名字，可以参照下边的图片理解：   
 * **module**: 就是我们写出来的代码。   
