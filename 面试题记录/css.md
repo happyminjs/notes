@@ -16,6 +16,31 @@ htmlFontSize/clientWidth = 100/750
     document.documentElement.style.fontSize = clientWidth / 7.5 + 'px';
 </script>
 ```
+#### 动画
+* **animation:** name duration timing-function delay iteration-count direction fill-mode play-state;
+* **@keyframes**
+```css
+div:hover {
+  animation: rainbow 1s;
+}
+@keyframes rainbow {
+  0% { background: #c00; }
+  50% { background: orange; }
+  100% { background: yellowgreen; }
+}
+```
+```
+iteration-count: 定义动画的播放次数。取值 n | infinite n次或者无限次
+direction: 播放多次时，是佛偶反向播放。取值 normal|reverse|alternate(正反交替)|alternate-reverse
+fill-mode: 开始前和结束后的样式。取值:none|forwards(结束位置样式)|backwards(开始位置样式)|both
+```
+* **transition:**  property duration timing-function delay
+```
+property: CSS属性的name，transition效果； 取值：none|all| property(width,height)
+duration: 完成效果的时间  取值： 5s
+timing-function: 速度曲线 取值: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(n,n,n,n);
+delay: 开始的时间
+```
 #### absolute 宽度问题
 如果元素设置了 position: absolute 或者 float，都会让元素以 display:inline-block 的方式展示，可以设置宽度，默认宽度不占满父元素，就算显示的设置了display的其他值，仍会无效(none 除外)。
 #### absolute 和 float 都会脱离文档流，其区别是什么？

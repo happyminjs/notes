@@ -1,3 +1,4 @@
+https://zhuanlan.zhihu.com/p/136417498
 #### 项目结构
 * reactivity 响应式系统
 * runtime-core 与平台无关的运行时核心
@@ -21,6 +22,19 @@
 * vdom对比算法更新，只对比绑定了动态数据的节点
 * 采用 composition Api 进行组织功能，解决反复横跳，优化复用逻辑 （mixin带来的数据来源不清晰、命名冲突等）, 相比optionsApi 类型推断更加方便
 * 增加了 Fragment,Teleport，Suspense组件
+
+#### 生命周期钩子函数
+##### vue2对应到vue3中
+* beforeCreate -> use setup()
+* created -> use setup()
+* beforeMount -> onBeforeMount
+* mounted -> onMounted
+* beforeUpdate -> onBeforeUpdate
+* updated -> onUpdated
+* beforeDestroy -> onBeforeUnmount
+* destroyed -> onUnmounted
+* errorCaptured -> onErrorCaptured
+
 
 #### proxy 比 defineProperty 的优势
 * defineProperty 缺点
