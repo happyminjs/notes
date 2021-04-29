@@ -207,6 +207,9 @@ var bbb = new son();    // ['red', 'blue']
 ```
 ### 原型链
 https://juejin.im/post/58f94c9bb123db411953691b
+### ES6 class extends
+是继承所有属性和方法
+在 constructor 中调用的 super(params) 方法，是调用父类的 constructor(params) 也就是es5中的new father(params)
 ### 继承及各种继承的优缺点
 ```js
 // 父类
@@ -258,7 +261,6 @@ function content(obj) {
 }
 var father = new Father('ssss'); 
 var sup1 = content(father);
-
 ```
 https://blog.csdn.net/xuqinggangsls/article/details/51490390  
   
