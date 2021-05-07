@@ -23,6 +23,59 @@ https://zhuanlan.zhihu.com/p/136417498
 * 采用 composition Api 进行组织功能，解决反复横跳，优化复用逻辑 （mixin带来的数据来源不清晰、命名冲突等）, 相比optionsApi 类型推断更加方便
 * 增加了 Fragment,Teleport，Suspense组件
 
+### composition API
+https://www.yuque.com/along-n3gko/ezt5z9/qy7r5h
+##### 解决了什么问题
+由于相关业务的代码需要遵循option的配置写到特定的区域，
+随着业务复杂度越来越高，代码量会不断的加大
+导致后续维护非常的复杂，同时代码可复用性不高
+就是为了解决这个问题而生的
+##### 提供了的api语法糖
+###### reactive
+```
+reactive 创建响应式对象，等价于 2中的Vue.observable
+类似于option api里面的data属性的值
+```
+###### ref
+```
+基础类型数据构建响应式使用的，通过 ref.value = value， 
+返回 ref 的形式进行数据绑定
+```
+###### isRef
+```
+判断某个值是否是 ref 创建出来的对象
+```
+###### toRefs
+```
+把reactive的值处理为普通对象
+但是每个属性都是 ref() 类型的响应式数据
+```
+###### watchEffect
+```
+Vue 中检测状态变化的方法，我们可以在渲染期间使用它。 
+由于依赖关系跟踪，当反应状态发生变化时，视图会自动更新
+```
+###### computed
+```
+计算属性
+```
+
+
+###### 生命周期的hooks
+在新版的生命周期函数，可以按需导入到组件中，且只能在setup()函数中使用.
+```
+import { onMounted, onUnmounted } from 'vue';
+export default {
+    setup () {
+        onMounted(()=>{
+           //
+        });
+        onUnmounted(()=> {
+            //
+        });
+    }
+};
+```
 #### 生命周期钩子函数
 ##### vue2对应到vue3中
 * beforeCreate -> use setup()
