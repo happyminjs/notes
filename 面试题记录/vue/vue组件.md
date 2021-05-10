@@ -136,10 +136,17 @@ export default {
 ```
 1、父=>子：props,
 子=>父: @emit $on 发布订阅
-2、$parent $children 组件在初始化时会初始化这样的一个父子关系，我们可以根据这俩属性自己扩展 $dispatch('组件名','事件名') $boardCast('组件名','事件名')，配合$on方法进行通讯
+2、$parent $children 组件在初始化时会初始化这样的一个父子关系，
+  我们可以根据这俩属性自己扩展 $dispatch('组件名','事件名') 
+  $boardCast('组件名','事件名')，配合$on方法进行通讯
 3、父组件 provide:{aa:xx} 后代组件:inject:['aa']
-4、ref可以获取组件实例调用组件实例的方法（给组件就是获取组件实例，给dom就是获取dom元素） ref='toast' this.$refs.toast.show()
-5、eventBus Vue.prototype.$bus = new Vue; this.$bus.$on(),this.$bus.$emit()
+4、ref可以获取组件实例调用组件实例的方法
+  （给组件就是获取组件实例，给dom就是获取dom元素） 
+  ref='toast' this.$refs.toast.show()
+5、eventBus 
+  Vue.prototype.$bus = new Vue; 
+  this.$bus.$on(),
+  this.$bus.$emit()
 6、vuex 全局状态管理
 ```
 * 父子组件**直接通信**: 直接通过props 传递数据， $emit 触发事件
