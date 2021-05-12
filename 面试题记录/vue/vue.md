@@ -1,4 +1,14 @@
 https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzUxNjQ1NjMwNw==&action=getalbum&album_id=1619085427984957440&scene=173&from_msgid=2247483922&from_itemidx=1&count=3&nolastread=1#wechat_redirect
+### vue 中的性能优化 
+* 不要将所有数据放到data,data中的数据都会增加getter和setter,会收集watcher.data层级也不要过深，需要递归拦截   
+* vue 在v-for给每个元素绑定事件最好用事件代理，节约性能  
+* spa应用的话，可以采用keep-alive缓存组件   
+* 拆分组件，提高复用性和可维护，减少不必要的渲染   
+* v-if 内部不会去创建dom渲染dom,节约性能    
+* key保持唯一性，默认vue会用就地复用策略。   
+* 合理使用路由懒加载、异步组件  
+* 尽量采用runtime运行时版本  
+* 防抖，节流  
 ### 生命周期
 * beforeCreate，实例创建前，不可操作data,还没有进行劫持。可用于混入一些全局方法、全局组件    
 * created，实例创建完成，可操作data，不可操作dom。可发送ajax   
@@ -404,13 +414,3 @@ console.log('sync...')
 
 ### css的局部作用域(已 vue 的 scoped 属性为例)
 
-### vue 中的性能优化 
-* 不要将所有数据放到data,data中的数据都会增加getter和setter,会收集watcher.data层级也不要过深，需要递归拦截   
-* vue 在v-for给每个元素绑定事件最好用事件代理，节约性能  
-* spa应用的话，可以采用keep-alive缓存组件   
-* 拆分组件，提高复用性和可维护，减少不必要的渲染   
-* v-if 内部不会去创建dom渲染dom,节约性能    
-* key保持唯一性，默认vue会用就地复用策略。   
-* 合理使用路由懒加载、异步组件  
-* 尽量采用runtime运行时版本  
-* 防抖，节流  
