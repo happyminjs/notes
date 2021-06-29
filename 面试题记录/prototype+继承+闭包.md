@@ -1,4 +1,4 @@
-### this 问题
+### this 问题(最后有部分this例题)
 ```js
 var  name = 'window';
 var  obj ={
@@ -316,4 +316,95 @@ function createFunction2(){
 }
 var bbb=createFunction2();
 console.log(bbb[1]());  # 1   
+```
+
+#### this 例子
+```js
+const object = {
+  message: 'Hello, World!',
+  getMessage() {
+    const message = 'Hello, Earth!';
+    return this.message;
+  }
+};
+console.log(object.getMessage()); 
+// Hello, World!
+
+// -----------------------------------------------------------------
+function Pet(name) {
+  this.name = name;
+  this.getName = () => this.name;
+  this.getN = function(){return this.name}
+}
+window.name = 'windowwww';
+const cat = new Pet('Fluffy');  
+console.log(cat.getName()); // Fluffy   此时this指向cat
+console.log(cat.getN()); // Fluffy
+
+const { getName, getN } = cat;
+console.log(getName());     // Fluffy  （箭头函数this不能变，所以是 Fluffy）
+console.log(getN()); // windowwww   (取出了方法再执行，此时this指向window)
+
+// -------------------------  setTimeout --------------------------
+// 注意如果是 promise 等微任务的then中，this不变
+const object = {
+  message: 'Hello, World!',
+  logMessage() {
+    console.log(this.message); // What is logged?
+  }
+};
+window.message = 'winn'
+object.logMessage() // 'Hello, World!'
+setTimeout(object.logMessage, 1000);  // winn  (setTimeout宏任务状态已回收，此时this指向window)
+
+// -----------------------------------------------------------------
+var length = 4;
+function callback() {
+  console.log(this.length);  // 4
+}
+var object = {
+  length: 5,
+  method(callback) {
+    console.log('aaa', this.length); // 5
+    callback();
+  }
+};
+object.method(callback);
+
+// -----------------------------------------------------------------
+var length = 4;
+let length2 = 5
+function callback() {
+  this.length = 3  // window调用的，此处的this.length 实际是window.length
+  console.log(this.length2) // undefined  (因为let)
+}
+callback();
+console.log(length2) // 5
+console.log(window.length)  // 3
+
+// -----------------------  arguments  ---------------------------
+var length = 4;
+function callback() {
+  console.log(this.length); // 3
+}
+const object = {
+  length: 5,
+  method() {
+    arguments[0](); // 等价于  arguments.0(),this指向 arguments
+  }
+};
+object.method(callback, 1, 2);
+/**
+ * 因为实际 arguments 是下边这样的数组类的对象。
+ * {
+ *    0: callback,
+ *    1: 1, 
+ *    2: 2, 
+ *    length: 3 
+ * }
+ * arguments[0]()  等价于  arguments.0()
+ * 是 arguments 对象上的回调方法的调用，
+ * 所以 this 指向的是 arguments
+*/
+
 ```
