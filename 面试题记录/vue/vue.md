@@ -241,16 +241,35 @@ vnode:{
     text:'123'
 }
 ```
+#### ast 和 虚拟dom 的区别
+```
+转换成ast的是Vue的template模板，Vue需要根据模板去处理各种插值，指令
+
+虚拟dom是最终要展示到页面上的内容的对象描述，Vue每次需要通过diff算法对比新旧虚拟dom差异
+
+固定模板生成的ast是不变的，虚拟dom是不断变化，需要进行差异对比的(因为数据会变)
+```
 ### render函数原理
+```
+核心是 new Function(with(this){eval('.....')})
+```
 
 ### vue 自定义指令
 ```js
 // 全局注册指令 v-focus
 Vue.directive('focus', {
-  bind:()=>{},
+  bind:()=>{}, // 指令第一次绑定到元素时调用，初始化
   inserted: function(el){
+    // 被绑定元素插入父节点时调用 
     el.focus()
-  }
+  },
+  update(){
+
+  },
+  componentUpdated(){
+    //
+  },
+  unbind(){}
 })
 // 局部指令注册，可在组件options添加 directives 的选项
 directives: {

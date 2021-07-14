@@ -1,4 +1,22 @@
 #### vue router
+##### 核心原理
+```
+1、通过 Vue.use 注册插件，
+  在插件的 install 方法中用 Vue.mixin 的参数的 beforeCreate 中将 router 绑定到 this 上，
+  即 vue 的实例；
+2、浏览器地址变化时，根据 router 对象匹配相应路由，获取组件，并渲染
+3、hash模式： 通过 location.hash 修改 hash 值，触发更新
+            通过监听 hashchange 事件监听浏览器的前进或者后退，触发更新
+4、history模式：
+    通过 history.pushState 修改浏览器地址，触发更新
+    通过监听 popstate 事件监听浏览器的前进和后退，触发更新
+5、如何渲染 router-vier 组件：
+    通过 Vue.observable 在 router 实例上创建一个保存当前路由的监控对象 current；
+    浏览器地址变化时，修改监控对象 current；
+    在 router-view 中监听监控对象 current 的变化，
+    当current变化后，获取用户注册的对应 component，
+    并利用 h 函数将 component 渲染成 vnodes，进而更新页面视图
+```
 ##### 组成 
 * **\$router** 全局的路由实例
 ```
@@ -35,6 +53,8 @@ VueRouter.install = function(_Vue) {
       }
     }
   })
+  // 只是为了使用方便
+  // 每个实例都可以获取到 $router 属性
   Object.defineProperty(Vue.prototype,  '$router', {
     get(){
       return this._routerRoot._router
@@ -74,7 +94,7 @@ window.history.replaceState(stateObject, title, URL)
 可以配置 webpack 的 devServer.historyApiFallback 属性为 true，在 vue-router 404时，会导航到默认首页    
 如果首页不是默认的 index.html 时，可以配置 historyApiFallback 的 rewrite 属性配置到自己配置的页面
 #### 渲染组件实现
-定义 current 为响应式的，即 Object.defineProperty，current 改变后，则重新渲染 router-view
+在install中定义 current 路径为响应式的，current 改变后，则重新渲染 router-view
 ```js
 Object.defineProperty(this, '_route', {
   get(){
@@ -91,5 +111,15 @@ router.beforeEach((from, to, next) => {
 })
 router.afterEach((from, to, next) => {
   
+})
+
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: Foo,
+      beforeEnter: (to, from, next) => {}
+    }
+  ]
 })
 ```
