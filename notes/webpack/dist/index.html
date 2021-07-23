@@ -1,1 +1,52 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Document</title><script defer="defer" src="./index.js"></script></head><body></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Document</title><style>.child{
+      padding: 5px;
+    }
+    .child:nth-child(2n){
+      background-color: rgb(235, 168, 81);
+    }
+    .child:nth-child(2n+1){
+      background-color: rgb(191, 231, 152);
+    }
+    .start {
+      font-size: 14px;
+      background-color: brown;
+      color: #fff;
+      font-weight: 600;
+      padding: 5px;
+    }</style><script defer="defer" src="./index.js"></script></head><body><div id="root"></div><div class="parent"><div class="child">1</div><div class="child">2<div>1223322</div></div><div class="child">3</div><div class="child">4</div><div>sdwerweds</div><div class="child">5</div></div><div class="start">开始录音</div><div class="words"></div><script>window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
+    recognition.lang = "en-US";
+
+    let p = document.createElement("p");
+    const words = document.querySelector(".words");
+    words.appendChild(p);
+
+    recognition.addEventListener("result", (e) => {
+      console.log(e);
+      const transcript = Array.from(e.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join("");
+      const poopScript = transcript.replace(/poop|poo|shit|dump/gi, "💩");
+      p.textContent = poopScript;
+      if (e.results[0].isFinal) {
+        p = document.createElement("p");
+        words.appendChild(p);
+      }
+    });
+    recognition.addEventListener("end", ()=>{
+      console.log('endddd')
+      recognition.start();
+    });
+    document.getElementsByClassName('.start',()=>{
+      recognition.start();
+    })</script><script>let childArr = document.getElementsByClassName('child')
+    document.getElementsByClassName('parent')[0].addEventListener('click', function(e){
+      // console.log(e.target)
+      for(let i = 0, iLen = childArr.length; i < iLen; i++){
+        if (childArr[i] === e.target){
+          console.log(i);
+        }
+      }
+    }, false)</script></body></html>
