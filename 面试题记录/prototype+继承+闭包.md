@@ -45,6 +45,8 @@ https://juejin.im/post/58f94c9bb123db411953691b
 
 可以说： 实例都是对象，而对象不全是实例。
 
+* 每个对象都有一个 __proto__ 属性，它指向所属类的原型   fn.__proto__ === Function.prototype
+* 每个原型上都有一个 constructor属性，它指向函数本身  Function.prototype.constructor === Function
 #### 然后来区分一下下边两个：
 * **\_\_proto__**: 对象的属性
 * **prototype**： 函数的属性，也是类的属性
