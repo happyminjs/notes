@@ -79,6 +79,15 @@ absolute 就不占据文档流中的位置了，float 仍会占据一个位置�
 margin 负值一般用来调整位置，例如居中的时候设置
 ##### box-sizing
 会将 width 和的计算包括上 padding 和 border
+#### 百分比的参考源
+* left / top / bottom /right: 基于 **包含块** 的左上角。即 父级中最近的有 position 定位的元素
+* width / height: 基于**包含块**的 width; height 是基于包含块的 height。
+* padding: 基于**包含块**的 width 来计算，包括 padding-top/padding-bottom
+* margin: 基于**包含块**的 width 来计算，包括 margin-top/margin-bottom
+* transform:translate(): 元素本身
+* background-size: 背景定位区域，可以理解为元素内容本身的宽高，即与 box-sizing 有关
+* background-position: 背景定位区域
+* font-size: 直接父级
 #### 特殊选择器 ~ , + >
 * 1、**m~n** : 表示m**之后**的所有**同级别兄弟**节点 n 
 * 2、**m>n** : m的直接子元素中的所有n
