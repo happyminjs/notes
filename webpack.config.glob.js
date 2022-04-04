@@ -35,7 +35,7 @@ for(let key = 0, klen = entryArr.length; key < klen; key++) {
   entryObj[keyStr] = path.resolve(__dirname, entryArr[key]);
   pluginConfg.push(new HtmlWebpackPlugin({
     filename: keyStr + '.html',
-    chunks: [keyStr, 'vendor'], 
+    chunks: [keyStr, 'vendor'],   // keyStr,此处值需要与 entry 的key相同的
     inject: true,
     // <%= htmlWebpackPlugin.options.title %> 在html中以这种方式获取title值
     title: 'tesssd title',

@@ -1,7 +1,9 @@
 https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzUxNjQ1NjMwNw==&action=getalbum&album_id=1619085427984957440&scene=173&from_msgid=2247483922&from_itemidx=1&count=3&nolastread=1#wechat_redirect
 ### vue 中的性能优化 
-* 不要将所有数据放到data,data中的数据都会增加getter和setter,会收集watcher.data层级也不要过深，需要递归拦截   
-* vue 在v-for给每个元素绑定事件最好用事件代理，节约性能  
+* 不要将所有数据放到data,data中的数据都会增加getter和setter,会收集watcher.data；    
+* 层级也不要过深，需要递归拦截，所以尽量扁平化数据   
+* 尽量不要频繁获取数据，例如for循环中直接获取数据，不如在循环外获取数据，结束后再赋值操作       
+* vue 在 v-for 给每个元素绑定事件最好用事件代理，节约性能  
 * spa应用的话，可以采用keep-alive缓存组件   
 * 拆分组件，提高复用性和可维护，减少不必要的渲染   
 * v-if 内部不会去创建dom渲染dom,节约性能    
@@ -21,6 +23,7 @@ https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzUxNjQ1NjMwNw==&action=getalbum&a
 ### 组件中的data为什么是一个函数
 同一个组件被复用多次，会创建多个实例，这些实例用的是同一个构造函数。如果data是一个对象的话，那么就会造成多个实例共享同一个对象，同一个内存地址。
 data如果是函数的话，函数执行每次返回的都是一个全新的对象。
+在根组件中，不会被共享时，可以是个对象。
 ### vue响应式原理
 1、Vue 主要分为了两大部分，一部分是 compile（模板编译），一部分是observe（数据劫持）   
 2、在模板编译时，碰到模板中的 {{}} 或者 v- 会进行依赖收集，new Watcher    
@@ -28,7 +31,7 @@ data如果是函数的话，函数执行每次返回的都是一个全新的对�
 ```
 默认 Vue 初始化数据时，会给data中的属性使用 Object.defineProperty 重新定义所有属性，
 如果是对象的话，除了拦截当前属性本身，还会递归深度拦截；
-如果是数组的话，会遍历数组，内部是对象的，也会进行拦截；
+如果是数组的话，会遍历数组，如果数组的内部是对象的，也会进行拦截；
 同时，数组会 aop 切片方式，重写数组原型方法；这样在调用数组方法才能监听到数组的变化；
 
 在get中会收集依赖 watcher 到 dep，除了收集当前属性本身的，还包括递归属性是引用类型的
@@ -287,7 +290,8 @@ https://cn.vuejs.org/v2/guide/custom-directive.html
 所以为了保证组件的数据独立性，data 函数返回一个对象，可以保证返回的是一个新的对象，不会公用。
 
 ### Vue为什么不能检测数组变动
-基于性能原因，没有用 Object.defineProperties 对数组的每一项进行拦截，而是选择使用函数劫持的方法重写数组（push、shift、pop、splice、unshift、sort、reverse）方法。当调用这些api时，可以通知依赖更新，如果数组中包含着引用类型，会对数组中的引用类型再次进行监控。   
+Object.defineProperties 是可以对数组进行拦截的，但是因为有可能数组较大，每项都需拦截重写，但操作数据习惯较少使用下标的方式修改数据，而是使用数组的api方式修改数据   
+所以基于性能原因，没有用 Object.defineProperties 对数组的每一项进行拦截，而是选择使用函数劫持的方法重写数组（push、shift、pop、splice、unshift、sort、reverse）方法。当调用这些api时，可以通知依赖更新，如果数组中包含着引用类型，会对数组中的引用类型再次进行监控。   
 Object.defineProperties 不能监测到数组通过下标修改，maybe是 可能是因为数组每一项的修改都需要修改数值、然后修改下标。如果插入一条数据，可能会影响后边的数据都要来一边修改。  
 可以用Vue.$set来进行处理，其实核心内部用的是splice方法  
 ### 虚拟dom 
