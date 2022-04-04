@@ -65,21 +65,6 @@ ALLOW-FROM: 表示页面可以在指定来源的 iframe 中展示
 增加一个安全通道来传输信息。例如 HTTPS   
 
 ------------------
-
-### GET 和 POST 的区别
-* get 参数放在url上，post 放在request body 中
-* get 产生一个TCP数据包，post产生两个  
-    * get 会将 http header 和 data 一起发出去，响应 200(返回数据)
-    * post 先发送 header，服务器响应 100 continue，再发送 data，返回200(返回数据)
-* GET 在浏览器回退时是无害的，而 POST 会再次提交请求
-* GET 产生的 URL 地址 可被 bookmark，而 post 不可以
-* get 浏览器会主动带 cache，而post不会，除非手动设置
-* get 请求只能进行url编码，而post支持多种编码方式
-* get 请求参数会完整的保留在浏览器历史记录中，post 不会
-* get 请求 url 的参数长度有限制，而post没有
-* get 只接受 ASCII 字符的参数的数据类型，而post没有限制
-* get 参数暴露在url上，不安全，不能用来传递敏感信息
-
 ### HTTP
 ##### 常用 header
 * origin
@@ -110,10 +95,12 @@ seq: sequence number, 记录包的序号，解决网络中乱序问题
 ack: acknowledgement number, 确认序列号，用来确认已收到的包，不丢包问题
 tcp flag: 包类型，控制 tcp 状态机的
 ```
-#### TCP 和 UDP 区别
+#### TCP 和 UDP 的区别
 * TCP必须三次握手建立可靠连接后才可以传输数据，可靠，数据正确性
 * UDP是非连接协议，不需要建立连接，可能丢包，不保证数据顺序
-
+* TCP 是面向字节流，UDP 面向报文，并且网络出现拥塞不会使得发送速率降低（因 此会出现丢包，对实时的应用比如 IP 电话和视频会议等）。
+* TCP 只能是 1 对 1 的，而UDP 支持 1 对 1,1 对多。
+* TCP 的首部较大为 20 字节，而 UDP 只有 8 字节。
 #### 三次握手
 * 第一次握手： 客户端发送SYN报文，进入syn_send状态，等待服务器的确认    
 * 第二次握手： 服务器收到syn报文，给客户端发送ack(确认)+syn(服务端的)报文，服务器进入 syn_rcvd 状态    
@@ -166,6 +153,38 @@ tcp flag: 包类型，控制 tcp 状态机的
 等数据传输结束后，再发送 fin 包
 ```
 
+#### HTTPS与HTTP的一些区别
+简单说就是：HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全
+* HTTPS协议需要到CA申请证书
+* HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头
+* HTTP 无法加密是不安全的，而 HTTPS 对传输对数据进行加密是安全的
+* HTTP 标准端口是80 ，而 HTTPS 的标准端口是443
+* HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的
+* 在 OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层
+* HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。
+#### GET 和 POST 的区别
+* get 参数放在url上，post 放在request body 中
+* get 请求参数会完整的保留在浏览器历史记录中，post 不会
+* get 产生一个TCP数据包，post一般产生两个(客户端对http的post和get的**请求策略决定**的)  
+    * get 会将 http header 和 data 一起发出去，响应 200(返回数据)
+    * post 先发送 header，服务器响应 100 continue，再发送 data，返回200(返回数据)
+* get 浏览器会主动带 cache，而post不会，除非手动设置
+* get 请求只能进行url编码，而post支持多种编码方式
+* get 请求 url 的参数长度有限制，而post没有
+* get 只接受 ASCII 字符的参数的数据类型，而post没有限制
+* get 参数暴露在url上，不安全，不能用来传递敏感信息
+
+#### WebSocket 和 HTTP
+```
+相同点
+  都是一样基于TCP的，都是可靠性传输协议。
+  都是应用层协议。 
+不同点
+  WebSocket是双向通信协议，模拟Socket协议，可以双向发送或接受信息。
+  HTTP是单向的。
+  WebSocket是需要握手进行建立连接的
+  相对HTTP来说，WebSocket是一种持久化的协议。它会基于HTTP协议，来完成一部分握手，HTTP握手部分完成，协议升级为WebSocket
+```
 ----
 
 ##### 基本优化
@@ -208,12 +227,3 @@ HTTP 1.1支持长连接（PersistentConnection）和请求的流水线（Pipelin
 在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，
 在HTTP1.1中默认开启Connection： keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。
 ```
-#### HTTPS与HTTP的一些区别
-简单说就是：HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全
-* HTTPS协议需要到CA申请证书
-* HTTP 的URL 以http:// 开头，而HTTPS 的URL 以https:// 开头
-* HTTP 无法加密是不安全的，而 HTTPS 对传输对数据进行加密是安全的
-* HTTP 标准端口是80 ，而 HTTPS 的标准端口是443
-* HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的
-* 在 OSI 网络模型中，HTTP工作于应用层，而HTTPS 的安全传输机制工作在传输层
-* HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。
