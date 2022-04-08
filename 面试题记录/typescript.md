@@ -109,9 +109,47 @@ class Car implements MusicInterface {
   playMusic() {}
 }
 ```
+## 泛型
+
 ```ts
-// interface 约束 class 的构造函数和静态属性
+// 基础使用
+// 泛型标识符是 <> , 下边表示参数 T 类型，返回 T 类型，
+function print<T=string>(arg:T):T {  // 添加了默认值string类型
+  return arg
+}
+const res:string = print('aaa'); 
 ```
+```ts
+// type 定义泛型
+type Print = <T>(arg: T) => T
+const printFn:Print = function print(arg){
+  return arg
+}
+printFn('ssss');
+```
+```ts
+// interface 定义泛型
+interface IPrint<T=number>{
+  (arg: T): T
+}
+function print<T>(arg:T){
+  return arg
+}
+const myPrint: IPrint<number> = print
+myPrint(123); // 限制了 number 类型
+print("123"); // 未限制类型
+```
+```ts
+// 多个参数
+function change<T, U>(arr: [T, U]): [U, T] {
+  return [arr[1], arr[0]]
+}
+```
+```ts
+// 函数副作用
+
+```
+
 #### ts为什么会流行？与ECMA新规范的关系？
 * ts 的代码可读性和维护性更好
 ```
