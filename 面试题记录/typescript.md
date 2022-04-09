@@ -14,6 +14,142 @@ tuple(元组)/ enum(枚举)/ any(任意)
 void: 没有任何类型，用来方法没有返回值
 never: 是其他类型（包括null和undefined）的子类型，代表从不会出现的值
 ```
+#### 函数类型
+若未指定返回类型，则默认返回 void 类型。
+? 代表参数是可选的
+```ts
+function add(x:number, y:number, z?:number):number{
+  return x + y
+}
+let add2 = (x: number, y: number): number => {
+    return x + y
+}
+// 函数不能赋值其他类型，会报错，可赋值函数
+const add3:(x: number, y: number) => number = add2;
+add(1, 2)
+```
+#### interface
+> interface 不是js关键字，所以ts编译成js后，interface不会转换成js，是直接删除掉的，只在ts中用来静态检查。
+```ts
+// 描述对象
+interface Person {
+  readonly id: number; // 只读属性
+  name: string  // 必须要有的属性
+  age?: number  // 可选属性
+  [propName: string]: string;  // 自定义属性
+}
+const p1: Person = {
+  name: 'lin',
+  a: 'hello',
+  b: 'world'
+}
+
+// 描述函数
+interface ISum {
+    (x:number,y:number):number
+}
+const add:ISum = (num1, num2) => {
+    return num1 + num2
+}
+```
+#### type
+
+#### 类、继承
+```ts
+// 父类
+class Person {
+  name: string
+  private age: number // 私有属性只可内部访问，实例和子类都不可访问
+  protected sex: string // 子类内部可访问，实例不可访问
+  static pi: 3.14 // 静态属性，通常是常量，实例和子类都不可访问
+  constructor(name: string) {
+    this.name = name
+  }
+  speak() {
+    console.log(`${this.name} is speaking`)
+  }
+}
+const p1 = new Person('lin');
+```
+```ts
+// 子类
+class Student extends Person {
+  grade: number
+  constructor(name: string,grade:number) {
+    // 若子类有属性，super必须要有，若没有其他属性，super可省略
+    super(name)
+    this.grade = grade
+  }
+}
+const s1 = new Student('lin', 100)
+```
+**interface 约束类**
+```ts
+// ，注意 构造函数、静态属性 与 属性方法的使用方式不同
+interface CircleStatic { // 
+  new (radius: number): void // 约束构造函数
+  pi: number // 约束静态属性
+}
+interface MusicInterface {
+    playMusic(): void  // 约束属性方法
+}
+interface CallInterface {
+    makePhoneCall(): void  // 约束属性方法
+}
+const Circle:CircleStatic = class Cellphone implements MusicInterface, CallInterface {
+  static pi: 3.14
+  public radius: number
+  constructor(radius: number){
+    this.radius = radius
+  }
+  playMusic() {}
+  makePhoneCall() {}
+} 
+class Car implements MusicInterface {
+  playMusic() {}
+}
+```
+## 泛型
+
+```ts
+// 基础使用
+// 泛型标识符是 <> , 下边表示参数 T 类型，返回 T 类型，
+function print<T=string>(arg:T):T {  // 添加了默认值string类型
+  return arg
+}
+const res:string = print('aaa'); 
+```
+```ts
+// type 定义泛型
+type Print = <T>(arg: T) => T
+const printFn:Print = function print(arg){
+  return arg
+}
+printFn('ssss');
+```
+```ts
+// interface 定义泛型
+interface IPrint<T=number>{
+  (arg: T): T
+}
+function print<T>(arg:T){
+  return arg
+}
+const myPrint: IPrint<number> = print
+myPrint(123); // 限制了 number 类型
+print("123"); // 未限制类型
+```
+```ts
+// 多个参数
+function change<T, U>(arr: [T, U]): [U, T] {
+  return [arr[1], arr[0]]
+}
+```
+```ts
+// 函数副作用
+
+```
+
 #### ts为什么会流行？与ECMA新规范的关系？
 * ts 的代码可读性和维护性更好
 ```
@@ -35,6 +171,7 @@ https://www.jianshu.com/p/9b87f4950f9a
 
 #### interface 和 type 的区别
 其实 type 不是定义类型，而是类型别名，只是基本可以实现类型结构的效果，达到和 interface 一样的效果
+
 ##### 相同点：
 * 都可以描述一个对象或者函数
 ```ts

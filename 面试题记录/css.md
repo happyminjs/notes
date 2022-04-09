@@ -16,6 +16,29 @@ htmlFontSize/clientWidth = 100/750
     document.documentElement.style.fontSize = clientWidth / 7.5 + 'px';
 </script>
 ```
+#### 一键换肤方案
+* **核心** 通过css变量来实现的  :root  var()
+* **原理** 通过 body.style.setProperty(key, value) 动态修改 body或者html 上的 CSS 变量(即:root)，使得页面上的其他部分可以应用最新的 CSS 变量对应的样式
+* css变量使用方法
+```css
+/* 这样写，是根元素(即html)的伪元素，css变量定义的位置 */
+:root { 
+  --bg-color: red;  
+}
+body{
+  background-color: var(--bg-color)
+}
+```
+* **js动态切换根元素 root 中变量的值**
+```js
+// 只能是 html 或者 body，其他元素无效
+document.body.style.setProperty('--bg-color', 'red')
+```
+* 兼容问题
+```
+除ie不兼容外，别的浏览器兼容性还不错
+若兼容ie，可使用 css-vars-ponyfill 插件做兼容处理，可兼容到ie9
+```
 #### 动画
 * **animation:** name duration timing-function delay iteration-count direction fill-mode play-state;
 * **@keyframes**
@@ -252,12 +275,7 @@ margin 负值一般用来调整位置，例如居中的时候设置
   }
 }
 ```
-#### Z 字型移动
-使用 animation 动画 transition 变换
-https://www.imooc.com/article/13298
-```css
 
-```
 #### 纯css实现switch
 ```css
 /* css */
