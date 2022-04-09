@@ -28,7 +28,8 @@ if(!Array.isArray) {
 ```
 #### 数组遍历方法
 * arr.forEach(fn(value, index, array), thisArg)  
-没有返回值，若在fn中对 array 进行修改，则 arr 会改变
+没有返回值，若在fn中对 array 进行修改，则 arr 会改变，
+内部return是继续下一轮循环，不能用 break和continue，**不能跳出循环**。
 * arr.map(fn(value, index, arr), thisArg)  
 遍历数组，并返回 fn return 值组成的新数组
 ```js
@@ -167,14 +168,6 @@ Object.prototype.toString.call(Symbol()) === '[object Symbol]'
 ### js中的内存管理
 ----
 
-### call/apply/bind
-使用的区别
-```js
-arg.call(this, arguments1, arguments2, ...)
-arg.apply(this, [arguments1, arguments2, ...])
-arg.bind(this, arguments1, arguments2, ...)()
-```
-
 ---------
 ### async/await 捕获具体错误
 ```js
@@ -193,71 +186,10 @@ function asyncFn(){
 let [err, id] = await to(asyncFn())
 ```
 --------------
-### Es6的class和普通的prototype有啥区别
-* class实际上只是prototype的语法糖而已。
-  * class更加贴近于面向对象的写法
-  * class 实现继承更加简单易懂，易理解
-
-* class内部只能写 原型方法 和静态方法
-* 如果想要原型属性，就必须要用prototype了
-* 操作符的写法，用class是不可能实现的
-
-------------
 
 
 ### es6 的代理
 ---------------
-### 正则
-```js
-// 去除空格
-str.trim();  // 去除两边空格
-str.replace(/(^\s*)|(\s*$)/g, ""); // 去除两边空格
-str.replace(/\s*/g, ''); // 去除所有空格
-
-// 手机号
-/^[1][3,4,5,7,8][0-9]{9}$/.test(phone)
-```
 
 ---------------
-### escape 、 encodeURI 和 encodeURIComponent
-##### escape
-简单来说，escape是对字符串(string)进行编码(而另外两种是对URL)   
-ASCII字母、数字、@*/+这几个字符不会被编码,由于js是unicode编码，中文会被编为unicode  
-```js
-escape('啊')  // %u554A
-unescape('%u554A') // 啊
-```
-##### encodeURI
-encodeURI方法不会对下列字符编码  ASCII字母、数字、~!@#$&*()=:/,;?+'
-##### encodeURIComponent
-不会对下列字符编码 ASCII字母、数字、~!*()'
-```js
-location.href
-// "https://www.baidu.com/?aa=1w12&bb=dfew"
-encodeURI(location.href)
-// "https://www.baidu.com/?aa=1w12&bb=dfew"
-encodeURIComponent(location.href)
-// "https%3A%2F%2Fwww.baidu.com%2F%3Faa%3D1w12%26bb%3Ddfew"
-```
-##### 应用场景
-* 只是编码字符串，不和URL有半毛钱关系，那么用escape
-* 编码整个URL，然后需要使用这个URL，那么用encodeURI
-* 当你需要编码URL中的参数的时候，那么encodeURIComponent是最好方法
-```
-注意不要使用encodeURIComponent编码要直接使用的完整的url，
-因为编码后的字符串，浏览器不认为是一个网址
-```
-------------------
-#### 对requestAnimationFrame 的了解？与setTimeout 有什么区别
-```bash
-requestAnimationFrame 是H5新增定时器，不需要设置时间间隔，
-计时器一直是js动画的核心技术，而编写动画循环的关键需要知道延迟多少时间合适，一方面需要足够短，才能显得流畅，另一方面需要足够长，才能保证浏览器有能力渲染产生的变化。
-大多数显示器刷新频率是60Hz，大约等于每秒重绘60次。所以最佳的循环间隔就是每秒60次。
-settimeout和setinterval的运行机制决定了他们的时间间隔是不准确的。而 对requestAnimationFrame 采用系统时间间隔，能保持最佳的绘制效率，不会因为间隔过短导致多度重绘浪费，也不会因你我时间太长不流畅。
-```
-特点：
-```
-1、会把每一帧中所有 dom 操作集中起来，在一次重绘或回流中完成，并且间隔紧随浏览器刷新频率
-2、在隐藏或不可见元素中，不会进行重绘和回流
-3、是浏览器专为动画提供的 API，浏览器会有自动优化方案的调用，页面未激活状态，动画自动暂停，节省 CPU 开销
-```
+
