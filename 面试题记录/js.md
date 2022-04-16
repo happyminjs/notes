@@ -165,11 +165,18 @@ Object.prototype.toString.call(Symbol()) === '[object Symbol]'
 * 引用类型在栈区存储的是引用地址，实际数据是存储在堆内存中，访问的是保存的地址。  
 
 ----------
-### js中的内存管理
+#### fn.length：函数的形参个数
+```js
+function fn(a, b, c, d = 1, e){}
+fn.length // 3
+```
+> 形参个数：仅包括第一个具有默认值之前的参数个数，即 d 前边的3个
+
+#### js中的内存管理
 ----
 
 ---------
-### async/await 捕获具体错误
+#### async/await 捕获具体错误
 ```js
 function to (promise) {
   return promise.then(data => {
