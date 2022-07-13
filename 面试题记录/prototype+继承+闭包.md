@@ -311,7 +311,7 @@ function createFunction2(){
         result2[j]=function(num){
             return function (){
             return num;
-            };
+            }; 
         }(j);
     }
     return result2;

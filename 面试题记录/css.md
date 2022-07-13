@@ -649,22 +649,7 @@ inherit: 规定从父元素继承 position 属性的值。
 transform:\scale(0.85,0.90)\ translate(0px,-30px)\ skew(-9deg,0deg)\Animation:
 ```
 #### 请解释一下CSS3的Flexbox（弹性盒布局模型）,以及适用场景？
-#### 用纯CSS创建一个三角形的原理是什么？
-```bash
-把上、左、右三条边隐藏掉（颜色设为 transparent）  
-#demo {
-  width: 0;
-  height: 0;
-  border-width: 20px;
-  border-style: solid;
-  border-color: transparent transparent red transparent;
-}
-```
-#### 一个满屏 品 字布局 如何设计?
-    简单的方式：
-    上面的div宽100%，
-    下面的两个div分别宽50%，
-    然后用float或者inline使其不换行即可
+
 
 #### 经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 ？
 ```bash

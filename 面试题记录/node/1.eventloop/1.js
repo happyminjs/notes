@@ -5,21 +5,21 @@
 // 宏任务先执行，因为 script 默认是一个宏任务 
 // 之后的执行过程都是先清空微任务，再来执行宏任务
 
-setTimeout(() => {
-  console.log('time1') // 3
-  Promise.resolve().then(data => {
-    console.log('success3')  //4
-  })
-}, 0);
-Promise.resolve().then(data => {
-  console.log('success1')  // 1
-  setTimeout(() => {
-    console.log('time2') // 5
-  }, 0);
-})
-Promise.resolve().then(data => {
-  console.log('success2') // 2
-})
+// setTimeout(() => {
+//   console.log('time1') // 3
+//   Promise.resolve().then(data => {
+//     console.log('success3')  //4
+//   })
+// }, 0);
+// Promise.resolve().then(data => {
+//   console.log('success1')  // 1
+//   setTimeout(() => {
+//     console.log('time2') // 5
+//   }, 0);
+// })
+// Promise.resolve().then(data => {
+//   console.log('success2') // 2
+// })
 
 // success1 success2 time1 success3 time2
 // 先执行主栈代码，执行后，清空一轮微任务队列，执行宏任务队列中的一个，执行完后会再次清空微任务，清空后再执行下一个宏任务
@@ -39,3 +39,10 @@ Promise.resolve().then(data => {
 
 
 
+var a=10;
+console.log(module.exports.a)
+this.a = 20
+console.log(a)
+
+
+console.log(module.exports)
