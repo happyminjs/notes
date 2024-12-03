@@ -29,7 +29,7 @@ export default {
 
 <style lang="less" scoped>
 .testp{
-  font-size: 18px; /*px*/ /*no*/
+  font-size: 12px; /*px*/ /*no*/
   font-weight: 700;
   color: #f01414;
   background-color: aquamarine;

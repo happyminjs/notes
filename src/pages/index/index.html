@@ -7,38 +7,43 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- <title>Document</title> -->
   <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <script>
-    (function (win, doc) {
-      var docEl = doc.documentElement;
-      function setRemUnit () {
-        var docWidth = docEl.clientWidth;
-        var rem = docWidth / 7.5;
-        docEl.style.fontSize = rem + 'px';
-      }
+      var clientWidth = document.documentElement.clientWidth < 640 ? document.documentElement.clientWidth : 640;
+      document.documentElement.style.fontSize = clientWidth / 7.5 + 'px';
+  </script>
+  <script>
+    // (function (win, doc) {
+    //   var docEl = doc.documentElement;
+    //   function setRemUnit () {
+    //     var docWidth = docEl.clientWidth;
+    //     var rem = docWidth / 7.5;
+    //     docEl.style.fontSize = rem + 'px';
+    //   }
     
-      win.addEventListener('resize', function () {
-        setRemUnit();
-      }, false);
-      win.addEventListener('pageshow', function (e) {
-        if (e.persisted) {
-          setRemUnit();
-        }
-      }, false);
+    //   win.addEventListener('resize', function () {
+    //     setRemUnit();
+    //   }, false);
+    //   win.addEventListener('pageshow', function (e) {
+    //     if (e.persisted) {
+    //       setRemUnit();
+    //     }
+    //   }, false);
     
-      setRemUnit();
+    //   setRemUnit();
     
-      if (win.devicePixelRatio && win.devicePixelRatio >= 2) {
-        var testEl = doc.createElement('div');
-        var fakeBody = doc.createElement('body');
-        testEl.style.border = '0.5px solid transparent';
-        fakeBody.appendChild(testEl);
-        docEl.appendChild(fakeBody);
-        if (testEl.offsetHeight === 1) {
-          docEl.classList.add('hairlines');
-        }
-        docEl.removeChild(fakeBody);
-      }
-    }) (window, document);
+    //   if (win.devicePixelRatio && win.devicePixelRatio >= 2) {
+    //     var testEl = doc.createElement('div');
+    //     var fakeBody = doc.createElement('body');
+    //     testEl.style.border = '0.5px solid transparent';
+    //     fakeBody.appendChild(testEl);
+    //     docEl.appendChild(fakeBody);
+    //     if (testEl.offsetHeight === 1) {
+    //       docEl.classList.add('hairlines');
+    //     }
+    //     docEl.removeChild(fakeBody);
+    //   }
+    // }) (window, document);
   </script>
   <!-- <style>
     /* 清楚浮动 */
@@ -65,38 +70,47 @@
       content: attr(testattr)
     }
   </style> -->
+  <style>
+    div, p, ul, li{
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-  <div>start</div>
-  <div id="app"></div>
-  <!-- <div class="hover" testattr="阿士大夫撒旦法">hove me</div> -->
-
-  <!-- <div style="position: relative;">
-      <p class="test" style="position: relative;">paragraph</p>
+  <div style="position: relative;">
+    <p class="test" style="position: relative;font-size: 18px; padding: 10px 20px;border: 1px solid #333;text-align: center;">点点点</p>
   </div>
   <script>
       const p = document.querySelector('p')
-      p.addEventListener("click", (event) => {
-        alert("我是p元素上被绑定的第一个监听函数");
-      }, false);
+      // p.addEventListener("click", (event) => {
+      //   console.log("我是p元素上被绑定的第一个监听函数/ 冒泡");
+      // }, false);
+
+      // p.addEventListener("click", (event) => {
+      //   console.log("我是p元素上被绑定的第一个捕获函数");
+      // }, true);
 
       p.addEventListener("click", (event) => {
-        alert("我是p元素上被绑定的第二个监听函数");
+        console.log("我是p元素上被绑定的第二个监听函数/ 冒泡");
       //   event.stopPropagation();
         event.stopImmediatePropagation();
       //   执行stopImmediatePropagation方法,阻止click事件冒泡,并且阻止p元素上绑定的其他click事件的事件监听函数的执行.
       }, false);
 
       p.addEventListener("click",(event) => {
-        alert("我是p元素上被绑定的第三个监听函数");
+        console.log("我是p元素上被绑定的第三个监听函数/ 冒泡");
         // 该监听函数排在上个函数后面，该函数不会被执行
       }, false);
 
       document.querySelector("div").addEventListener("mousedown", (event) => {
-        alert("我是div元素,我是p元素的上层元素");
+        console.log("我是div元素,我是p元素的上层元素/ 冒泡");
         // p元素的click事件没有向上冒泡，该函数不会被执行
       }, false);
   </script>
+  <div id="app"></div>
+  <!-- <div class="hover" testattr="阿士大夫撒旦法">hove me</div> -->
+
+  
 
   <ul class="study-list">待学列表
       <li></li>
@@ -109,7 +123,7 @@
         left: '30px'
       })
     })
-  </script> -->
+  </script>
 
   <!-- <div class="hoverbtn">
     hover me

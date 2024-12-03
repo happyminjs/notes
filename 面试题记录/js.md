@@ -141,23 +141,7 @@ new Array(3).fill(7)  // [7,7,7]
 // [2,4,3,6,4,8]
 ```
 --------------
-#### 基础类型
-null、undefined、Boolean、String、Number  
-判断类型
-```js
-Object.prototype.toString.call({})  ==== '[object Object]'
-Object.prototype.toString.call([])  ==== '[object Array]'
-Object.prototype.toString.call('aaa')  ==== '[object String]'
-Object.prototype.toString.call(null)  ==== '[object Null]'
-Object.prototype.toString.call('aaa')  ==== '[object Undefined]'
-Object.prototype.toString.call(true)  ==== '[object Boolean]'
-Object.prototype.toString.call(1)  ==== '[object Number]'
-```
-ES6中新增了 Symbol 类型，当在使用了他人提供的对象，但是又想添加新方法，为了避免 新名字导致冲突而提出的，保证每个属性的名字都是独一无二的。要注意做为object的属性名时不能被for、Object.keys 等方法遍历到，需要使用 Object.getOwnPropertySymbols(obj) 取Symbol类型的属性。或者 Reflect.ownKeys(obj) 可以取到普通key和Symbol的key。
-```js
-Object.prototype.toString.call(Symbol()) === '[object Symbol]'
-```
-----------------
+
 #### 基础类型与引用类型的区别
 引用类型： Array，Object  
 存储位置：   
